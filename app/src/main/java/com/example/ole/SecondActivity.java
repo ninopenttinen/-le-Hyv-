@@ -2,7 +2,9 @@ package com.example.ole;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.SimpleAdapter;
@@ -49,5 +51,10 @@ public class SecondActivity extends AppCompatActivity {
         // Add adapter to gridView
         GridView randomGridView = ( GridView ) findViewById( R.id.randomGridView );
         randomGridView.setAdapter( simpleAdapter );
+    }
+
+    public void randomOnClick(View view){
+        Intent intent = new Intent(this, ThirdActivity.class);
+        startActivity(intent);
     }
 }
