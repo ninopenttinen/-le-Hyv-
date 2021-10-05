@@ -56,13 +56,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void categoryOnClick(View view){
-
-        // startColor = 53 184 236
-        // endColor = 37 104 216
-        // android:startColor="#35b8d8"
-        // android:endColor="#2568d8"
-
-
         Intent intent = new Intent(this, SecondActivity.class);
         startActivity(intent);
     }
