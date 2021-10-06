@@ -8,9 +8,9 @@
     tools:context=".SettingsActivity">
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <TextView
             android:id="@+id/settingsHeaderTextView"
             android:layout_width="match_parent"
@@ -20,5 +20,17 @@
             android:text="Settings"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+        </LinearLayout>
+
+
+
+
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.appcompat.widget.LinearLayoutCompat>
