@@ -45,6 +45,8 @@
             android:layout_margin="20dp"
             >
             <TextView
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:text="Lisää/Poista"
@@ -52,6 +54,8 @@
                 android:textSize="16sp">
             </TextView>
             <TextView
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:text="Valmistusaika"
@@ -59,6 +63,8 @@
                 android:textSize="16sp">
             </TextView>
             <TextView
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:text="Raaka-aineet"
@@ -66,6 +72,8 @@
                 android:textSize="16sp">
             </TextView>
             <TextView
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:text="Näytä resepti"
