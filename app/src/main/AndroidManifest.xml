@@ -10,6 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Ole">
         <activity
+            android:name=".SettingsActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Design.NoActionBar" />
+        <activity
             android:name=".ThirdActivity"
             android:exported="true"
             android:theme="@style/Theme.Design.NoActionBar" />
