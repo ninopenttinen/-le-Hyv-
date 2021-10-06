@@ -4,33 +4,99 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@drawable/gradient_bg"
     tools:context=".SettingsActivity">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:orientation="horizontal"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="40dp"
+        android:text="Settings"
+        android:gravity="center"
+        android:textColor="#FFFF"
+        android:textSize="20sp">
+    </TextView>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_marginTop="50dp">
+
         <TextView
-            android:id="@+id/settingsHeaderTextView"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:layout_margin="20dp"
-            android:gravity="center"
-            android:text="Settings"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp" />
-        <LinearLayout
-            android:orientation="horizontal"
+            android:gravity="start"
+            android:onClick="dialogOnClick"
+            android:text="Settings 1"
+            android:textColor="#FFFF"
+            android:textSize="20sp">
+        </TextView>
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="200dp">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="20dp" />
-        </LinearLayout>
+            android:layout_height="40dp"
+            android:layout_margin="20dp"
+            android:text="Settings 2"
+            android:gravity="start"
+            android:textColor="#FFFF"
+            android:textSize="20sp">
+        </TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="20dp"
+            android:text="Settings 3"
+            android:gravity="start"
+            android:textColor="#FFFF"
+            android:textSize="20sp">
+        </TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="20dp"
+            android:text="Settings 4"
+            android:gravity="start"
+            android:textColor="#FFFF"
+            android:textSize="20sp">
+        </TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="20dp"
+            android:text="Settings 5"
+            android:gravity="start"
+            android:textColor="#FFFF"
+            android:textSize="20sp">
+        </TextView>
+
+    </LinearLayout>
+
+<!--
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Settings"
+        android:gravity="center"
+        android:textColor="#FFFF"
+        android:textSize="20sp">
+    </TextView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="testi"
+        android:gravity="center"
+        android:textColor="#FFFF"
+        android:textSize="20sp">
+    </TextView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="testi"
+        android:gravity="center"
+        android:textColor="#FFFF"
+        android:textSize="20sp">
+    </TextView>-->
 
 
 
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.appcompat.widget.LinearLayoutCompat>
