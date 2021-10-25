@@ -11,7 +11,8 @@
         android:theme="@style/Theme.Ole">
         <activity
             android:name=".FavoritesActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.Design.NoActionBar" />
         <activity
             android:name=".CartActivity"
             android:exported="true"
