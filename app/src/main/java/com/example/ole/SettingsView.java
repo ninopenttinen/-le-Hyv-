@@ -11,7 +11,7 @@ import android.view.View;
 
 import java.util.ArrayList;
 
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsView extends AppCompatActivity {
 
     //private ArrayList<String> selectedItems = new ArrayList<String>();
 

@@ -1,4 +1,4 @@
-package com.example.ole;
+package com.example.ole.components;
 
 public class RandomItem {
 
