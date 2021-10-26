@@ -7,16 +7,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
+
+import com.example.ole.components.CategoryItem;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class CategoryView extends AppCompatActivity {
 
     private String jsonResponse = "Test";
-    private final List< CategoryItem > categoryItemArrayList = new ArrayList< CategoryItem >();
+    private final List<CategoryItem> categoryItemArrayList = new ArrayList< CategoryItem >();
     private List<HashMap<String, String>> categoryItemHashMap = new ArrayList<>();
     private SimpleAdapter simpleAdapter;
 
@@ -56,22 +57,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void categoryOnClick(View view){
-        Intent intent = new Intent(this, SecondActivity.class);
+        Intent intent = new Intent(this, SuggestionsView.class);
         startActivity(intent);
     }
 
     public void settingsOnClick(View view){
-        Intent intent = new Intent(this, SettingsActivity.class);
+        Intent intent = new Intent(this, SettingsView.class);
         startActivity(intent);
     }
 
     public void cartOnClick(View view){
-        Intent intent = new Intent(this, CartActivity.class);
+        Intent intent = new Intent(this, ShoppingCartView.class);
         startActivity(intent);
     }
 
     public void favoritesOnClick(View view){
-        Intent intent = new Intent(this, FavoritesActivity.class);
+        Intent intent = new Intent(this, FavoritesView.class);
         startActivity(intent);
     }
 
