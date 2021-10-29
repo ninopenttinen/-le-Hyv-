@@ -14,13 +14,13 @@ import java.util.List;
 
 public class RecipeView extends AppCompatActivity {
 
-
     private final List<RandomItem> randomItemArrayList = new ArrayList< RandomItem >();
     private final List<HashMap<String, String>> randomItemHashMap = new ArrayList<>();
     private SimpleAdapter simpleAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third);
     }
