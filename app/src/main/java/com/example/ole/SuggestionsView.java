@@ -1,6 +1,7 @@
 package com.example.ole;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +10,8 @@ import android.widget.GridView;
 import android.widget.SimpleAdapter;
 
 import com.example.ole.components.RandomItem;
+import com.example.ole.model.Recipe;
+import com.example.ole.viewmodel.SuggestionsViewModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,6 +19,7 @@ import java.util.List;
 
 public class SuggestionsView extends AppCompatActivity {
 
+    private SuggestionsViewModel suggestionsViewModel;
     private final List<RandomItem> randomItemArrayList = new ArrayList< RandomItem >();
     private final List<HashMap<String, String>> randomItemHashMap = new ArrayList<>();
     private SimpleAdapter simpleAdapter;
@@ -25,16 +29,28 @@ public class SuggestionsView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
-        parseDataAndUpdate();
+        suggestionsViewModel = new ViewModelProvider(this, ViewModelProvider
+                .AndroidViewModelFactory
+                .getInstance(this.getApplication()))
+                .get(SuggestionsViewModel.class);
+
+        suggestionsViewModel.getRecipes().observe(this, recipes -> {
+                    parseDataAndUpdate(recipes);
+
+                    // Add adapter to gridView
+                    GridView randomGridView = (GridView) findViewById(R.id.randomGridView);
+                    randomGridView.setAdapter(simpleAdapter);
+                }
+                );
     }
 
-    private void parseDataAndUpdate(){
-
-        for ( int i = 0; i < 2; i++){
-            String categoryName = "Category" + " " + (i);
-            String categoryImg = "Image" + " " + (i);
-            randomItemArrayList.add( new RandomItem( categoryName, categoryImg ));
+    private void parseDataAndUpdate(List<Recipe> recipes) {
+        if (recipes.size() == 0) {
+            return;
         }
+
+        randomItemArrayList.add( new RandomItem( recipes.get(0).getLabel(), recipes.get(0).getImage() ));
+        randomItemArrayList.add( new RandomItem( recipes.get(1).getLabel(), recipes.get(1).getImage() ));
 
         for (RandomItem i : randomItemArrayList){
             HashMap<String, String> randomItemHash = new HashMap<>();
@@ -47,10 +63,6 @@ public class SuggestionsView extends AppCompatActivity {
                 new String[] { "categoryName", "categoryImg" },
                 new int[] { R.id.randomImageView, R.id.randomTextView }
         );
-
-        // Add adapter to gridView
-        GridView randomGridView = ( GridView ) findViewById( R.id.randomGridView );
-        randomGridView.setAdapter( simpleAdapter );
     }
 
     public void randomOnClick(View view){

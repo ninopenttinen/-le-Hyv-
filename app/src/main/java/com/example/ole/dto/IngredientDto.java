@@ -10,7 +10,7 @@ public class IngredientDto {
     String measure;
 
     @SerializedName("quantity")
-    Long quantity;
+    Double quantity;
 
     @SerializedName("food")
     String food;
@@ -23,7 +23,7 @@ public class IngredientDto {
         return measure;
     }
 
-    public Long getQuantity() {
+    public Double getQuantity() {
         return quantity;
     }
 
