@@ -1,6 +1,7 @@
 package com.example.ole.repository;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.ole.api.EdamamApi;
@@ -10,6 +11,8 @@ import com.example.ole.model.Ingredient;
 import com.example.ole.model.Recipe;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,7 +26,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RecipesRepository {
     private static final String URL = "https://api.edamam.com";
     private final EdamamApi edamamApi;
-    private MutableLiveData<List<Recipe>> recipes;
+    private MutableLiveData<List<Recipe>> recipes = new MutableLiveData<>(Collections.emptyList());
 
     public RecipesRepository() {
         OkHttpClient client = new OkHttpClient.Builder().build();
@@ -72,5 +75,9 @@ public class RecipesRepository {
                 System.out.println(t.getStackTrace());
             }
         });
+    }
+
+    public LiveData<List<Recipe>> getRecipes() {
+        return recipes;
     }
 }

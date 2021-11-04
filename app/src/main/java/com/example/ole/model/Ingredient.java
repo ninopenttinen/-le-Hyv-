@@ -3,10 +3,10 @@ package com.example.ole.model;
 public class Ingredient {
     String text;
     String measure;
-    Long quantity;
+    Double quantity;
     String food;
 
-    public Ingredient(String text, String measure, Long quantity, String food) {
+    public Ingredient(String text, String measure, Double quantity, String food) {
         this.text = text;
         this.measure = measure;
         this.quantity = quantity;
@@ -21,7 +21,7 @@ public class Ingredient {
         return measure;
     }
 
-    public Long getQuantity() {
+    public Double getQuantity() {
         return quantity;
     }
 
@@ -37,7 +37,7 @@ public class Ingredient {
         this.measure = measure;
     }
 
-    public void setQuantity(Long quantity) {
+    public void setQuantity(Double quantity) {
         this.quantity = quantity;
     }
 
