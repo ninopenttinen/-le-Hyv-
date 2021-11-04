@@ -27,10 +27,6 @@
             android:exported="true"
             android:theme="@style/Theme.Design.NoActionBar" />
         <activity
-            android:name=".SuggestionsView"
-            android:exported="true"
-            android:theme="@style/Theme.Design.NoActionBar" />
-        <activity
             android:name=".CategoryView"
             android:exported="true"
             android:theme="@style/Theme.Design.NoActionBar">
