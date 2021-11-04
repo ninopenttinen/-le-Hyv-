@@ -23,7 +23,7 @@ import com.example.ole.roomsitems.ShoppingList;
 }, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
-    private static String DB_NAME = "Ole-DB";
+    private static String DB_NAME = "database";
     private static volatile AppDatabase instance;
 
     protected AppDatabase() {};
@@ -39,7 +39,6 @@ public abstract class AppDatabase extends RoomDatabase {
         return Room.databaseBuilder(
             context,
             AppDatabase.class, DB_NAME)
-            .allowMainThreadQueries()
             .build();
     }
 
