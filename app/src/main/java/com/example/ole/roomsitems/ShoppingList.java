@@ -10,15 +10,14 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-public class Ingredient {
+public class ShoppingList {
 
-    @PrimaryKey(autoGenerate = true)
-    private long id;
+  @PrimaryKey(autoGenerate = true)
+  private long id;
 
-    @ColumnInfo(name = "ingredient_name")
-    private String name;
+  @ColumnInfo(name = "ingredient")
+  private String ingredient;
 
-    @ColumnInfo(name = "ingredient_amount")
-    private float amount;
-
+  @ColumnInfo(name = "ingredient_amount")
+  private float amount;
 }

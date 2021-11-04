@@ -28,6 +28,13 @@ android {
 }
 
 dependencies {
+
+    def lombok_version = "1.18.22"
+
+
+    compileOnly "org.projectlombok:lombok:$lombok_version"
+    annotationProcessor "org.projectlombok:lombok:$lombok_version"
+
     def retrofit2_version = "2.9.0"
 
     implementation "com.squareup.retrofit2:retrofit:$retrofit2_version"
@@ -44,4 +51,7 @@ dependencies {
 
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
+
+
 }
+
