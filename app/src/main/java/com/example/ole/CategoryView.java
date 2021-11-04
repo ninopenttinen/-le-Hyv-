@@ -58,6 +58,7 @@ public class CategoryView extends AppCompatActivity {
 
     public void categoryOnClick(View view){
         Intent intent = new Intent(this, SuggestionsView.class);
+        intent.putExtra("category", "chinese"); // TODO: add value from parameters
         startActivity(intent);
     }
 

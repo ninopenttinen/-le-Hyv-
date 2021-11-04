@@ -12,6 +12,7 @@ import android.widget.SimpleAdapter;
 import com.example.ole.components.RandomItem;
 import com.example.ole.model.Recipe;
 import com.example.ole.viewmodel.SuggestionsViewModel;
+import com.example.ole.viewmodel.factory.SuggestionsViewModelFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,11 +28,12 @@ public class SuggestionsView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle bundle = getIntent().getExtras();
+        String category = bundle.getString("category");
+
         setContentView(R.layout.activity_second);
 
-        suggestionsViewModel = new ViewModelProvider(this, ViewModelProvider
-                .AndroidViewModelFactory
-                .getInstance(this.getApplication()))
+        suggestionsViewModel = new ViewModelProvider(this, new SuggestionsViewModelFactory(this.getApplication(), category))
                 .get(SuggestionsViewModel.class);
 
         suggestionsViewModel.getRecipes().observe(this, recipes -> {
