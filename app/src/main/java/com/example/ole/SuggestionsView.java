@@ -44,6 +44,8 @@ public class SuggestionsView extends AppCompatActivity {
                     randomGridView.setAdapter(simpleAdapter);
                 }
                 );
+
+                // branch test
     }
 
     private void parseDataAndUpdate(List<Recipe> recipes) {
