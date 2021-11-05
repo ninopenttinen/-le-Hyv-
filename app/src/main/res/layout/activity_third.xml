@@ -11,14 +11,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <TextView
+            android:id="@+id/recipeNameTextView"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:gravity="center"
             android:text="Recipe name"
             android:textColor="#FFFFFF"
-            android:textSize="20sp">
-        </TextView>
+            android:textSize="20sp"></TextView>
         <androidx.cardview.widget.CardView
             android:layout_width="320dp"
             android:layout_height="200dp"

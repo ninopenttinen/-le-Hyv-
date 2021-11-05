@@ -1,11 +1,13 @@
 package com.example.ole;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.SimpleAdapter;
 
@@ -21,7 +23,7 @@ import java.util.List;
 public class SuggestionsView extends AppCompatActivity {
 
     private SuggestionsViewModel suggestionsViewModel;
-    private final List<RandomItem> randomItemArrayList = new ArrayList< RandomItem >();
+    private final List<RandomItem> randomItemArrayList = new ArrayList<RandomItem>();
     private final List<HashMap<String, String>> randomItemHashMap = new ArrayList<>();
     private SimpleAdapter simpleAdapter;
 
@@ -42,13 +44,39 @@ public class SuggestionsView extends AppCompatActivity {
                     // Add adapter to gridView
                     GridView randomGridView = (GridView) findViewById(R.id.randomGridView);
                     randomGridView.setAdapter(simpleAdapter);
+
+                    randomGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+                            //TODO: maybe(mielummin olioks ku listaks)
+                           /* Recipe selectedRec = new Recipe(
+                                    recipes.get(position).getLabel(),
+                                    recipes.get(position).getImage(),
+                                    recipes.get(position).getUrl(),
+                                    recipes.get(position).getIngredients(),
+                                    recipes.get(position).getTotalTime(),
+                                    recipes.get(position).getCalories()
+                                    );*/
+
+                            ArrayList<String> selectedItem = new ArrayList<>();
+                            selectedItem.add( recipes.get(position).getLabel());
+                            selectedItem.add( recipes.get(position).getImage());
+                            selectedItem.add( recipes.get(position).getTotalTime());
+                            selectedItem.add( recipes.get(position).getUrl());
+                            selectedItem.add( recipes.get(position).getCalories());
+
+                            Intent intent = new Intent(getApplicationContext(), RecipeView.class);
+                            intent.putStringArrayListExtra("sItems", selectedItem);
+                            startActivity(intent);
+                        }
+                    });
                 }
                 );
-
-                // branch test
     }
 
-    private void parseDataAndUpdate(List<Recipe> recipes) {
+    private void parseDataAndUpdate(@NonNull List<Recipe> recipes) {
         if (recipes.size() == 0) {
             return;
         }
@@ -67,10 +95,5 @@ public class SuggestionsView extends AppCompatActivity {
                 new String[] { "categoryName", "categoryImg" },
                 new int[] { R.id.randomImageView, R.id.randomTextView }
         );
-    }
-
-    public void randomOnClick(View view){
-        Intent intent = new Intent(this, RecipeView.class);
-        startActivity(intent);
     }
 }
