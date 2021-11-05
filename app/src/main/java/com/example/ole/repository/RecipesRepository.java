@@ -1,5 +1,7 @@
 package com.example.ole.repository;
 
+import android.app.Application;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -9,13 +11,15 @@ import com.example.ole.dto.RecipeBodyDto;
 import com.example.ole.dto.RecipesJsonResponse;
 import com.example.ole.model.Ingredient;
 import com.example.ole.model.Recipe;
+import com.example.ole.R;
+import com.example.ole.model.SearchFilters;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,8 +32,24 @@ public class RecipesRepository {
     private final EdamamApi edamamApi;
     private MutableLiveData<List<Recipe>> recipes = new MutableLiveData<>(Collections.emptyList());
 
-    public RecipesRepository() {
-        OkHttpClient client = new OkHttpClient.Builder().build();
+    public RecipesRepository(@NonNull Application application, SearchFilters searchFilters) {
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(chain -> {
+                    String app_id = application.getResources().getString(R.string.edamam_app_id);
+                    String app_key = application.getResources().getString(R.string.edamam_app_key);
+                    HttpUrl url = chain
+                            .request()
+                            .url()
+                            .newBuilder()
+                            .addQueryParameter("type", "public")
+                            .addQueryParameter("app_id", app_id)
+                            .addQueryParameter("app_key", app_key)
+                            .addQueryParameter("random", "true")
+                            .build();
+                    return chain.proceed(chain.request().newBuilder().url(url).build());
+                })
+                .build();
+
         edamamApi = new Retrofit.Builder()
                 .baseUrl(URL)
                 .client(client)
@@ -37,11 +57,18 @@ public class RecipesRepository {
                 .build()
                 .create(EdamamApi.class);
 
-        fetchRecipes();
+        fetchRecipes(searchFilters);
     }
 
-    private void fetchRecipes() {
-        edamamApi.fetchRecipes().enqueue(new Callback<RecipesJsonResponse>() {
+    private void fetchRecipes(SearchFilters searchFilters) {
+        edamamApi.fetchRecipes(
+                searchFilters.getDiet(),
+                searchFilters.getHealth(),
+                searchFilters.getCuisineType(),
+                searchFilters.getMealType(),
+                searchFilters.getDishType(),
+                searchFilters.getExcluded()
+        ).enqueue(new Callback<RecipesJsonResponse>() {
             @Override
             public void onResponse(@NonNull Call<RecipesJsonResponse> call, @NonNull Response<RecipesJsonResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
@@ -65,6 +92,7 @@ public class RecipesRepository {
                         );
                         newRecipes.add(newRecipe);
                     }
+                    System.out.println(newRecipes);
                     recipes.postValue(newRecipes);
                 }
             }
