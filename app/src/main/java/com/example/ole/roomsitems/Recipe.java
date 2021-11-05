@@ -2,23 +2,19 @@ package com.example.ole.roomsitems;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
+@Entity(tableName = "recipes")
 @Data
 @NoArgsConstructor
 public class Recipe {
 
+  @ColumnInfo(name = "recipeId")
   @PrimaryKey(autoGenerate = true)
-  private long id;
+  private long recipeId;
 
   @ColumnInfo(name = "recipe_name")
   private String name;

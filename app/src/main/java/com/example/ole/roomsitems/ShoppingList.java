@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class ShoppingList {
 
   @PrimaryKey(autoGenerate = true)
-  private long id;
+  private long shoppingListId;
 
   @ColumnInfo(name = "ingredient")
   private String ingredient;
