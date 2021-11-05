@@ -16,6 +16,8 @@ import java.util.List;
 
 public class CategoryView extends AppCompatActivity {
 
+    // joonaksen Gittitesti
+
     private String jsonResponse = "Test";
     private final List<CategoryItem> categoryItemArrayList = new ArrayList< CategoryItem >();
     private List<HashMap<String, String>> categoryItemHashMap = new ArrayList<>();
