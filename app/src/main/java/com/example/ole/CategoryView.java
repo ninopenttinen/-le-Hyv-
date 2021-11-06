@@ -65,7 +65,7 @@ public class CategoryView extends AppCompatActivity {
     }
 
     public void settingsOnClick(View view){
-        Intent intent = new Intent(this, SettingsView.class);
+        Intent intent = new Intent(this, FiltersView.class);
         startActivity(intent);
     }
 

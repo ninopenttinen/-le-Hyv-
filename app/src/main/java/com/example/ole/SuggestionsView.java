@@ -3,14 +3,13 @@ package com.example.ole;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.SimpleAdapter;
 
 import com.example.ole.components.RandomItem;
-import com.example.ole.model.Recipe;
+import com.example.ole.model.Suggestions;
 import com.example.ole.viewmodel.SuggestionsViewModel;
 import com.example.ole.viewmodel.factory.SuggestionsViewModelFactory;
 
@@ -36,23 +35,22 @@ public class SuggestionsView extends AppCompatActivity {
         suggestionsViewModel = new ViewModelProvider(this, new SuggestionsViewModelFactory(this.getApplication(), category))
                 .get(SuggestionsViewModel.class);
 
-        suggestionsViewModel.getRecipes().observe(this, recipes -> {
-                    parseDataAndUpdate(recipes);
+        suggestionsViewModel.getSuggestions().observe(this, suggestions -> {
+            parseDataAndUpdate(suggestions);
 
-                    // Add adapter to gridView
-                    GridView randomGridView = (GridView) findViewById(R.id.randomGridView);
-                    randomGridView.setAdapter(simpleAdapter);
-                }
-                );
+            // Add adapter to gridView
+            GridView randomGridView = (GridView) findViewById(R.id.randomGridView);
+            randomGridView.setAdapter(simpleAdapter);
+        });
     }
 
-    private void parseDataAndUpdate(List<Recipe> recipes) {
-        if (recipes.size() == 0) {
+    private void parseDataAndUpdate(Suggestions suggestions) {
+        if (suggestions.isNoRecipes()) {
             return;
         }
 
-        randomItemArrayList.add( new RandomItem( recipes.get(0).getLabel(), recipes.get(0).getImage() ));
-        randomItemArrayList.add( new RandomItem( recipes.get(1).getLabel(), recipes.get(1).getImage() ));
+        randomItemArrayList.add( new RandomItem( suggestions.getFirstSuggestion().getLabel(), suggestions.getFirstSuggestion().getImage() ));
+        randomItemArrayList.add( new RandomItem( suggestions.getSecondSuggestion().getLabel(), suggestions.getSecondSuggestion().getImage() ));
 
         for (RandomItem i : randomItemArrayList){
             HashMap<String, String> randomItemHash = new HashMap<>();
@@ -67,8 +65,7 @@ public class SuggestionsView extends AppCompatActivity {
         );
     }
 
-    public void randomOnClick(View view){
-        Intent intent = new Intent(this, RecipeView.class);
-        startActivity(intent);
+    public void randomOnClick(View view) {
+        suggestionsViewModel.nextSuggestions();
     }
 }

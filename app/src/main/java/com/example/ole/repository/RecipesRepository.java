@@ -60,7 +60,7 @@ public class RecipesRepository {
         fetchRecipes(searchFilters);
     }
 
-    private void fetchRecipes(SearchFilters searchFilters) {
+    public void fetchRecipes(SearchFilters searchFilters) {
         edamamApi.fetchRecipes(
                 searchFilters.getDiet(),
                 searchFilters.getHealth(),
