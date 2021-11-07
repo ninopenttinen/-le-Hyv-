@@ -18,10 +18,10 @@ public class SuggestionsViewModel extends AndroidViewModel {
 
     private final RecipesRepository recipesRepository;
 
-    private LiveData<List<Recipe>> fetchedRecipes;
-    private MediatorLiveData<Suggestions> suggestions = new MediatorLiveData<>();
+    private final LiveData<List<Recipe>> fetchedRecipes;
+    private final MediatorLiveData<Suggestions> suggestions = new MediatorLiveData<>();
     //private LiveData<List<searchFilters>> searchFilters; // TODO: observe and trigger recipesRepository.fetchData(); when filters change
-    private SearchFilters searchFilters_PLACEHOLDER = new SearchFilters(null, null, null, null, null, null);
+    private final SearchFilters searchFilters_PLACEHOLDER = new SearchFilters(null, null, null, null, null, null);
 
 
     public SuggestionsViewModel(@NonNull Application application, String category) {

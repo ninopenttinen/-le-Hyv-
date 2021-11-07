@@ -2,8 +2,12 @@ package com.example.ole.model;
 
 import android.graphics.Bitmap;
 
+import org.parceler.Parcel;
+import org.parceler.ParcelConstructor;
+
 import java.util.List;
 
+@Parcel
 public class Recipe {
     String label;
     Bitmap image;
@@ -12,6 +16,7 @@ public class Recipe {
     String calories;
     String totalTime;
 
+    @ParcelConstructor
     public Recipe(String label, Bitmap image, String url, List<Ingredient> ingredients, String calories, String totalTime) {
         this.label = label;
         this.image = image;

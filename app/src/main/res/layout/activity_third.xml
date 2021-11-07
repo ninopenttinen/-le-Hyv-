@@ -12,10 +12,11 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <TextView
+            android:id="@+id/recipeNameTextView"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:gravity="center"
-            android:text="Recipe name"
+            android:text="@string/recipe_name_value"
             android:textColor="#FFFFFF"
             android:textSize="20sp">
         </TextView>

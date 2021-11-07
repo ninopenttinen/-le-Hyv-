@@ -3,23 +3,26 @@ package com.example.ole;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-import com.example.ole.components.RandomItem;
 import com.example.ole.model.Suggestions;
 import com.example.ole.viewmodel.SuggestionsViewModel;
 import com.example.ole.viewmodel.factory.SuggestionsViewModelFactory;
 
+import org.parceler.Parcels;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class SuggestionsView extends AppCompatActivity {
 
@@ -64,8 +67,19 @@ public class SuggestionsView extends AppCompatActivity {
             return false;
         });
 
-        GridView suggestionGridView = findViewById(R.id.suggestionsGridView);
-        suggestionGridView.setAdapter(adapter);
+        GridView suggestionsGridView = findViewById(R.id.suggestionsGridView);
+        suggestionsGridView.setAdapter(adapter);
+
+        suggestionsGridView.setOnItemClickListener((parent, view, position, id) -> {
+            Intent intent = new Intent(this, RecipeView.class);
+            if (position == 0) {
+                intent.putExtra("recipe", Parcels.wrap(suggestions.getFirstSuggestion()));
+            }
+            if (position == 1) {
+                intent.putExtra("recipe", Parcels.wrap(suggestions.getSecondSuggestion()));
+            }
+            startActivity(intent);
+        });
     }
 
     private List<HashMap<String, Object>> buildHashmapFromSuggestions(Suggestions suggestions) {
@@ -84,9 +98,5 @@ public class SuggestionsView extends AppCompatActivity {
 
     public void getNextSuggestions(View view) {
         suggestionsViewModel.nextSuggestions();
-    }
-
-    public void openRecipe(View view) {
-
     }
 }
