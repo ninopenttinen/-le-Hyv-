@@ -2,4 +2,5 @@
     <string name="app_name">Òle Hyvä</string>
 
     <string name="selected_category_value">%1$s</string>
+    <string name="suggestion_image_description">Suggestion Image</string>
 </resources>

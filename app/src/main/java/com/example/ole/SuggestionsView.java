@@ -82,7 +82,11 @@ public class SuggestionsView extends AppCompatActivity {
         return suggestionsHashMap;
     }
 
-    public void handleNextSuggestions(View view) {
+    public void getNextSuggestions(View view) {
         suggestionsViewModel.nextSuggestions();
+    }
+
+    public void openRecipe(View view) {
+
     }
 }

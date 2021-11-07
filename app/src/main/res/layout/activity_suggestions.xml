@@ -35,7 +35,7 @@
         android:id="@+id/nextSuggestionsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="handleNextSuggestions"
+        android:onClick="getNextSuggestions"
         android:text="Re-roll"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
