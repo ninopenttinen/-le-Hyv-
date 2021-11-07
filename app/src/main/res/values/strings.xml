@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Ole</string>
+    <string name="app_name">Òle Hyvä</string>
+
+    <string name="selected_category_value">%1$s</string>
 </resources>

@@ -29,9 +29,7 @@ public class SuggestionsViewModel extends AndroidViewModel {
         searchFilters_PLACEHOLDER.setCuisineType(category);
 
         recipesRepository = new RecipesRepository(application, searchFilters_PLACEHOLDER);
-
         fetchedRecipes = recipesRepository.getRecipes();
-        suggestions.setValue(new Suggestions());
 
         suggestions.addSource(fetchedRecipes, recipes -> {
             suggestions.setValue(updateSuggestions(0, recipes.size()));

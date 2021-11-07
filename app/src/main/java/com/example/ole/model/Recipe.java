@@ -1,16 +1,18 @@
 package com.example.ole.model;
 
+import android.graphics.Bitmap;
+
 import java.util.List;
 
 public class Recipe {
     String label;
-    String image;
+    Bitmap image;
     String url;
     List<Ingredient> ingredients;
     String calories;
     String totalTime;
 
-    public Recipe(String label, String image, String url, List<Ingredient> ingredients, String calories, String totalTime) {
+    public Recipe(String label, Bitmap image, String url, List<Ingredient> ingredients, String calories, String totalTime) {
         this.label = label;
         this.image = image;
         this.url = url;
@@ -23,7 +25,7 @@ public class Recipe {
         return label;
     }
 
-    public String getImage() {
+    public Bitmap getImage() {
         return image;
     }
 
@@ -47,7 +49,7 @@ public class Recipe {
         this.label = label;
     }
 
-    public void setImage(String image) {
+    public void setImage(Bitmap image) {
         this.image = image;
     }
 
