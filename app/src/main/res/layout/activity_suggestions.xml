@@ -8,7 +8,7 @@
     tools:context=".SuggestionsView">
 
     <GridView
-        android:id="@+id/randomGridView"
+        android:id="@+id/suggestionsGridView"
         android:layout_width="412dp"
         android:layout_height="295dp"
         android:fadingEdge="horizontal"
@@ -19,27 +19,27 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/categoryTextView"
         android:layout_width="178dp"
         android:layout_height="43dp"
-        android:text="Category"
+        android:text="@string/selected_category_value"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/randomGridView"
+        app:layout_constraintBottom_toTopOf="@+id/suggestionsGridView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/randomButton"
+        android:id="@+id/nextSuggestionsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="randomOnClick"
+        android:onClick="getNextSuggestions"
         android:text="Re-roll"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/randomGridView" />
+        app:layout_constraintTop_toBottomOf="@+id/suggestionsGridView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

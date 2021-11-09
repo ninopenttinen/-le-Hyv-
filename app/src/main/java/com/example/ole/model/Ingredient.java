@@ -1,11 +1,16 @@
 package com.example.ole.model;
 
+import org.parceler.Parcel;
+import org.parceler.ParcelConstructor;
+
+@Parcel
 public class Ingredient {
     String text;
     String measure;
     Double quantity;
     String food;
 
+    @ParcelConstructor
     public Ingredient(String text, String measure, Double quantity, String food) {
         this.text = text;
         this.measure = measure;

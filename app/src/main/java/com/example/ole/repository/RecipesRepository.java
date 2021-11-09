@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.ole.api.EdamamApi;
+import com.example.ole.common.Utility;
 import com.example.ole.dto.RecipeBodyDto;
 import com.example.ole.dto.RecipesJsonResponse;
 import com.example.ole.model.Ingredient;
@@ -17,6 +18,7 @@ import com.example.ole.model.SearchFilters;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 import okhttp3.HttpUrl;
@@ -52,6 +54,7 @@ public class RecipesRepository {
 
         edamamApi = new Retrofit.Builder()
                 .baseUrl(URL)
+                .callbackExecutor(Executors.newSingleThreadExecutor())
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
@@ -60,7 +63,7 @@ public class RecipesRepository {
         fetchRecipes(searchFilters);
     }
 
-    private void fetchRecipes(SearchFilters searchFilters) {
+    public void fetchRecipes(SearchFilters searchFilters) {
         edamamApi.fetchRecipes(
                 searchFilters.getDiet(),
                 searchFilters.getHealth(),
@@ -77,7 +80,7 @@ public class RecipesRepository {
                     for (RecipeBodyDto recipeDto : response.body().getRecipeBody()) {
                         Recipe newRecipe = new Recipe(
                             recipeDto.getRecipeDto().getLabel(),
-                            recipeDto.getRecipeDto().getImage(),
+                            Utility.loadImageAsBitmap(recipeDto.getRecipeDto().getImage()),
                             recipeDto.getRecipeDto().getUrl(),
 
                             recipeDto.getRecipeDto().getIngredientsDto().stream()

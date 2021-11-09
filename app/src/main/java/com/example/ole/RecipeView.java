@@ -5,8 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.GridView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import com.example.ole.components.RandomItem;
+import com.example.ole.model.Recipe;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,38 +19,15 @@ import java.util.List;
 public class RecipeView extends AppCompatActivity {
 
 
-    private final List<RandomItem> randomItemArrayList = new ArrayList< RandomItem >();
-    private final List<HashMap<String, String>> randomItemHashMap = new ArrayList<>();
-    private SimpleAdapter simpleAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third);
-    }
+        Recipe recipe = Parcels.unwrap(getIntent().getParcelableExtra("recipe"));
 
-    private void parseDataAndUpdate(){
+        TextView recipeNameTextView = findViewById(R.id.recipeNameTextView);
+        recipeNameTextView.setText(getString(R.string.recipe_name_value, recipe.getLabel()));
 
-        for ( int i = 0; i < 2; i++){
-            String categoryName = "Category" + " " + (i);
-            String categoryImg = "Image" + " " + (i);
-            randomItemArrayList.add( new RandomItem( categoryName, categoryImg ));
-        }
-
-        for (RandomItem i : randomItemArrayList){
-            HashMap<String, String> randomItemHash = new HashMap<>();
-            randomItemHash.put("categoryName", i.mRndCategory);
-            randomItemHash.put("categoryImg", i.mRndImage);
-            randomItemHashMap.add( randomItemHash );
-        }
-
-        simpleAdapter = new SimpleAdapter( this, randomItemHashMap, R.layout.random_layout,
-                new String[] { "categoryName", "categoryImg" },
-                new int[] { R.id.randomImageView, R.id.randomTextView }
-        );
-
-        // Add adapter to gridView
-        GridView randomGridView = ( GridView ) findViewById( R.id.randomGridView );
-        randomGridView.setAdapter( simpleAdapter );
     }
 }
