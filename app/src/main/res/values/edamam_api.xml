@@ -1,5 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="edamam_app_id" templateMergeStrategy="preserve" translatable="false">fb68f6cd</string>
-    <string name="edamam_app_key" templateMergeStrategy="preserve" translatable="false">10427013c0303bb3145aa08d47a06068</string>
 </resources>
