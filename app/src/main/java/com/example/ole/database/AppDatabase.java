@@ -23,27 +23,29 @@ import com.example.ole.roomsitems.ShoppingList;
 }, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
-    private static String DB_NAME = "database";
-    private static volatile AppDatabase instance;
+  private static final String DB_NAME = "database";
+  private static volatile AppDatabase instance;
 
-    protected AppDatabase() {};
-
-    public static synchronized AppDatabase getInstance(Context context) {
-        if (instance == null) {
-            instance = create(context);
-        }
-        return instance;
+  public static synchronized AppDatabase getInstance(Context context) {
+    if (instance == null) {
+      instance = create(context);
     }
+    return instance;
+  }
 
-    private static AppDatabase create(Context context) {
-        return Room.databaseBuilder(
-            context,
-            AppDatabase.class, DB_NAME)
-            .build();
-    }
+  private static AppDatabase create(Context context) {
+    return Room.databaseBuilder(
+        context,
+        AppDatabase.class,
+        DB_NAME
+    ).build();
+  }
 
-    public abstract IngredientDao getIngredientDao();
-    public abstract RecipeDao getRecipeDao();
-    public abstract ShoppingListDao getShoppingListDao();
-    public abstract SearchCriteriaDao getSearchCriteriaDao();
+  public abstract IngredientDao getIngredientDao();
+
+  public abstract RecipeDao getRecipeDao();
+
+  public abstract ShoppingListDao getShoppingListDao();
+
+  public abstract SearchCriteriaDao getSearchCriteriaDao();
 }

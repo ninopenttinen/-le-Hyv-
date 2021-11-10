@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="cuisine_types_string">
+        <item>American</item>
+        <item>Asian</item>
+        <item>British</item>
+        <item>Caribbean</item>
+        <item>Central Europe</item>
+        <item>Chinese</item>
+        <item>Eastern Europe</item>
+        <item>French</item>
+        <item>Indian</item>
+        <item>Italian</item>
+        <item>Japanese</item>
+        <item>Kosher</item>
+        <item>Mediterranean</item>
+        <item>Mexican</item>
+        <item>Middle Eastern</item>
+        <item>Nordic</item>
+        <item>South American</item>
+        <item>South East Asian</item>
+    </array>
+
+    <array name="cuisine_images_ref">
+        <item>@mipmap/american</item>
+    </array>
+</resources>
