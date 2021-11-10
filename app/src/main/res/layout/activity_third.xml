@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <TextView
             android:id="@+id/recipeNameTextView"
             android:layout_width="match_parent"
@@ -20,9 +21,10 @@
             android:textColor="#FFFFFF"
             android:textSize="20sp">
         </TextView>
+
         <androidx.cardview.widget.CardView
-            android:layout_width="320dp"
-            android:layout_height="200dp"
+            android:layout_width="190dp"
+            android:layout_height="190dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
             android:background="#FFFFFF"
@@ -32,55 +34,98 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.143">
+
             <ImageView
                 android:id="@+id/recipeImageView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:srcCompat="@tools:sample/avatars" />
         </androidx.cardview.widget.CardView>
-        <LinearLayout
-            android:orientation="vertical"
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="20dp"
-            >
+            android:layout_height="match_parent">
+
             <TextView
-                android:layout_marginTop="10dp"
-                android:gravity="center_vertical"
-                android:layout_width="match_parent"
+                android:id="@+id/timeTextView"
+                android:layout_width="208dp"
                 android:layout_height="50dp"
-                android:text="Lisää/Poista"
-                android:textColor="#FFFFFF"
-                android:textSize="16sp">
-            </TextView>
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:gravity="center_vertical"
+                android:text="Cooking time (minutes)"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/addRemoveButton2" />
+
             <TextView
-                android:layout_marginTop="10dp"
-                android:gravity="center_vertical"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="Valmistusaika"
-                android:textColor="#FFFFFF"
-                android:textSize="16sp">
-            </TextView>
+                android:id="@+id/timeTextNumberView"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:gravity="center"
+                android:text=""
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/addRemoveButton2" />
+
             <TextView
-                android:layout_marginTop="10dp"
-                android:gravity="center_vertical"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="Raaka-aineet"
-                android:textColor="#FFFFFF"
-                android:textSize="16sp">
-            </TextView>
+                android:id="@+id/ingredientsTextView"
+                android:layout_width="202dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:text="Ingredients"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/timeTextView" />
+
+            <Button
+                android:id="@+id/addRemoveButton2"
+                android:layout_width="388dp"
+                android:layout_height="58dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#65FFFFFF"
+                android:text="Add/Remove"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.695"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
-                android:layout_marginTop="10dp"
-                android:gravity="center_vertical"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="Näytä resepti"
-                android:textColor="#FFFFFF"
-                android:textSize="16sp">
-            </TextView>
-        </LinearLayout>
+                android:id="@+id/showRecipeTextView"
+                android:layout_width="134dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:onClick="onClickUrl"
+                android:text="Show recipe"
+                app:drawableEndCompat="@drawable/ic_baseline_arrow_forward_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <ListView
+                android:id="@+id/list_view"
+                android:layout_width="0dp"
+                android:layout_height="154dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="32dp"
+                android:background="#52A8AFDD"
+                app:layout_constraintBottom_toTopOf="@+id/showRecipeTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ingredientsTextView" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
     </LinearLayout>
 
 
