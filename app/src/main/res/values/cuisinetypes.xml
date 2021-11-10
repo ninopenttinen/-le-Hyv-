@@ -23,5 +23,22 @@
 
     <array name="cuisine_images_ref">
         <item>@mipmap/american</item>
+        <item>@mipmap/asian</item>
+        <item>@mipmap/british</item>
+        <item>@mipmap/caribbean</item>
+        <item>@mipmap/central_europe</item>
+        <item>@mipmap/chinese</item>
+        <item>@mipmap/eastern_europe</item>
+        <item>@mipmap/french</item>
+        <item>@mipmap/indian</item>
+        <item>@mipmap/italian</item>
+        <item>@mipmap/japanese</item>
+        <item>@mipmap/kosher</item>
+        <item>@mipmap/mediterranean</item>
+        <item>@mipmap/mexican</item>
+        <item>@mipmap/middle_eastern</item>
+        <item>@mipmap/nordic</item>
+        <item>@mipmap/south_american</item>
+        <item>@mipmap/south_east_asian</item>
     </array>
 </resources>

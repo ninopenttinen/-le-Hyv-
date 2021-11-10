@@ -3,7 +3,6 @@ package com.example.ole;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.GridView;
@@ -17,11 +16,8 @@ import java.util.List;
 
 public class CategoryView extends AppCompatActivity {
 
-  // joonaksen Gittitesti
-
-  private String jsonResponse = "Test";
   private final List<CategoryItem> categoryItemArrayList = new ArrayList<CategoryItem>();
-  private List<HashMap<String, String>> categoryItemHashMap = new ArrayList<>();
+  private List<HashMap<String, String>> categoryItemHashMapList = new ArrayList<>();
   private SimpleAdapter simpleAdapter;
 
   @Override
@@ -29,41 +25,39 @@ public class CategoryView extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    parseJsonAndUpdate(jsonResponse);
+    setCategoryView();
   }
 
-  private void parseJsonAndUpdate(String jsonResponse) {
-    // try catch
-    // Fill list with items
-
-    TypedArray cuisineStrings = getResources().obtainTypedArray(R.array.cuisine_types_string);
-    String test = cuisineStrings.getString(0);
-    System.out.println("test: " + test);
+  private void setCategoryView() {
 
     int categoryCount = getResources()
         .obtainTypedArray(R.array.cuisine_types_string)
         .length();
 
-
     for (int i = 0; i < categoryCount; i++) {
-      String categoryPic = "Category" + " " + (i);
+
+      String categoryImage = Integer.toString(
+          getResources()
+              .obtainTypedArray(R.array.cuisine_images_ref)
+              .getResourceId(i, 0)
+      );
 
       String categoryName = getResources()
           .obtainTypedArray(R.array.cuisine_types_string)
           .getString(i);
 
-      categoryItemArrayList.add(new CategoryItem(categoryPic, categoryName));
+      categoryItemArrayList.add(new CategoryItem(categoryName, categoryImage));
     }
 
     for (CategoryItem i : categoryItemArrayList) {
       HashMap<String, String> categoryItemHash = new HashMap<>();
-      categoryItemHash.put("categoryName", i.mCategoryName);
-      categoryItemHash.put("categoryImg", i.mCategoryImage);
-      categoryItemHashMap.add(categoryItemHash);
+      categoryItemHash.put("categoryImage", i.categoryImage);
+      categoryItemHash.put("categoryName", i.categoryName);
+      categoryItemHashMapList.add(categoryItemHash);
     }
 
-    simpleAdapter = new SimpleAdapter(this, categoryItemHashMap, R.layout.category_grid_layout,
-        new String[]{"categoryName", "categoryImg"},
+    simpleAdapter = new SimpleAdapter(this, categoryItemHashMapList, R.layout.category_grid_layout,
+        new String[]{"categoryImage", "categoryName"},
         new int[]{R.id.categoryImageView, R.id.categoryTextView}
     );
 
