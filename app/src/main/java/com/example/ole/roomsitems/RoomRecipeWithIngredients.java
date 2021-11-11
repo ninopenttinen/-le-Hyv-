@@ -5,11 +5,11 @@ import androidx.room.Relation;
 
 import java.util.List;
 
-public class RecipeWithIngredients {
-  @Embedded public Recipe recipe;
+public class RoomRecipeWithIngredients {
+  @Embedded public RoomRecipe roomRecipe;
       @Relation(
           parentColumn = "recipeId",
           entityColumn = "fk_recipe"
       )
-  public List<Ingredient> ingredients;
+  public List<RoomIngredient> roomIngredients;
 }

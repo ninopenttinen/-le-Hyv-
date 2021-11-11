@@ -8,7 +8,7 @@ import java.util.List;
 @Dao
 public interface ShoppingListDao {
 
-  @Query("SELECT ingredient FROM shoppinglist")
+  @Query("SELECT ingredient FROM shopping_list")
   List<String> getAllIngredients();
 
 }

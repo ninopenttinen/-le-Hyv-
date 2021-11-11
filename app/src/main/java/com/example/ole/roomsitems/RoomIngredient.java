@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Entity(tableName = "ingredients")
 @Data
 @NoArgsConstructor
-public class Ingredient {
+public class RoomIngredient {
 
     @PrimaryKey(autoGenerate = true)
     private long ingredientId;
