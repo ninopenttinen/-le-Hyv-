@@ -11,10 +11,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.ole.dao.IngredientDao;
 import com.example.ole.dao.RecipeDao;
 import com.example.ole.database.AppDatabase;
 import com.example.ole.model.Ingredient;
 import com.example.ole.model.Recipe;
+import com.example.ole.roomsitems.RoomIngredient;
 import com.example.ole.roomsitems.RoomRecipe;
 
 import org.parceler.Parcels;
@@ -25,14 +27,19 @@ import java.util.List;
 
 public class RecipeView extends AppCompatActivity {
 
-    public static List<String> ingredientsList = new ArrayList<String>();
+    private static List<String> ingredientsList = new ArrayList<String>();
     public String recipeUrl;
+    private RoomRecipe roomsRecipe;
+    private RoomIngredient roomIngredient;
 
     // tarjoilee daot
-    /*AppDatabase appDatabase = AppDatabase.getInstance();*/
+    AppDatabase appDatabase;
 
     // rajapinta roomsiin
-    /*RecipeDao recipeDao = appDatabase.getRecipeDao(*/
+    RecipeDao recipeDao;
+
+    IngredientDao ingredientDao;
+
 
     // roomsItems
     // recipeWith ingredients
@@ -43,12 +50,16 @@ public class RecipeView extends AppCompatActivity {
         setContentView(R.layout.activity_third);
         Recipe recipe = Parcels.unwrap(getIntent().getParcelableExtra("recipe"));
 
-      /*  AppDatabase appDatabase = AppDatabase.getInstance(this);
+        appDatabase = AppDatabase.getInstance(this);
         recipeDao  = appDatabase.getRecipeDao();
-*/
-        /*rep = recipe;*/
+        ingredientDao = appDatabase.getIngredientDao();
+        roomsRecipe = new RoomRecipe();
 
         recipeUrl = recipe.getUrl();
+        roomsRecipe.setImageUrl(recipe.getUrl());
+        roomsRecipe.setName(recipe.getLabel());
+        roomsRecipe.setPreparationTime(recipe.getTotalTime());
+        roomsRecipe.setRecipeUrl(recipe.getUrl());
 
         TextView recipeNameTextView = findViewById(R.id.recipeNameTextView);
         recipeNameTextView.setText(getString(R.string.recipe_name_value, recipe.getLabel()));
@@ -84,4 +95,21 @@ public class RecipeView extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void addToFav(View view){
+
+        // respetin id kannassa(rooms)
+        roomsRecipe.setFavourite(true);
+        String d = "f";
+        long recipeID = recipeDao.insertOne(roomsRecipe);
+        String kakka =" KAKA";
+
+        for(int i = 0; i < ingredientsList.size(); i++){
+            roomIngredient = new RoomIngredient();
+            roomIngredient.setFk_recipe(recipeID);
+            roomIngredient.setName(ingredientsList.get(i));
+            ingredientDao.insertAll(roomIngredient);
+        }
+        String je = "JE";
+
+    }
 }
