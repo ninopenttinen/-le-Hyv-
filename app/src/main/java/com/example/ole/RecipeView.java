@@ -110,6 +110,5 @@ public class RecipeView extends AppCompatActivity {
             ingredientDao.insertAll(roomIngredient);
         }
         String je = "JE";
-
     }
 }
