@@ -9,6 +9,9 @@ import android.widget.GridView;
 import android.widget.SimpleAdapter;
 
 import com.example.ole.components.CategoryItem;
+import com.example.ole.dao.RecipeDao;
+import com.example.ole.database.AppDatabase;
+import com.example.ole.roomsitems.RoomRecipe;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,12 +19,11 @@ import java.util.List;
 
 public class CategoryView extends AppCompatActivity {
 
-    // joonaksen Gittitesti
-
     private String jsonResponse = "Test";
     private final List<CategoryItem> categoryItemArrayList = new ArrayList< CategoryItem >();
     private List<HashMap<String, String>> categoryItemHashMap = new ArrayList<>();
     private SimpleAdapter simpleAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

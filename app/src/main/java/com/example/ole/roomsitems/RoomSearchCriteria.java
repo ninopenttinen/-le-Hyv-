@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-public class SearchCriteria {
+public class RoomSearchCriteria {
 
   @PrimaryKey(autoGenerate = true)
   private long searchCriteriaId;

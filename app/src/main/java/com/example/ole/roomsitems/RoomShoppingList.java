@@ -7,10 +7,10 @@ import androidx.room.PrimaryKey;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
+@Entity(tableName = "shopping_list")
 @Data
 @NoArgsConstructor
-public class ShoppingList {
+public class RoomShoppingList {
 
   @PrimaryKey(autoGenerate = true)
   private long shoppingListId;

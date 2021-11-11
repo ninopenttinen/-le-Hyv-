@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.example.ole.model.Recipe;
+import com.example.ole.roomsitems.RoomRecipe;
 
 import org.parceler.Parcels;
 

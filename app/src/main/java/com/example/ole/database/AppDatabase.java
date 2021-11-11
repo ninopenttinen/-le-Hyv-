@@ -10,16 +10,16 @@ import com.example.ole.dao.IngredientDao;
 import com.example.ole.dao.RecipeDao;
 import com.example.ole.dao.SearchCriteriaDao;
 import com.example.ole.dao.ShoppingListDao;
-import com.example.ole.roomsitems.Ingredient;
-import com.example.ole.roomsitems.Recipe;
-import com.example.ole.roomsitems.SearchCriteria;
-import com.example.ole.roomsitems.ShoppingList;
+import com.example.ole.roomsitems.RoomIngredient;
+import com.example.ole.roomsitems.RoomRecipe;
+import com.example.ole.roomsitems.RoomSearchCriteria;
+import com.example.ole.roomsitems.RoomShoppingList;
 
 @Database(entities = {
-    Ingredient.class,
-    Recipe.class,
-    SearchCriteria.class,
-    ShoppingList.class,
+    RoomIngredient.class,
+    RoomRecipe.class,
+    RoomSearchCriteria.class,
+    RoomShoppingList.class,
 }, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -38,7 +38,7 @@ public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase create(Context context) {
         return Room.databaseBuilder(
             context,
-            AppDatabase.class, DB_NAME)
+            AppDatabase.class, DB_NAME) // add .allowMainThreadQueries() to run in UI thread
             .build();
     }
 
