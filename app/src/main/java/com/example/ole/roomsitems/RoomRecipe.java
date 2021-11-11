@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Entity(tableName = "recipes")
 @Data
 @NoArgsConstructor
-public class Recipe {
+public class RoomRecipe {
 
   @ColumnInfo(name = "recipeId")
   @PrimaryKey(autoGenerate = true)
