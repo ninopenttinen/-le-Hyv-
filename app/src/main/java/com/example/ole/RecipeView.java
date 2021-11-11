@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.ole.dao.RecipeDao;
+import com.example.ole.database.AppDatabase;
 import com.example.ole.model.Ingredient;
 import com.example.ole.model.Recipe;
 
@@ -22,14 +24,28 @@ import java.util.List;
 
 public class RecipeView extends AppCompatActivity {
 
-    public static List<String> districtList = new ArrayList<String>();
+    public static List<String> ingredientsList = new ArrayList<String>();
     public String recipeUrl;
+
+    // tarjoilee daot
+    /*AppDatabase appDatabase = AppDatabase.getInstance();*/
+
+    // rajapinta roomsiin
+    /*RecipeDao recipeDao = appDatabase.getRecipeDao(*/
+
+    // roomsItems
+    // recipeWith ingredients
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third);
         Recipe recipe = Parcels.unwrap(getIntent().getParcelableExtra("recipe"));
+
+      /*  AppDatabase appDatabase = AppDatabase.getInstance(this);
+        recipeDao  = appDatabase.getRecipeDao();
+*/
+        /*rep = recipe;*/
 
         recipeUrl = recipe.getUrl();
 
@@ -43,7 +59,6 @@ public class RecipeView extends AppCompatActivity {
         recipeTotalTime.setText(recipe.getTotalTime());
 
         createListView(recipe.getIngredients());
-
     }
 
     private void createListView(List<Ingredient> ingredients) {
@@ -53,14 +68,13 @@ public class RecipeView extends AppCompatActivity {
         listView = findViewById(R.id.list_view);
 
         for(int i = 0; i < ingredients.size(); i++){
-            districtList.add(ingredients.get(i).getText());
+            ingredientsList.add(ingredients.get(i).getText());
         }
 
         adapter = new ArrayAdapter(RecipeView.this,
-                android.R.layout.simple_list_item_1,districtList);
+                android.R.layout.simple_list_item_1,ingredientsList);
 
         listView.setAdapter(adapter);
-
     }
 
     public void onClickUrl(View view) {
@@ -68,4 +82,5 @@ public class RecipeView extends AppCompatActivity {
         i.setData(Uri.parse(recipeUrl));
         startActivity(i);
     }
+
 }
