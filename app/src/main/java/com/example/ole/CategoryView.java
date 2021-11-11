@@ -9,43 +9,30 @@ import android.widget.GridView;
 import android.widget.SimpleAdapter;
 
 import com.example.ole.components.CategoryItem;
-import com.example.ole.dao.RecipeDao;
-import com.example.ole.database.AppDatabase;
-import com.example.ole.roomsitems.RoomRecipe;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class CategoryView extends AppCompatActivity {
-
   private final List<CategoryItem> categoryItemArrayList = new ArrayList<CategoryItem>();
   private List<HashMap<String, String>> categoryItemHashMapList = new ArrayList<>();
   private SimpleAdapter simpleAdapter;
-  AppDatabase appDatabase;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-     appDatabase = AppDatabase.getInstance(this);
-
-    RecipeDao recipeDao = appDatabase.getRecipeDao();
-
-
-
     setCategoryView();
   }
 
   private void setCategoryView() {
-
     int categoryCount = getResources()
         .obtainTypedArray(R.array.cuisine_types_string)
         .length();
 
     for (int i = 0; i < categoryCount; i++) {
-
       String categoryImage = Integer.toString(
           getResources()
               .obtainTypedArray(R.array.cuisine_images_ref)
@@ -96,5 +83,4 @@ public class CategoryView extends AppCompatActivity {
     Intent intent = new Intent(this, FavoritesView.class);
     startActivity(intent);
   }
-
 }

@@ -22,7 +22,6 @@ import com.example.ole.roomsitems.RoomShoppingList;
     RoomShoppingList.class,
 }, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
-
   private static final String DB_NAME = "database";
   private static volatile AppDatabase instance;
 
@@ -33,15 +32,20 @@ public abstract class AppDatabase extends RoomDatabase {
     return instance;
   }
 
-    private static AppDatabase create(Context context) {
-        return Room.databaseBuilder(
-            context,
-            AppDatabase.class, DB_NAME) // add .allowMainThreadQueries() to run in UI thread
-            .build();
-    }
+  private static AppDatabase create(Context context) {
+    return Room.databaseBuilder(
+        context,
+        AppDatabase.class, DB_NAME)
+        .allowMainThreadQueries() // Allow execute in UI threads
+        .fallbackToDestructiveMigration() // Lose existing data when create new DB
+        .build();
+  }
 
-    public abstract IngredientDao getIngredientDao();
-    public abstract RecipeDao getRecipeDao();
-    public abstract ShoppingListDao getShoppingListDao();
-    public abstract SearchCriteriaDao getSearchCriteriaDao();
+  public abstract IngredientDao getIngredientDao();
+
+  public abstract RecipeDao getRecipeDao();
+
+  public abstract SearchCriteriaDao getSearchCriteriaDao();
+
+  public abstract ShoppingListDao getShoppingListDao();
 }
