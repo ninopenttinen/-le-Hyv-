@@ -11,6 +11,7 @@ import android.widget.SimpleAdapter;
 import com.example.ole.components.CategoryItem;
 import com.example.ole.dao.RecipeDao;
 import com.example.ole.database.AppDatabase;
+import com.example.ole.roomsitems.RoomRecipe;
 
 import java.util.ArrayList;
 import java.util.HashMap;

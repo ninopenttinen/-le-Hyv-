@@ -6,8 +6,8 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Transaction;
 
-import com.example.ole.roomsitems.Recipe;
-import com.example.ole.roomsitems.RecipeWithIngredients;
+import com.example.ole.roomsitems.RoomRecipe;
+import com.example.ole.roomsitems.RoomRecipeWithIngredients;
 
 import java.util.List;
 
@@ -15,27 +15,27 @@ import java.util.List;
 public interface RecipeDao {
 
   @Query("SELECT * FROM recipes")
-  List<Recipe> getAll();
+  List<RoomRecipe> getAll();
 
   @Query("SELECT * FROM recipes WHERE recipe_name LIKE :name LIMIT 1")
-  Recipe findByRecipeName(String name);
+  RoomRecipe findByRecipeName(String name);
 
   @Transaction
   @Query("SELECT * FROM recipes")
-  List<RecipeWithIngredients> getAllRecipeWithIngredients();
+  List<RoomRecipeWithIngredients> getAllRecipeWithIngredients();
 
   @Transaction
   @Query("SELECT * FROM recipes WHERE recipe_name LIKE :name LIMIT 1")
-  RecipeWithIngredients getRecipeWithIngredientsByName(String name);
+  RoomRecipeWithIngredients getRecipeWithIngredientsByName(String name);
 
   /* Returns created ID */
   @Insert
-  long insertOne(Recipe recipe);
+  long insertOne(RoomRecipe roomRecipe);
 
   @Insert
-  long[] insertAll(Recipe... recipe);
+  long[] insertAll(RoomRecipe... roomRecipe);
 
   @Delete
-  void delete(Recipe recipe);
+  void delete(RoomRecipe roomRecipe);
 
 }

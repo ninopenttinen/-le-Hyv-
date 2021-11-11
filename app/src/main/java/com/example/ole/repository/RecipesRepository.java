@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.ole.BuildConfig;
 import com.example.ole.api.EdamamApi;
 import com.example.ole.common.Utility;
 import com.example.ole.dto.RecipeBodyDto;
@@ -37,8 +38,8 @@ public class RecipesRepository {
     public RecipesRepository(@NonNull Application application, SearchFilters searchFilters) {
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(chain -> {
-                    String app_id = application.getResources().getString(R.string.edamam_app_id);
-                    String app_key = application.getResources().getString(R.string.edamam_app_key);
+                    String app_id = BuildConfig.API_ID;
+                    String app_key = BuildConfig.API_KEY;
                     HttpUrl url = chain
                             .request()
                             .url()
