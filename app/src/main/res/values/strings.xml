@@ -4,4 +4,6 @@
     <string name="suggestion_image_description">Suggestion Image</string>
     <string name="recipe_hyperlink">Show recipe</string>
     <string name="recipe_name_value">%1$s</string>
+    <string name="cooking_time_minutes">Cooking time (minutes)</string>
+    <string name="ingredients">Ingredients</string>
 </resources>
