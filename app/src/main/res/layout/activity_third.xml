@@ -19,8 +19,7 @@
             android:gravity="center"
             android:text="@string/recipe_name_value"
             android:textColor="#FFFFFF"
-            android:textSize="20sp">
-        </TextView>
+            android:textSize="20sp"></TextView>
 
         <androidx.cardview.widget.CardView
             android:layout_width="190dp"
@@ -104,8 +103,9 @@
                 android:layout_marginBottom="8dp"
                 android:gravity="center"
                 android:onClick="onClickUrl"
-                android:text="Show recipe"
-                app:drawableEndCompat="@drawable/ic_baseline_arrow_forward_24"
+                android:text="@string/recipe_hyperlink"
+                android:textColor="#E91E63"
+                app:drawableEndCompat="@drawable/ic_baseline_arrow_pink"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
