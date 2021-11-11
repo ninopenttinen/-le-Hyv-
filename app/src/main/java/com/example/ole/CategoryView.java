@@ -9,6 +9,8 @@ import android.widget.GridView;
 import android.widget.SimpleAdapter;
 
 import com.example.ole.components.CategoryItem;
+import com.example.ole.dao.RecipeDao;
+import com.example.ole.database.AppDatabase;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,11 +21,18 @@ public class CategoryView extends AppCompatActivity {
   private final List<CategoryItem> categoryItemArrayList = new ArrayList<CategoryItem>();
   private List<HashMap<String, String>> categoryItemHashMapList = new ArrayList<>();
   private SimpleAdapter simpleAdapter;
+  AppDatabase appDatabase;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+
+     appDatabase = AppDatabase.getInstance(this);
+
+    RecipeDao recipeDao = appDatabase.getRecipeDao();
+
+
 
     setCategoryView();
   }
