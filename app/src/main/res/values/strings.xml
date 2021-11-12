@@ -6,4 +6,5 @@
     <string name="recipe_name_value">%1$s</string>
     <string name="cooking_time_minutes">Cooking time (minutes)</string>
     <string name="ingredients">Ingredients</string>
+    <string name="fav_recipe_name">fav_recipe_name</string>
 </resources>

@@ -3,8 +3,11 @@ package com.example.ole;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.SimpleAdapter;
 
 
@@ -13,6 +16,7 @@ import com.example.ole.components.FavoriteRecipe;
 import com.example.ole.dao.RecipeDao;
 import com.example.ole.database.AppDatabase;
 import com.example.ole.model.Recipe;
+import com.example.ole.roomsitems.RoomRecipe;
 import com.example.ole.roomsitems.RoomRecipeWithIngredients;
 
 import java.util.ArrayList;
@@ -37,9 +41,8 @@ public class FavoritesView extends AppCompatActivity {
         recipeDao  = appDatabase.getRecipeDao();
         recipeWithIngredients = recipeDao.getAllRecipeWithIngredients();
 
-        String J=",";
-
         updateFavorites(recipeWithIngredients);
+
     }
 
     private void updateFavorites(List<RoomRecipeWithIngredients> favRecipe){
@@ -65,5 +68,10 @@ public class FavoritesView extends AppCompatActivity {
         favListView.setAdapter(simpleAdapter);
     }
 
+  
+  
+  
+                     
+  
 
 }
