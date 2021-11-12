@@ -39,12 +39,12 @@
         android:layout_height="49dp"
         android:layout_marginTop="24dp"
         android:backgroundTint="#00FFFFFF"
-        android:onClick="favActionClick"
+        android:onClick="favClick"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/fav_label_view"
+
+
         app:layout_constraintTop_toTopOf="parent"
-
-
         app:srcCompat="@drawable/ic_round_more_vert_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

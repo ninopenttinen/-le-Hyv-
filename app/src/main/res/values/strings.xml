@@ -7,4 +7,7 @@
     <string name="cooking_time_minutes">Cooking time (minutes)</string>
     <string name="ingredients">Ingredients</string>
     <string name="fav_recipe_name">fav_recipe_name</string>
+    <string name="accept">Accept</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm_to_remove">Confirm to remove?</string>
 </resources>
