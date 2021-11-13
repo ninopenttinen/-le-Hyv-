@@ -34,7 +34,7 @@
     <TextView
         android:id="@+id/categoryTextView"
         android:layout_width="111dp"
-        android:layout_height="25dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
         android:text="TextView"
         android:textAlignment="center"

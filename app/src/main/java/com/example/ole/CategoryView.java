@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import com.example.ole.components.CategoryItem;
 

@@ -33,11 +33,9 @@ public abstract class AppDatabase extends RoomDatabase {
   }
 
   private static AppDatabase create(Context context) {
-    return Room.databaseBuilder(
-        context,
-        AppDatabase.class, DB_NAME)
-        .allowMainThreadQueries() // Allow execute in UI threads
-        .fallbackToDestructiveMigration() // Lose existing data when create new DB
+    return Room.databaseBuilder(context, AppDatabase.class, DB_NAME)
+        .allowMainThreadQueries() // Allow executing in UI threads
+        .fallbackToDestructiveMigration() // Lose existing data when new DB is created
         .build();
   }
 
