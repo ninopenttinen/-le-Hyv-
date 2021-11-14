@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/gradient_bg"
+    android:focusableInTouchMode="true"
+    android:clickable="true"
+    android:focusable="true"
+    tools:context=".FiltersView">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="@string/filters_activity_title"
+        android:gravity="center"
+        android:textColor="#FFFF"
+        android:textSize="20sp">
+    </TextView>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="20dp"
+                android:gravity="start"
+                android:text="@string/filters_activity_diet"
+                android:textColor="#FFFF"
+                android:textSize="20sp">
+            </TextView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="20dp"
+                android:text="@string/filters_activity_health"
+                android:gravity="start"
+                android:textColor="#FFFF"
+                android:textSize="20sp">
+            </TextView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="20dp"
+                android:text="@string/filters_activity_meal_type"
+                android:gravity="start"
+                android:textColor="#FFFF"
+                android:textSize="20sp">
+            </TextView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="20dp"
+                android:text="@string/filters_activity_dish_type"
+                android:gravity="start"
+                android:textColor="#FFFF"
+                android:textSize="20sp">
+            </TextView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="20dp"
+                android:text="@string/filters_activity_excluded"
+                android:gravity="start"
+                android:textColor="#FFFF"
+                android:textSize="20sp">
+            </TextView>
+
+            <EditText
+                android:id="@+id/ingredient_filter_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="20dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="@string/filters_activity_edit_text_hint" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/excluded_ingredients_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:nestedScrollingEnabled="false"
+                tools:listitem="@layout/excluded_ingredient_card" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

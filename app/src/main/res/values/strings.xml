@@ -13,4 +13,19 @@
     <string name="favorites">Favorites</string>
     <string name="actions_button">actions_button</string>
     <string name="recipe_image" />
+
+    <string name="activity_suggestions_title">%1$s</string>
+    <string name="suggestion_card_image_description">Suggestion Image</string>
+
+    <string name="recipe_activity_title">%1$s</string>
+
+    <string name="filters_activity_title">Filters</string>
+
+    <string name="filters_activity_diet">Diet</string>
+    <string name="filters_activity_health">Health</string>
+    <string name="filters_activity_meal_type">Meal type</string>
+    <string name="filters_activity_dish_type">Dish type</string>
+    <string name="filters_activity_excluded">Excluded ingredients:</string>
+    <string name="filters_activity_edit_text_hint">Ingredients</string>
+
 </resources>

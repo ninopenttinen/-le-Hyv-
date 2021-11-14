@@ -8,7 +8,7 @@
     tools:context=".SuggestionsView">
 
     <GridView
-        android:id="@+id/suggestionsGridView"
+        android:id="@+id/suggestions_grid_view"
         android:layout_width="412dp"
         android:layout_height="295dp"
         android:fadingEdge="horizontal"
@@ -19,20 +19,20 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/categoryTextView"
+        android:id="@+id/category_text_view"
         android:layout_width="178dp"
         android:layout_height="43dp"
-        android:text="@string/selected_category_value"
+        android:text="@string/activity_suggestions_title"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/suggestionsGridView"
+        app:layout_constraintBottom_toTopOf="@+id/suggestions_grid_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/nextSuggestionsButton"
+        android:id="@+id/next_suggestions_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="getNextSuggestions"
@@ -41,7 +41,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/suggestionsGridView" />
+        app:layout_constraintTop_toBottomOf="@+id/suggestions_grid_view" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,87 +1,98 @@
 package com.example.ole;
 
-import androidx.appcompat.app.AlertDialog;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.example.ole.adapter.ExcludedIngredientsAdapter;
+import com.example.ole.model.Filter;
+import com.example.ole.model.FilterType;
+import com.example.ole.viewmodel.FiltersViewModel;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
-public class FiltersView extends AppCompatActivity {
+public class FiltersView extends AppCompatActivity implements ExcludedIngredientsAdapter.ItemClickListener {
 
-    //private ArrayList<String> selectedItems = new ArrayList<String>();
+    FiltersViewModel filtersViewModel;
+    ExcludedIngredientsAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_filters);
+
+        filtersViewModel = new ViewModelProvider(this, ViewModelProvider
+                .AndroidViewModelFactory
+                .getInstance(this.getApplication()))
+                .get(FiltersViewModel.class);
+
+        filtersViewModel.getFilters().observe(this, filters ->
+                setRecyclerView(getExcludedIngredients(filters))
+        );
+
+        setEditTextListeners(findViewById(R.id.ingredient_filter_edit_text));
     }
 
+    private void setRecyclerView(List<String> excludedIngredients) {
+        RecyclerView recyclerView = findViewById(R.id.excluded_ingredients_recycler_view);
 
-    /*public Dialog dialogOnClick(Bundle savedInstanceState) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        // Set the dialog title
-        builder.setTitle(R.string.pick_toppings)
-                // Specify the list array, the items to be selected by default (null for none),
-                // and the listener through which to receive callbacks when items are selected
-                .setMultiChoiceItems(R.array.toppings, null,
-                        new DialogInterface.OnMultiChoiceClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which,
-                                                boolean isChecked) {
-                                if (isChecked) {
-                                    // If the user checked the item, add it to the selected items
-                                    selectedItems.add(which);
-                                } else if (selectedItems.contains(which)) {
-                                    // Else, if the item is already in the array, remove it
-                                    selectedItems.remove(which);
-                                }
-                            }
-                        })
-                // Set the action buttons
-                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        // User clicked OK, so save the selectedItems results somewhere
-                        // or return them to the component that opened the dialog
-                   ...
-                    }
-                })
-                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                   ...
-                    }
-                });
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
 
-        return builder.create();
+        recyclerView.setLayoutManager(linearLayoutManager);
+        adapter = new ExcludedIngredientsAdapter(excludedIngredients);
+        adapter.setClickListener(this);
+        recyclerView.setAdapter(adapter);
     }
 
-    private Context getActivity() {
-    }*/
+    private List<String> getExcludedIngredients(List<Filter> filters) {
+        return filters.stream()
+                .filter(f -> f.getFilterType().equals(FilterType.EXCLUDED))
+                .map(Filter::getFilterName)
+                .collect(Collectors.toList());
+    }
 
-    public void dialogOnClick(View v) {
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setTitle("Do you want to logout?");
-        // alert.setMessage("Message");
-
-        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-                //Your action here
+    private void setEditTextListeners(EditText ingredientFilterEditText) {
+        ingredientFilterEditText.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH
+                    || actionId == EditorInfo.IME_ACTION_DONE) {
+                hideKeyboard(ingredientFilterEditText);
+                return true;
+            }
+            return false;
+        });
+        ingredientFilterEditText.setOnFocusChangeListener((v, hasFocus) -> {
+            if (!hasFocus) {
+                filtersViewModel.addFilter(new Filter(FilterType.EXCLUDED, ingredientFilterEditText.getText().toString()));
+                ingredientFilterEditText.setText("");
+                hideKeyboard(ingredientFilterEditText);
             }
         });
+    }
 
-        alert.setNegativeButton("Cancel",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                    }
-                });
+    private void hideKeyboard(EditText editText) {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+    }
 
-        alert.show();
+    @Override
+    public void onItemClick(View view, int position) {
+        filtersViewModel.removeExclusionFilter(adapter.getItem(position));
     }
 
 }
