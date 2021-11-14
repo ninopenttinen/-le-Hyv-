@@ -69,8 +69,7 @@ public class FiltersView extends AppCompatActivity implements ExcludedIngredient
 
     private void setEditTextListeners(EditText ingredientFilterEditText) {
         ingredientFilterEditText.setOnEditorActionListener((v, actionId, event) -> {
-            if (actionId == EditorInfo.IME_ACTION_SEARCH
-                    || actionId == EditorInfo.IME_ACTION_DONE) {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH || actionId == EditorInfo.IME_ACTION_DONE) {
                 hideKeyboard(ingredientFilterEditText);
                 return true;
             }
@@ -78,9 +77,9 @@ public class FiltersView extends AppCompatActivity implements ExcludedIngredient
         });
         ingredientFilterEditText.setOnFocusChangeListener((v, hasFocus) -> {
             if (!hasFocus) {
+                hideKeyboard(ingredientFilterEditText);
                 filtersViewModel.addFilter(new Filter(FilterType.EXCLUDED, ingredientFilterEditText.getText().toString()));
                 ingredientFilterEditText.setText("");
-                hideKeyboard(ingredientFilterEditText);
             }
         });
     }

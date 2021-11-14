@@ -26,6 +26,6 @@
     <string name="filters_activity_meal_type">Meal type</string>
     <string name="filters_activity_dish_type">Dish type</string>
     <string name="filters_activity_excluded">Excluded ingredients:</string>
-    <string name="filters_activity_edit_text_hint">Ingredients</string>
+    <string name="filters_activity_edit_text_hint">Add ingredient…</string>
 
 </resources>
