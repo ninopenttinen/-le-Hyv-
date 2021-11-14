@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/diet_collapse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:onClick="showContents" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="@string/filters_activity_diet"
+            android:textColor="#FFFF"
+            android:textSize="20sp"/>
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+        <ImageView
+            android:id="@+id/diet_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_baseline_arrow_drop_up_24" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#FFFF"/>
+
+    <LinearLayout
+        android:id="@+id/diet_filters"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        android:visibility="visible" >
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/diet_balanced"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:text="@string/diet_filters_balanced" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/diet_high_fiber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:text="@string/diet_filters_high_fiber" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/diet_high_protein"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:text="@string/diet_filters_high_protein" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/diet_low_carb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:text="@string/diet_filters_low_carb" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/diet_low_fat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:text="@string/diet_filters_low_fat" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/diet_low_sodium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:text="@string/diet_filters_low_sodium" />
+
+    </LinearLayout>
+</LinearLayout>

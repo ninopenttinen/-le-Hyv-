@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/gradient_bg"
-    tools:context=".FiltersView">
+    android:background="@drawable/gradient_bg">
 
     <TextView
         android:layout_width="match_parent"
@@ -34,23 +33,26 @@
             android:clickable="true"
             android:focusable="true">
 
-            <TextView
+            <include
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:text="@string/filters_activity_diet"
-                android:textColor="#FFFF"
-                android:textSize="20sp">
-            </TextView>
+                layout="@layout/diet_filters" />
 
             <TextView
+                android:id="@+id/health_collapse"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_margin="20dp"
                 android:text="@string/filters_activity_health"
                 android:textColor="#FFFF"
-                android:textSize="20sp">
-            </TextView>
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/health_filters"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TESTI2"
+                android:visibility="gone"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -58,8 +60,7 @@
                 android:layout_margin="20dp"
                 android:text="@string/filters_activity_meal_type"
                 android:textColor="#FFFF"
-                android:textSize="20sp">
-            </TextView>
+                android:textSize="20sp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -67,8 +68,7 @@
                 android:layout_margin="20dp"
                 android:text="@string/filters_activity_dish_type"
                 android:textColor="#FFFF"
-                android:textSize="20sp">
-            </TextView>
+                android:textSize="20sp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -77,8 +77,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:text="@string/filters_activity_excluded"
                 android:textColor="#FFFF"
-                android:textSize="20sp">
-            </TextView>
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/ingredient_filter_edit_text"

@@ -28,4 +28,11 @@
     <string name="filters_activity_excluded">Excluded ingredients:</string>
     <string name="filters_activity_edit_text_hint">Add ingredient…</string>
 
+    <string name="diet_filters_balanced">Balanced</string>
+    <string name="diet_filters_high_fiber">High fiber</string>
+    <string name="diet_filters_high_protein">High protein</string>
+    <string name="diet_filters_low_carb">Low carb</string>
+    <string name="diet_filters_low_fat">Low fat</string>
+    <string name="diet_filters_low_sodium">Low sodium</string>
+
 </resources>

@@ -1,21 +1,20 @@
 package com.example.ole;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.ole.adapter.ExcludedIngredientsAdapter;
@@ -23,7 +22,6 @@ import com.example.ole.model.Filter;
 import com.example.ole.model.FilterType;
 import com.example.ole.viewmodel.FiltersViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,6 +46,33 @@ public class FiltersView extends AppCompatActivity implements ExcludedIngredient
 
         setEditTextListeners(findViewById(R.id.ingredient_filter_edit_text));
     }
+
+    @SuppressLint("NonConstantResourceId")
+    public void showContents(View v) {
+        LinearLayout contents = null;
+        ImageView arrow = null;
+
+        switch (v.getId()) {
+            case R.id.diet_collapse:
+                contents = findViewById(R.id.diet_filters);
+                arrow = findViewById(R.id.diet_arrow);
+                break;
+            case R.id.health_collapse:
+                //contents = findViewById(R.id.health_filters);
+                break;
+        }
+
+        if (contents != null && arrow != null) {
+            contents.setVisibility(contents.isShown() ? View.GONE : View.VISIBLE);
+            arrow.setImageDrawable(contents.isShown() ?
+                    ResourcesCompat.getDrawable(getResources(), R.drawable.ic_baseline_arrow_drop_down_24, null)
+                    : ResourcesCompat.getDrawable(getResources(), R.drawable.ic_baseline_arrow_drop_up_24, null)
+            );
+
+
+        }
+    }
+
 
     private void setRecyclerView(List<String> excludedIngredients) {
         RecyclerView recyclerView = findViewById(R.id.excluded_ingredients_recycler_view);
