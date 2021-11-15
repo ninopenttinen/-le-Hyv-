@@ -38,4 +38,6 @@ public interface RecipeDao {
   @Delete
   void delete(RoomRecipe roomRecipe);
 
+  @Query("DELETE FROM recipes")
+  void deleteIt();
 }

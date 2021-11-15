@@ -60,6 +60,8 @@ public class RecipeView extends AppCompatActivity {
         roomsRecipe.setPreparationTime(recipe.getTotalTime());
         roomsRecipe.setRecipeUrl(recipe.getUrl());
 
+        //recipeDao.deleteIt();
+
         TextView recipeNameTextView = findViewById(R.id.recipeNameTextView);
         recipeNameTextView.setText(getString(R.string.recipe_name_value, recipe.getLabel()));
 
@@ -94,16 +96,15 @@ public class RecipeView extends AppCompatActivity {
         startActivity(i);
     }
 
-    public void addToFav(View view){
+    public void addToFav(View view) {
 
-        // respetin id kannassa(rooms)
         roomsRecipe.setFavourite(true);
         long recipeID = recipeDao.insertOne(roomsRecipe);
 
-        for(int i = 0; i < ingredientsList.size(); i++){
+        for (int j = 0; j < ingredientsList.size(); j++) {
             roomIngredient = new RoomIngredient();
             roomIngredient.setFk_recipe(recipeID);
-            roomIngredient.setName(ingredientsList.get(i));
+            roomIngredient.setName(ingredientsList.get(j));
             ingredientDao.insertAll(roomIngredient);
         }
     }

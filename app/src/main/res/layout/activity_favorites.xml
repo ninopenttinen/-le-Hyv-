@@ -1,28 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_bg"
     android:orientation="vertical"
+    android:clickable="true"
+    android:focusable="true"
     tools:context=".FiltersView">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:gravity="center"
-        android:text="Favorites"
+        android:text="@string/favorites"
         android:textColor="#FFFF"
         android:textSize="20sp" />
 
     <ListView
         android:id="@+id/favorites_listView"
-        android:paddingHorizontal="20dp"
-        android:paddingVertical="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="20dp" />
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>

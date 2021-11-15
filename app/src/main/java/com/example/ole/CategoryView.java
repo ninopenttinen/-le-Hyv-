@@ -30,6 +30,8 @@ public class CategoryView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         parseJsonAndUpdate(jsonResponse);
     }
 
