@@ -39,8 +39,7 @@ public class RecipeView extends AppCompatActivity {
     RecipeDao recipeDao;
 
     IngredientDao ingredientDao;
-
-
+    
     // roomsItems
     // recipeWith ingredients
 
@@ -77,7 +76,7 @@ public class RecipeView extends AppCompatActivity {
 
         ListView listView = new ListView(this);
         ArrayAdapter adapter;
-        listView = findViewById(R.id.list_view);
+        listView = findViewById(R.id.ingredients_list_view);
 
         for(int i = 0; i < ingredients.size(); i++){
             ingredientsList.add(ingredients.get(i).getText());
@@ -99,9 +98,7 @@ public class RecipeView extends AppCompatActivity {
 
         // respetin id kannassa(rooms)
         roomsRecipe.setFavourite(true);
-        String d = "f";
         long recipeID = recipeDao.insertOne(roomsRecipe);
-        String kakka =" KAKA";
 
         for(int i = 0; i < ingredientsList.size(); i++){
             roomIngredient = new RoomIngredient();
@@ -109,6 +106,5 @@ public class RecipeView extends AppCompatActivity {
             roomIngredient.setName(ingredientsList.get(i));
             ingredientDao.insertAll(roomIngredient);
         }
-        String je = "JE";
     }
 }

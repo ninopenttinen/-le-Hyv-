@@ -19,7 +19,7 @@
             android:gravity="center"
             android:text="@string/recipe_name_value"
             android:textColor="#FFFFFF"
-            android:textSize="20sp"></TextView>
+            android:textSize="20sp"/>
 
         <androidx.cardview.widget.CardView
             android:layout_width="190dp"
@@ -119,13 +119,13 @@
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <ListView
-                android:id="@+id/list_view"
-                android:background="@drawable/list_view_round_corners"
+                android:id="@+id/ingredients_list_view"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
+                android:background="@drawable/list_view_round_corners"
                 app:layout_constraintBottom_toTopOf="@+id/showRecipeTextView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
