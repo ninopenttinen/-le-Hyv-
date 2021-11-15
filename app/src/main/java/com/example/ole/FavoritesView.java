@@ -47,16 +47,7 @@ public class FavoritesView extends AppCompatActivity {
         recipeWithIngredients = recipeDao.getAllRecipeWithIngredients();
 
         updateFavorites(recipeWithIngredients);
-
-
         ImageButton imageButton = findViewById(R.id.fav_actions_button);
-         /*  imageButton.setOnClickListener(v -> {
-            BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(FavoritesView.this, R.style.BottomSheetDialogTheme);
-            View bottomSheetView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.bottom_popup_layout,
-                    (LinearLayout)findViewById(R.id.bottomSheetContainer));
-            *//*bottomSheetView.findViewById(R.id.)*//*
-        });
-*/
     }
 
     private void updateFavorites(List<RoomRecipeWithIngredients> favRecipe){
