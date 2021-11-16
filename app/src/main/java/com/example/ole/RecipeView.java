@@ -27,6 +27,9 @@ import java.util.List;
 
 public class RecipeView extends AppCompatActivity {
 
+    // initial dao setti commit test
+
+
     private static List<String> ingredientsList = new ArrayList<String>();
     public String recipeUrl;
     private RoomRecipe roomsRecipe;
