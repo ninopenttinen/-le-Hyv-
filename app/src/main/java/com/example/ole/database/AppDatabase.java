@@ -20,32 +20,30 @@ import com.example.ole.roomsitems.RoomShoppingList;
     RoomRecipe.class,
     RoomSearchCriteria.class,
     RoomShoppingList.class,
-}, version = 3, exportSchema = false)
+}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
+  private static final String DB_NAME = "database";
+  private static volatile AppDatabase instance;
 
-    private static String DB_NAME = "database";
-    private static volatile AppDatabase instance;
-
-    protected AppDatabase() {};
-
-    public static synchronized AppDatabase getInstance(Context context) {
-        if (instance == null) {
-            instance = create(context);
-        }
-        return instance;
+  public static synchronized AppDatabase getInstance(Context context) {
+    if (instance == null) {
+      instance = create(context);
     }
+    return instance;
+  }
 
-    private static AppDatabase create(Context context) {
-        return Room.databaseBuilder(
-            context,
-            AppDatabase.class, DB_NAME)
-                .allowMainThreadQueries()  // add .allowMainThreadQueries() to run in UI thread
-                .fallbackToDestructiveMigration()
-                .build();
-    }
+  private static AppDatabase create(Context context) {
+    return Room.databaseBuilder(context, AppDatabase.class, DB_NAME)
+        .allowMainThreadQueries() // Allow executing in UI threads
+        .fallbackToDestructiveMigration() // Lose existing data when new DB is created
+        .build();
+  }
 
-    public abstract IngredientDao getIngredientDao();
-    public abstract RecipeDao getRecipeDao();
-    public abstract ShoppingListDao getShoppingListDao();
-    public abstract SearchCriteriaDao getSearchCriteriaDao();
+  public abstract IngredientDao getIngredientDao();
+
+  public abstract RecipeDao getRecipeDao();
+
+  public abstract SearchCriteriaDao getSearchCriteriaDao();
+
+  public abstract ShoppingListDao getShoppingListDao();
 }
