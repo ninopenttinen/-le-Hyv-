@@ -56,7 +56,7 @@ public class FavoritesView extends AppCompatActivity {
     }
 
     private void updateFavorites(List<RoomRecipeWithIngredients> favRecipe){
-     
+
         for ( int i = 0; i < favRecipe.size(); i++){
             favItemArrayList.add(new FavoriteRecipe( favRecipe.get(i).roomRecipe.getName(), favRecipe.get(i).roomRecipe.getImageUrl().toString()));
         }
@@ -102,7 +102,6 @@ public class FavoritesView extends AppCompatActivity {
                     (LinearLayout)findViewById(R.id.bottomSheetContainer));
 
             bottomSheetView.findViewById(R.id.cancel_button).setOnClickListener(v1 -> {
-                String test ="f";
                 Toast.makeText(FavoritesView.this, "Canceled", Toast.LENGTH_LONG).show();
                 bottomSheetDialog.dismiss();
             });
@@ -111,7 +110,7 @@ public class FavoritesView extends AppCompatActivity {
                 // TODO: Must also be removed from Db
                 favItemHashMap.remove(position);
                 simpleAdapter.notifyDataSetChanged();
-                Toast.makeText(FavoritesView.this, "Recipe removed ;)", Toast.LENGTH_LONG).show();
+                Toast.makeText(FavoritesView.this, "Removed from favorites", Toast.LENGTH_LONG).show();
                 bottomSheetDialog.dismiss();
             });
 
