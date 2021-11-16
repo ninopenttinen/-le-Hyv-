@@ -85,12 +85,14 @@ public class FavoritesView extends AppCompatActivity {
             Intent intent = new Intent(this, RecipeView.class);
 
             // String label, Bitmap image, String url, List<Ingredient> ingredients, String calories, String totalTime
+            List<Ingredient> temp = new ArrayList<>();
+
 
             Recipe recipeToRecipeView = new Recipe(
                     favRecipe.get(position).roomRecipe.getName(),
                     null,
                     favRecipe.get(position).roomRecipe.getRecipeUrl(),
-                    null,
+                    temp,
                     null,
                     favRecipe.get(position).roomRecipe.getPreparationTime());
 
