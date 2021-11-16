@@ -2,7 +2,10 @@ package com.example.ole;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.helper.widget.Layer;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,10 +22,13 @@ import com.example.ole.components.CategoryItem;
 import com.example.ole.components.FavoriteRecipe;
 import com.example.ole.dao.RecipeDao;
 import com.example.ole.database.AppDatabase;
+import com.example.ole.model.Ingredient;
 import com.example.ole.model.Recipe;
 import com.example.ole.roomsitems.RoomRecipe;
 import com.example.ole.roomsitems.RoomRecipeWithIngredients;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,11 +52,11 @@ public class FavoritesView extends AppCompatActivity {
         recipeDao  = appDatabase.getRecipeDao();
         recipeWithIngredients = recipeDao.getAllRecipeWithIngredients();
 
-
         updateFavorites(recipeWithIngredients);
     }
 
     private void updateFavorites(List<RoomRecipeWithIngredients> favRecipe){
+        String je = "he";
 
         for ( int i = 0; i < favRecipe.size(); i++){
             favItemArrayList.add( new FavoriteRecipe( favRecipe.get(i).roomRecipe.getName(), favRecipe.get(i).roomRecipe.getImageUrl().toString() ));
@@ -70,16 +76,75 @@ public class FavoritesView extends AppCompatActivity {
 
         ListView favListView = ( ListView ) findViewById( R.id.favorites_listView);
         favListView.setAdapter(simpleAdapter);
-        favListView.setClickable(true);
-        favListView.setFocusable(true);
+
 
         favListView.setOnItemClickListener((parent, view, position, id) -> {
-            String cock = "j";
+            Intent intent = new Intent(this, RecipeView.class);
+
+            // String label, Bitmap image, String url, List<Ingredient> ingredients, String calories, String totalTime
+
+            Recipe recipeToRecipeView = new Recipe(
+                    favRecipe.get(position).roomRecipe.getName(),
+                    null,
+                    favRecipe.get(position).roomRecipe.getRecipeUrl(),
+                    null,
+                    null,
+                    favRecipe.get(position).roomRecipe.getPreparationTime());
+
+            // intent content name recipe
+            intent.putExtra("recipe", Parcels.wrap(recipeToRecipeView));
+            startActivity(intent);
         });
+
+        favListView.setOnItemLongClickListener((parent, view, position, id) -> {
+
+            BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(FavoritesView.this, R.style.BottomSheetDialogTheme);
+            View bottomSheetView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.bottom_popup_layout,
+                    (LinearLayout)findViewById(R.id.bottomSheetContainer));
+
+            bottomSheetView.findViewById(R.id.cancel_button).setOnClickListener(v1 -> {
+                String test ="f";
+                Toast.makeText(FavoritesView.this, "Canceled", Toast.LENGTH_LONG).show();
+                bottomSheetDialog.dismiss();
+            });
+
+            bottomSheetView.findViewById(R.id.confirm_button).setOnClickListener(v1 -> {
+           /*     favItemArrayList.remove(position);
+                simpleAdapter.notifyDataSetChanged();*/
+                Toast.makeText(FavoritesView.this, "Recipe removed ;)", Toast.LENGTH_LONG).show();
+                bottomSheetDialog.dismiss();
+            });
+
+            bottomSheetDialog.setContentView(bottomSheetView);
+            bottomSheetDialog.show();
+
+            return true;
+        });
+
+        /*favListView.setOnItemClickListener((parent, view, position, id) -> {
+
+            BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(FavoritesView.this, R.style.BottomSheetDialogTheme);
+            View bottomSheetView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.bottom_popup_layout,
+                    (LinearLayout)findViewById(R.id.bottomSheetContainer));
+
+            bottomSheetView.findViewById(R.id.cancel_button).setOnClickListener(v1 -> {
+                String test ="f";
+                Toast.makeText(FavoritesView.this, "Canceled", Toast.LENGTH_LONG).show();
+                bottomSheetDialog.dismiss();
+            });
+
+            bottomSheetView.findViewById(R.id.confirm_button).setOnClickListener(v1 -> {
+                Toast.makeText(FavoritesView.this, "Recipe removed ;)", Toast.LENGTH_LONG).show();
+                bottomSheetDialog.dismiss();
+            });
+
+            bottomSheetDialog.setContentView(bottomSheetView);
+            bottomSheetDialog.show();
+
+        });*/
     }
 
-    public void favClick(View v){
-        String j ="d";
+   /* public void favClick(View v){
 
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(FavoritesView.this, R.style.BottomSheetDialogTheme);
         View bottomSheetView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.bottom_popup_layout,
@@ -92,12 +157,11 @@ public class FavoritesView extends AppCompatActivity {
         });
 
         bottomSheetView.findViewById(R.id.confirm_button).setOnClickListener(v1 -> {
-            Toast.makeText(FavoritesView.this, "Recipe removed", Toast.LENGTH_LONG).show();
-
+            Toast.makeText(FavoritesView.this, "Recipe removed ;)", Toast.LENGTH_LONG).show();
             bottomSheetDialog.dismiss();
         });
 
         bottomSheetDialog.setContentView(bottomSheetView);
         bottomSheetDialog.show();
-    }
+    }*/
 }

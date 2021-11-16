@@ -11,4 +11,6 @@
     <string name="cancel">Cancel</string>
     <string name="confirm_to_remove">Confirm to remove?</string>
     <string name="favorites">Favorites</string>
+    <string name="actions_button">actions_button</string>
+    <string name="recipe_image" />
 </resources>

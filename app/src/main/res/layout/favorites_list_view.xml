@@ -2,11 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:paddingHorizontal="5dp"
-    android:paddingVertical="20dp"
+    android:id="@+id/fav_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:clickable="false"
+    android:focusable="false"
+    android:paddingHorizontal="5dp"
+    android:paddingVertical="20dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/favorite_card_view"
@@ -21,11 +23,12 @@
 
         <ImageView
             android:id="@+id/fav_list_img_view"
-            android:clickable="false"
-            android:focusable="false"
             android:layout_width="91dp"
             android:layout_height="91dp"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:clickable="false"
+            android:focusable="false"
+            tools:srcCompat="@tools:sample/avatars"
+            android:contentDescription="@string/recipe_image" />
 
     </androidx.cardview.widget.CardView>
 
@@ -35,25 +38,11 @@
         android:layout_height="44dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:gravity="center"
         android:clickable="false"
         android:focusable="false"
+        android:gravity="center"
         android:text="@string/fav_recipe_name"
         app:layout_constraintStart_toEndOf="@+id/favorite_card_view"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/fav_actions_button"
-        android:layout_width="69dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="24dp"
-        android:backgroundTint="#00FFFFFF"
-        android:clickable="false"
-        android:focusable="false"
-        android:onClick="favClick"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/fav_label_view"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_round_more_vert_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
