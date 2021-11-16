@@ -30,5 +30,4 @@ public class RoomRecipe {
 
   @ColumnInfo(name = "favourite")
   private boolean favourite;
-
 }

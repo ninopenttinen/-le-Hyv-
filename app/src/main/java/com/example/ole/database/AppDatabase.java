@@ -20,7 +20,7 @@ import com.example.ole.roomsitems.RoomShoppingList;
     RoomRecipe.class,
     RoomSearchCriteria.class,
     RoomShoppingList.class,
-}, version = 1, exportSchema = false)
+}, version = 3, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static String DB_NAME = "database";
@@ -38,8 +38,10 @@ public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase create(Context context) {
         return Room.databaseBuilder(
             context,
-            AppDatabase.class, DB_NAME) // add .allowMainThreadQueries() to run in UI thread
-            .build();
+            AppDatabase.class, DB_NAME)
+                .allowMainThreadQueries()  // add .allowMainThreadQueries() to run in UI thread
+                .fallbackToDestructiveMigration()
+                .build();
     }
 
     public abstract IngredientDao getIngredientDao();

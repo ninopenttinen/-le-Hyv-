@@ -1,8 +1,16 @@
 <resources>
     <string name="app_name">Òle Hyvä</string>
-
     <string name="selected_category_value">%1$s</string>
     <string name="suggestion_image_description">Suggestion Image</string>
-
+    <string name="recipe_hyperlink">Show recipe</string>
     <string name="recipe_name_value">%1$s</string>
+    <string name="cooking_time_minutes">Cooking time (minutes)</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="fav_recipe_name">fav_recipe_name</string>
+    <string name="accept">Accept</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm_to_remove">Confirm to remove?</string>
+    <string name="favorites">Favorites</string>
+    <string name="actions_button">actions_button</string>
+    <string name="recipe_image" />
 </resources>
