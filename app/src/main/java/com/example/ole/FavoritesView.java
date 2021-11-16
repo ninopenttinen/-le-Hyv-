@@ -56,10 +56,9 @@ public class FavoritesView extends AppCompatActivity {
     }
 
     private void updateFavorites(List<RoomRecipeWithIngredients> favRecipe){
-        String je = "he";
-
+     
         for ( int i = 0; i < favRecipe.size(); i++){
-            favItemArrayList.add( new FavoriteRecipe( favRecipe.get(i).roomRecipe.getName(), favRecipe.get(i).roomRecipe.getImageUrl().toString() ));
+            favItemArrayList.add(new FavoriteRecipe( favRecipe.get(i).roomRecipe.getName(), favRecipe.get(i).roomRecipe.getImageUrl().toString()));
         }
 
         for (FavoriteRecipe i : favItemArrayList){
@@ -109,8 +108,9 @@ public class FavoritesView extends AppCompatActivity {
             });
 
             bottomSheetView.findViewById(R.id.confirm_button).setOnClickListener(v1 -> {
-           /*     favItemArrayList.remove(position);
-                simpleAdapter.notifyDataSetChanged();*/
+                // TODO: Must also be removed from Db
+                favItemHashMap.remove(position);
+                simpleAdapter.notifyDataSetChanged();
                 Toast.makeText(FavoritesView.this, "Recipe removed ;)", Toast.LENGTH_LONG).show();
                 bottomSheetDialog.dismiss();
             });
