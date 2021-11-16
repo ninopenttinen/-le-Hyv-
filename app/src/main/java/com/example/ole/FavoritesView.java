@@ -117,51 +117,7 @@ public class FavoritesView extends AppCompatActivity {
 
             bottomSheetDialog.setContentView(bottomSheetView);
             bottomSheetDialog.show();
-
             return true;
         });
-
-        /*favListView.setOnItemClickListener((parent, view, position, id) -> {
-
-            BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(FavoritesView.this, R.style.BottomSheetDialogTheme);
-            View bottomSheetView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.bottom_popup_layout,
-                    (LinearLayout)findViewById(R.id.bottomSheetContainer));
-
-            bottomSheetView.findViewById(R.id.cancel_button).setOnClickListener(v1 -> {
-                String test ="f";
-                Toast.makeText(FavoritesView.this, "Canceled", Toast.LENGTH_LONG).show();
-                bottomSheetDialog.dismiss();
-            });
-
-            bottomSheetView.findViewById(R.id.confirm_button).setOnClickListener(v1 -> {
-                Toast.makeText(FavoritesView.this, "Recipe removed ;)", Toast.LENGTH_LONG).show();
-                bottomSheetDialog.dismiss();
-            });
-
-            bottomSheetDialog.setContentView(bottomSheetView);
-            bottomSheetDialog.show();
-
-        });*/
     }
-
-   /* public void favClick(View v){
-
-        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(FavoritesView.this, R.style.BottomSheetDialogTheme);
-        View bottomSheetView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.bottom_popup_layout,
-                (LinearLayout)findViewById(R.id.bottomSheetContainer));
-
-        bottomSheetView.findViewById(R.id.cancel_button).setOnClickListener(v1 -> {
-            String test ="f";
-            Toast.makeText(FavoritesView.this, "Canceled", Toast.LENGTH_LONG).show();
-            bottomSheetDialog.dismiss();
-        });
-
-        bottomSheetView.findViewById(R.id.confirm_button).setOnClickListener(v1 -> {
-            Toast.makeText(FavoritesView.this, "Recipe removed ;)", Toast.LENGTH_LONG).show();
-            bottomSheetDialog.dismiss();
-        });
-
-        bottomSheetDialog.setContentView(bottomSheetView);
-        bottomSheetDialog.show();
-    }*/
 }
