@@ -7,12 +7,13 @@
     android:background="@drawable/gradient_bg"
     tools:context=".CategoryView">
 
+
     <GridView
         android:id="@+id/gridView"
         android:layout_width="375dp"
         android:layout_height="464dp"
         android:layout_marginBottom="32dp"
-        android:fadingEdge="horizontal"
+        android:gravity="fill"
         android:numColumns="3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

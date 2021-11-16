@@ -2,11 +2,11 @@ package com.example.ole.components;
 
 public class CategoryItem {
 
-    public String mCategoryName = "";
-    public String mCategoryImage = "";
+    public String categoryName = "";
+    public String categoryImage = "";
 
-    public CategoryItem(String aCategoryName, String aCategoryImage){
-        mCategoryName = aCategoryName;
-        mCategoryImage = aCategoryImage;
+    public CategoryItem(String categoryName, String categoryImage){
+        this.categoryName = categoryName;
+        this.categoryImage = categoryImage;
     }
 }
