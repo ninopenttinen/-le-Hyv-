@@ -29,6 +29,7 @@ import com.example.ole.roomsitems.RoomRecipeWithIngredients;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import org.parceler.Parcels;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -58,7 +59,10 @@ public class FavoritesView extends AppCompatActivity {
     private void updateFavorites(List<RoomRecipeWithIngredients> favRecipe){
 
         for ( int i = 0; i < favRecipe.size(); i++){
-            favItemArrayList.add(new FavoriteRecipe( favRecipe.get(i).roomRecipe.getName(), favRecipe.get(i).roomRecipe.getImageUrl().toString()));
+            favItemArrayList.add(new FavoriteRecipe(
+                    favRecipe.get(i).roomRecipe.getName(),
+                    favRecipe.get(i).roomRecipe.getImageUrl().toString()
+            ));
         }
 
         for (FavoriteRecipe i : favItemArrayList){
