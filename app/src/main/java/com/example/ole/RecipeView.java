@@ -1,6 +1,7 @@
 package com.example.ole;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -18,52 +19,30 @@ import com.example.ole.model.Ingredient;
 import com.example.ole.model.Recipe;
 import com.example.ole.roomsitems.RoomIngredient;
 import com.example.ole.roomsitems.RoomRecipe;
+import com.example.ole.viewmodel.RecipeViewModel;
+import com.example.ole.viewmodel.SuggestionsViewModel;
+import com.example.ole.viewmodel.factory.SuggestionsViewModelFactory;
 
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class RecipeView extends AppCompatActivity {
 
-    // initial dao setti commit test
-
-
-    private static List<String> ingredientsList = new ArrayList<String>();
-    public String recipeUrl;
-    private RoomRecipe roomsRecipe;
-    private RoomIngredient roomIngredient;
-
-    // tarjoilee daot
-    AppDatabase appDatabase;
-
-    // rajapinta roomsiin
-    RecipeDao recipeDao;
-
-    IngredientDao ingredientDao;
-    
-    // roomsItems
-    // recipeWith ingredients
+    private RecipeViewModel recipeViewModel;
+    private Recipe recipe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third);
-        Recipe recipe = Parcels.unwrap(getIntent().getParcelableExtra("recipe"));
+        recipe = Parcels.unwrap(getIntent().getParcelableExtra("recipe"));
 
-        appDatabase = AppDatabase.getInstance(this);
-        recipeDao  = appDatabase.getRecipeDao();
-        ingredientDao = appDatabase.getIngredientDao();
-        roomsRecipe = new RoomRecipe();
-
-        recipeUrl = recipe.getUrl();
-        roomsRecipe.setImageUrl(recipe.getUrl());
-        roomsRecipe.setName(recipe.getLabel());
-        roomsRecipe.setPreparationTime(recipe.getTotalTime());
-        roomsRecipe.setRecipeUrl(recipe.getUrl());
-
-        //recipeDao.deleteIt();
+        recipeViewModel = new ViewModelProvider(this, new ViewModelProvider.AndroidViewModelFactory(this.getApplication()))
+                .get(RecipeViewModel.class);
 
         TextView recipeNameTextView = findViewById(R.id.recipeNameTextView);
         recipeNameTextView.setText(getString(R.string.recipe_name_value, recipe.getLabel()));
@@ -78,37 +57,26 @@ public class RecipeView extends AppCompatActivity {
     }
 
     private void createListView(List<Ingredient> ingredients) {
-
-        ListView listView = new ListView(this);
+        ListView listView;
         ArrayAdapter adapter;
         listView = findViewById(R.id.ingredients_list_view);
 
-        for(int i = 0; i < ingredients.size(); i++){
-            ingredientsList.add(ingredients.get(i).getText());
-        }
-
         adapter = new ArrayAdapter(RecipeView.this,
-                android.R.layout.simple_list_item_1,ingredientsList);
+                android.R.layout.simple_list_item_1,
+                ingredients.stream()
+                        .map(i -> i.getText())
+                        .collect(Collectors.toList()));
 
         listView.setAdapter(adapter);
     }
 
-    public void onClickUrl(View view) {
+    public void onClickUrl() {
         Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setData(Uri.parse(recipeUrl));
+        i.setData(Uri.parse(recipe.getUrl()));
         startActivity(i);
     }
 
-    public void addToFav(View view) {
-
-        roomsRecipe.setFavourite(true);
-        long recipeID = recipeDao.insertOne(roomsRecipe);
-
-        for (int j = 0; j < ingredientsList.size(); j++) {
-            roomIngredient = new RoomIngredient();
-            roomIngredient.setFk_recipe(recipeID);
-            roomIngredient.setName(ingredientsList.get(j));
-            ingredientDao.insertAll(roomIngredient);
-        }
+    public void addToFav() {
+        recipeViewModel.addRecipeToFavourites(recipe);
     }
 }
