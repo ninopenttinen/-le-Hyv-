@@ -12,20 +12,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.ole.dao.IngredientDao;
-import com.example.ole.dao.RecipeDao;
-import com.example.ole.database.AppDatabase;
 import com.example.ole.model.Ingredient;
 import com.example.ole.model.Recipe;
-import com.example.ole.roomsitems.RoomIngredient;
-import com.example.ole.roomsitems.RoomRecipe;
 import com.example.ole.viewmodel.RecipeViewModel;
-import com.example.ole.viewmodel.SuggestionsViewModel;
-import com.example.ole.viewmodel.factory.SuggestionsViewModelFactory;
 
 import org.parceler.Parcels;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,7 +32,7 @@ public class RecipeView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_third);
+        setContentView(R.layout.activity_recipe_view);
         recipe = Parcels.unwrap(getIntent().getParcelableExtra("recipe"));
 
         recipeViewModel = new ViewModelProvider(this, new ViewModelProvider.AndroidViewModelFactory(this.getApplication()))
@@ -53,7 +45,16 @@ public class RecipeView extends AppCompatActivity {
         recipeImageView.setImageBitmap(recipe.getImage());
 
         TextView recipeTotalTime = findViewById(R.id.timeTextNumberView);
-        recipeTotalTime.setText(recipe.getTotalTime());
+        TextView recipeTotalTimeView = findViewById(R.id.timeTextView);
+        String t = recipe.getTotalTime();
+
+        if(recipe.getTotalTime().equals("0.0")){
+            recipeTotalTime.setVisibility(View.GONE);
+            recipeTotalTimeView.setVisibility(View.GONE);
+        } else {
+            recipeTotalTime.setText(recipe.getTotalTime());
+        }
+
 
         createListView(recipe.getIngredients());
     }

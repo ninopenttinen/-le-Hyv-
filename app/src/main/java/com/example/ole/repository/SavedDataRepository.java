@@ -56,5 +56,4 @@ public class SavedDataRepository {
             ingredientDao.insertAll(roomIngredient);
         }
     }
-
 }
