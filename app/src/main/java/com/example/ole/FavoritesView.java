@@ -1,35 +1,27 @@
 package com.example.ole;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.helper.widget.Layer;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.GridView;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.PopupMenu;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 
-import com.example.ole.components.CategoryItem;
 import com.example.ole.components.FavoriteRecipe;
 import com.example.ole.dao.RecipeDao;
 import com.example.ole.database.AppDatabase;
 import com.example.ole.model.Ingredient;
 import com.example.ole.model.Recipe;
-import com.example.ole.roomsitems.RoomRecipe;
+import com.example.ole.roomsitems.RoomIngredient;
 import com.example.ole.roomsitems.RoomRecipeWithIngredients;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import org.parceler.Parcels;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -84,15 +76,21 @@ public class FavoritesView extends AppCompatActivity {
         favListView.setOnItemClickListener((parent, view, position, id) -> {
             Intent intent = new Intent(this, RecipeView.class);
 
-            // String label, Bitmap image, String url, List<Ingredient> ingredients, String calories, String totalTime
-            List<Ingredient> temp = new ArrayList<>();
+            List<Ingredient> tempIngredientList = new ArrayList<>();
 
+            for(int i = 0; i < favRecipe.get(position).roomIngredients.size(); i++){
+                Ingredient tempIngredient = new Ingredient( favRecipe.get(position).roomIngredients.get(i).getName(),
+                        favRecipe.get(position).roomIngredients.get(i).getQuantity(),
+                        favRecipe.get(position).roomIngredients.get(i).getMeasure(),
+                        favRecipe.get(position).roomIngredients.get(i).getText());
+                tempIngredientList.add(tempIngredient);
+            }
 
             Recipe recipeToRecipeView = new Recipe(
                     favRecipe.get(position).roomRecipe.getName(),
                     null,
                     favRecipe.get(position).roomRecipe.getRecipeUrl(),
-                    temp,
+                    tempIngredientList,
                     null,
                     favRecipe.get(position).roomRecipe.getPreparationTime());
 

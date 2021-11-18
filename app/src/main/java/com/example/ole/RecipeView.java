@@ -32,6 +32,8 @@ import java.util.stream.Collectors;
 
 public class RecipeView extends AppCompatActivity {
 
+    // TODO: Clear listView
+
     private RecipeViewModel recipeViewModel;
     private Recipe recipe;
 
