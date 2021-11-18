@@ -17,7 +17,6 @@ import com.example.ole.dao.RecipeDao;
 import com.example.ole.database.AppDatabase;
 import com.example.ole.model.Ingredient;
 import com.example.ole.model.Recipe;
-import com.example.ole.roomsitems.RoomIngredient;
 import com.example.ole.roomsitems.RoomRecipeWithIngredients;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
