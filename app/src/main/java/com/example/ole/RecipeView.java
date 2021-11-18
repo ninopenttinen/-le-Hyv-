@@ -64,7 +64,7 @@ public class RecipeView extends AppCompatActivity {
         adapter = new ArrayAdapter(RecipeView.this,
                 android.R.layout.simple_list_item_1,
                 ingredients.stream()
-                        .map(i -> i.getText())
+                        .map(Ingredient::getText)
                         .collect(Collectors.toList()));
 
         listView.setAdapter(adapter);
@@ -76,7 +76,7 @@ public class RecipeView extends AppCompatActivity {
         startActivity(i);
     }
 
-    public void addToFav() {
+    public void addToFav(View view) {
         recipeViewModel.addRecipeToFavourites(recipe);
     }
 }
