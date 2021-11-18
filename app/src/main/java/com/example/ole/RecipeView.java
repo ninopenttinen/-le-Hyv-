@@ -72,7 +72,7 @@ public class RecipeView extends AppCompatActivity {
         listView.setAdapter(adapter);
     }
 
-    public void onClickUrl() {
+    public void onClickUrl(View view) {
         Intent i = new Intent(Intent.ACTION_VIEW);
         i.setData(Uri.parse(recipe.getUrl()));
         startActivity(i);
