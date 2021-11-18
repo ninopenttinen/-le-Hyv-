@@ -58,10 +58,8 @@ public class SavedDataRepository {
     }
 
     public boolean isRecipeInFavorites(Recipe recipe){
-        /*RoomRecipe roomRecipe = new RoomRecipe();
-        roomRecipe = recipeDao.findUrl(recipe.getUrl());
-        return roomRecipe.getRecipeUrl().equals(recipe.getUrl());*/
         RoomRecipe roomRecipe = recipeDao.findUrl(recipe.getUrl());
+
         if(roomRecipe == null){
             return false;
         }
