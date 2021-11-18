@@ -55,7 +55,6 @@ public class RecipeView extends AppCompatActivity {
             recipeTotalTime.setText(recipe.getTotalTime());
         }
 
-
         createListView(recipe.getIngredients());
     }
 

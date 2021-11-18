@@ -12,15 +12,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/recipeNameTextView"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:text="@string/recipe_name_value"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"/>
-
         <androidx.cardview.widget.CardView
             android:layout_width="190dp"
             android:layout_height="190dp"
@@ -40,6 +31,15 @@
                 android:layout_height="match_parent"
                 tools:srcCompat="@tools:sample/avatars" />
         </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/recipeNameTextView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="@string/recipe_name_value"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -94,7 +94,7 @@
                 android:layout_width="0dp"
                 android:layout_height="58dp"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
                 android:backgroundTint="#65FFFFFF"
                 android:onClick="addToFav"
