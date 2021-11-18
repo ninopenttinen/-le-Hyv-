@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -23,8 +22,6 @@ import java.util.stream.Collectors;
 
 
 public class RecipeView extends AppCompatActivity {
-
-    // TODO: Clear listView
 
     private RecipeViewModel recipeViewModel;
     private Recipe recipe;
@@ -73,9 +70,9 @@ public class RecipeView extends AppCompatActivity {
     }
 
     public void onClickUrl(View view) {
-        Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setData(Uri.parse(recipe.getUrl()));
-        startActivity(i);
+        Intent intent = new Intent(getApplicationContext(), WebViewView.class);
+        intent.putExtra("url",recipe.getUrl());
+        startActivity(intent);
     }
 
     public void addToFav(View view) {
