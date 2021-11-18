@@ -25,4 +25,8 @@ public interface ShoppingListDao {
   @Delete
   void delete(RoomShoppingListItem shoppingListItem);
 
+  @Query("DELETE FROM shopping_list")
+  void deleteAll();
+
+
 }

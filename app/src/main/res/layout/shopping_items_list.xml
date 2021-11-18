@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".FiltersView">
+    tools:context=".ShoppingCartView">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,9 +14,9 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/shoppingItemName"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Ketsuppi"
             android:textColor="#FFFF"
             android:textSize="20sp" />
 
@@ -29,7 +29,6 @@
             android:background="@android:color/transparent"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:onClick="dialogOnClick"
             android:text="X"
             android:textColor="#FFFF"
             android:textSize="20sp" />
