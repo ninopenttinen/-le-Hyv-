@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -43,7 +44,6 @@ public class RecipeView extends AppCompatActivity {
 
         TextView recipeTotalTime = findViewById(R.id.timeTextNumberView);
         TextView recipeTotalTimeView = findViewById(R.id.timeTextView);
-        String t = recipe.getTotalTime();
 
         if(recipe.getTotalTime().equals("0.0")){
             recipeTotalTime.setVisibility(View.GONE);
@@ -52,6 +52,13 @@ public class RecipeView extends AppCompatActivity {
             recipeTotalTime.setText(recipe.getTotalTime());
         }
 
+        Button button = findViewById(R.id.addRemoveButton2);
+
+        if(checkFavorites(recipe)){
+            button.setText("Remove From Favorites");
+        } else {
+            button.setText("Add To Favorites");
+        }
         createListView(recipe.getIngredients());
     }
 
@@ -78,4 +85,9 @@ public class RecipeView extends AppCompatActivity {
     public void addToFav(View view) {
         recipeViewModel.addRecipeToFavourites(recipe);
     }
+
+    public boolean checkFavorites(Recipe recipe){
+        return recipeViewModel.checkFavorites(recipe);
+    }
+
 }
