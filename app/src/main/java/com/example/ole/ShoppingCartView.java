@@ -3,8 +3,12 @@ package com.example.ole;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import com.example.ole.dao.ShoppingListDao;
 import com.example.ole.database.AppDatabase;
@@ -53,9 +57,21 @@ public class ShoppingCartView extends AppCompatActivity {
         R.layout.shopping_items_list,
         new String[]{"ingredientName"},
         new int[]{R.id.shoppingItemName}
-    );
+    ) {
+      @Override
+      public View getView(int position, View convertView, ViewGroup parent) {
+        View view = super.getView(position, convertView, parent);
 
-    ListView shoppingItemsListView = (ListView) findViewById(R.id.shoppingItemsList);
+        Button itemDeleteButton = view.findViewById(R.id.shoppingItemDeleteButton);
+        itemDeleteButton.setOnClickListener(arg0 -> {
+          Toast.makeText(ShoppingCartView.this, String.valueOf(position), Toast.LENGTH_SHORT).show();
+        });
+
+        return view;
+      }
+    };
+
+    ListView shoppingItemsListView = findViewById(R.id.shoppingItemsList);
     shoppingItemsListView.setAdapter(simpleAdapter);
   }
 }

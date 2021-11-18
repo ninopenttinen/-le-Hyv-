@@ -26,9 +26,10 @@
             android:layout_weight="1" />
 
         <Button
-            android:background="@android:color/transparent"
+            android:id="@+id/shoppingItemDeleteButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:background="@android:color/transparent"
             android:text="X"
             android:textColor="#FFFF"
             android:textSize="20sp" />
