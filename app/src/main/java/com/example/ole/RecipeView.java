@@ -1,111 +1,117 @@
 package com.example.ole;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
-import com.example.ole.dao.IngredientDao;
-import com.example.ole.dao.RecipeDao;
-import com.example.ole.database.AppDatabase;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.example.ole.model.Ingredient;
 import com.example.ole.model.Recipe;
-import com.example.ole.roomsitems.RoomIngredient;
-import com.example.ole.roomsitems.RoomRecipe;
+import com.example.ole.viewmodel.RecipeViewModel;
 
 import org.parceler.Parcels;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class RecipeView extends AppCompatActivity {
 
-    private static List<String> ingredientsList = new ArrayList<String>();
-    public String recipeUrl;
-    private RoomRecipe roomsRecipe;
-    private RoomIngredient roomIngredient;
+  private List<Ingredient> ingredientsToCart;
+  private RecipeViewModel recipeViewModel;
+  private Recipe recipe;
 
-    // tarjoilee daot
-    AppDatabase appDatabase;
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_recipe_view);
+    recipe = Parcels.unwrap(getIntent().getParcelableExtra("recipe"));
 
-    // rajapinta roomsiin
-    RecipeDao recipeDao;
+    recipeViewModel = new ViewModelProvider(this, new ViewModelProvider.AndroidViewModelFactory(this.getApplication()))
+        .get(RecipeViewModel.class);
 
-    IngredientDao ingredientDao;
-    
-    // roomsItems
-    // recipeWith ingredients
+    TextView recipeNameTextView = findViewById(R.id.recipeNameTextView);
+    recipeNameTextView.setText(getString(R.string.recipe_name_value, recipe.getLabel()));
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_third);
-        Recipe recipe = Parcels.unwrap(getIntent().getParcelableExtra("recipe"));
+    ImageView recipeImageView = findViewById(R.id.recipeImageView);
+    recipeImageView.setImageBitmap(recipe.getImage());
 
-        appDatabase = AppDatabase.getInstance(this);
-        recipeDao  = appDatabase.getRecipeDao();
-        ingredientDao = appDatabase.getIngredientDao();
-        roomsRecipe = new RoomRecipe();
+    TextView recipeTotalTime = findViewById(R.id.timeTextNumberView);
+    TextView recipeTotalTimeView = findViewById(R.id.timeTextView);
 
-        recipeUrl = recipe.getUrl();
-        roomsRecipe.setImageUrl(recipe.getUrl());
-        roomsRecipe.setName(recipe.getLabel());
-        roomsRecipe.setPreparationTime(recipe.getTotalTime());
-        roomsRecipe.setRecipeUrl(recipe.getUrl());
-
-        //recipeDao.deleteIt();
-
-        TextView recipeNameTextView = findViewById(R.id.recipeNameTextView);
-        recipeNameTextView.setText(getString(R.string.recipe_name_value, recipe.getLabel()));
-
-        ImageView recipeImageView = findViewById(R.id.recipeImageView);
-        recipeImageView.setImageBitmap(recipe.getImage());
-
-        TextView recipeTotalTime = findViewById(R.id.timeTextNumberView);
-        recipeTotalTime.setText(recipe.getTotalTime());
-
-        createListView(recipe.getIngredients());
+    if (recipe.getTotalTime().equals("0.0")) {
+      recipeTotalTime.setVisibility(View.GONE);
+      recipeTotalTimeView.setVisibility(View.GONE);
+    } else {
+      recipeTotalTime.setText(recipe.getTotalTime());
     }
 
-    private void createListView(List<Ingredient> ingredients) {
-
-        ListView listView = new ListView(this);
-        ArrayAdapter adapter;
-        listView = findViewById(R.id.ingredients_list_view);
-
-        for(int i = 0; i < ingredients.size(); i++){
-            ingredientsList.add(ingredients.get(i).getText());
-        }
-
-        adapter = new ArrayAdapter(RecipeView.this,
-                android.R.layout.simple_list_item_1,ingredientsList);
-
-        listView.setAdapter(adapter);
+    ToggleButton toggle = findViewById(R.id.addRemoveButton2);
+    if (checkFavorites(recipe)) {
+      toggle.setTextOff("Remove From Favorites");
+      toggle.setChecked(true);
+    } else {
+      toggle.setTextOn("Add To Favorites");
+      toggle.setChecked(false);
     }
 
-    public void onClickUrl(View view) {
-        Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setData(Uri.parse(recipeUrl));
-        startActivity(i);
-    }
+    toggle.setOnClickListener(v -> {
+      if (toggle.isChecked()) {
+        toggle.setTextOn("Remove From Favorites");
+        addToFav(recipe);
+        toggle.setChecked(true);
+      } else {
+        toggle.setTextOff("Add To Favorites");
+        removeFromFav(recipe);
+        toggle.setChecked(false);
+      }
+    });
 
-    public void addToFav(View view) {
+    createListView(recipe.getIngredients());
+  }
 
-        roomsRecipe.setFavourite(true);
-        long recipeID = recipeDao.insertOne(roomsRecipe);
+  private void createListView(List<Ingredient> ingredients) {
+    ListView listView;
+    ArrayAdapter adapter;
+    listView = findViewById(R.id.ingredients_list_view);
 
-        for (int j = 0; j < ingredientsList.size(); j++) {
-            roomIngredient = new RoomIngredient();
-            roomIngredient.setFk_recipe(recipeID);
-            roomIngredient.setName(ingredientsList.get(j));
-            ingredientDao.insertAll(roomIngredient);
-        }
-    }
+    adapter = new ArrayAdapter(RecipeView.this,
+        android.R.layout.simple_list_item_1,
+        ingredients.stream()
+            .map(Ingredient::getText)
+            .collect(Collectors.toList()));
+
+    listView.setAdapter(adapter);
+
+    ingredientsToCart = ingredients;
+  }
+
+  public void onClickUrl(View view) {
+    Intent intent = new Intent(getApplicationContext(), WebViewView.class);
+    intent.putExtra("url", recipe.getUrl());
+    startActivity(intent);
+  }
+
+  public void AddToCart(View view){
+    recipeViewModel.addToCart(ingredientsToCart);
+  }
+
+  public void addToFav(Recipe recipe) {
+    recipeViewModel.addRecipeToFavourites(recipe);
+  }
+
+  public void removeFromFav(Recipe recipe) {
+    recipeViewModel.removeRecipeFromFavourites(recipe);
+  }
+
+  public boolean checkFavorites(Recipe recipe) {
+    return recipeViewModel.checkFavorites(recipe);
+  }
 }

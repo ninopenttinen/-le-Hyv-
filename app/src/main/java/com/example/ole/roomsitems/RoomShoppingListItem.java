@@ -19,5 +19,5 @@ public class RoomShoppingListItem {
   private String ingredient;
 
   @ColumnInfo(name = "ingredient_amount")
-  private float amount;
+  private Double amount;
 }

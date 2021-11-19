@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -21,8 +22,13 @@ public class RoomIngredient {
     @ColumnInfo(name = "ingredient_name")
     private String name;
 
-    @ColumnInfo(name = "ingredient_amount")
-    private float amount;
+    @ColumnInfo(name = "ingredient_quantity")
+    private Double quantity;
 
+    @ColumnInfo(name = "ingredient_measure")
+    private String measure;
+
+    @ColumnInfo(name = "ingredient_text")
+    private String text;
 
 }
