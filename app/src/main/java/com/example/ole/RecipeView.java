@@ -8,9 +8,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import com.example.ole.model.Ingredient;
 import com.example.ole.model.Recipe;
@@ -52,13 +54,28 @@ public class RecipeView extends AppCompatActivity {
             recipeTotalTime.setText(recipe.getTotalTime());
         }
 
-        Button button = findViewById(R.id.addRemoveButton2);
 
+        ToggleButton toggle = (ToggleButton) findViewById(R.id.addRemoveButton2);
         if(checkFavorites(recipe)){
-            button.setText("Remove From Favorites");
+            toggle.setTextOff("Remove From Favorites");
+            toggle.setChecked(true);
         } else {
-            button.setText("Add To Favorites");
+            toggle.setTextOn("Add To Favorites");
+            toggle.setChecked(false);
         }
+
+        toggle.setOnClickListener(v -> {
+            if(toggle.isChecked()){
+                toggle.setTextOn("Remove From Favorites");
+                addToFav(recipe);
+                toggle.setChecked(true);
+            } else {
+                toggle.setTextOff("Add To Favorites");
+                removeFromFav(recipe);
+                toggle.setChecked(false);
+            }
+        });
+
         createListView(recipe.getIngredients());
     }
 
@@ -82,12 +99,15 @@ public class RecipeView extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void addToFav(View view) {
+    public void addToFav(Recipe recipe) {
         recipeViewModel.addRecipeToFavourites(recipe);
+    }
+
+    public void removeFromFav(Recipe recipe){
+        recipeViewModel.removeRecipeFromFavourites(recipe);
     }
 
     public boolean checkFavorites(Recipe recipe){
         return recipeViewModel.checkFavorites(recipe);
     }
-
 }

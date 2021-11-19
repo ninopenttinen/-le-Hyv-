@@ -57,6 +57,15 @@ public class SavedDataRepository {
         }
     }
 
+
+    public void removeRecipeFromFavourites(Recipe recipe){
+        RoomRecipe roomRecipe = recipeDao.findUrl(recipe.getUrl());
+
+        if(isRecipeInFavorites(recipe)){
+            recipeDao.delete(roomRecipe);
+        }
+    }
+
     public boolean isRecipeInFavorites(Recipe recipe){
         RoomRecipe roomRecipe = recipeDao.findUrl(recipe.getUrl());
 

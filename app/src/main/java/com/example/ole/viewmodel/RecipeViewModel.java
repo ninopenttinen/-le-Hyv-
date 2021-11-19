@@ -22,6 +22,10 @@ public class RecipeViewModel extends AndroidViewModel {
         savedDataRepository.addRecipeToFavourites(recipe);
     }
 
+    public void removeRecipeFromFavourites(Recipe recipe){
+        savedDataRepository.removeRecipeFromFavourites(recipe);
+    }
+
     public boolean checkFavorites(Recipe recipe){
         return savedDataRepository.isRecipeInFavorites(recipe);
     }
