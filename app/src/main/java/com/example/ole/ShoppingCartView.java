@@ -1,18 +1,19 @@
 package com.example.ole;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.ole.dao.ShoppingListDao;
 import com.example.ole.database.AppDatabase;
 import com.example.ole.roomsitems.RoomShoppingListItem;
+import com.example.ole.viewmodel.ShoppingListViewModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,6 +24,7 @@ public class ShoppingCartView extends AppCompatActivity {
   private final List<HashMap<String, String>> shoppingItemHashMapList = new ArrayList<>();
   private SimpleAdapter simpleAdapter;
   private ShoppingListDao shoppingListDao;
+  private ShoppingListViewModel shoppingListViewModel;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -31,23 +33,29 @@ public class ShoppingCartView extends AppCompatActivity {
 
     AppDatabase appDatabase = AppDatabase.getInstance(getApplicationContext());
     shoppingListDao = appDatabase.getShoppingListDao();
+    shoppingListViewModel = new ViewModelProvider(
+        this, new ViewModelProvider.AndroidViewModelFactory(this.getApplication())
+    ).get(ShoppingListViewModel.class);
 
     initializeListView();
   }
 
   private void initializeListView() {
+    // DEV
+    final String adapterIngredientName = "ingredientName";
     shoppingListDao.deleteAll();
-
     RoomShoppingListItem roomShoppingListItem = new RoomShoppingListItem();
     roomShoppingListItem.setIngredient("pizza");
-    roomShoppingListItem.setAmount(123);
-
-    shoppingListDao.insertAll(roomShoppingListItem);
+    roomShoppingListItem.setAmount(123.0);
+    RoomShoppingListItem roomShoppingListItem1 = new RoomShoppingListItem();
+    roomShoppingListItem1.setIngredient("kebab");
+    roomShoppingListItem1.setAmount(999.0);
+    shoppingListDao.insertAll(roomShoppingListItem, roomShoppingListItem1);
     List<String> ingredientsList = shoppingListDao.getAllIngredients();
 
     for (String ingredientString : ingredientsList) {
       HashMap<String, String> ingredientItemHash = new HashMap<>();
-      ingredientItemHash.put("ingredientName", ingredientString);
+      ingredientItemHash.put(adapterIngredientName, ingredientString);
       shoppingItemHashMapList.add(ingredientItemHash);
     }
 
@@ -55,7 +63,7 @@ public class ShoppingCartView extends AppCompatActivity {
         getApplicationContext(),
         shoppingItemHashMapList,
         R.layout.shopping_items_list,
-        new String[]{"ingredientName"},
+        new String[]{adapterIngredientName},
         new int[]{R.id.shoppingItemName}
     ) {
       @Override
@@ -63,8 +71,13 @@ public class ShoppingCartView extends AppCompatActivity {
         View view = super.getView(position, convertView, parent);
 
         Button itemDeleteButton = view.findViewById(R.id.shoppingItemDeleteButton);
+
         itemDeleteButton.setOnClickListener(arg0 -> {
-          Toast.makeText(ShoppingCartView.this, String.valueOf(position), Toast.LENGTH_SHORT).show();
+          shoppingListViewModel.removeIngredientFromShoppingList(
+              shoppingItemHashMapList.get(position).get(adapterIngredientName)
+          );
+          shoppingItemHashMapList.remove(position);
+          simpleAdapter.notifyDataSetChanged();
         });
 
         return view;

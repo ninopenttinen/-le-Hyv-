@@ -5,7 +5,6 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import com.example.ole.roomsitems.RoomRecipe;
 import com.example.ole.roomsitems.RoomShoppingListItem;
 
 import java.util.List;
@@ -28,5 +27,7 @@ public interface ShoppingListDao {
   @Query("DELETE FROM shopping_list")
   void deleteAll();
 
+  @Query("SELECT * FROM shopping_list WHERE ingredient LIKE :name LIMIT 1")
+  RoomShoppingListItem findByIngredientName(String name);
 
 }

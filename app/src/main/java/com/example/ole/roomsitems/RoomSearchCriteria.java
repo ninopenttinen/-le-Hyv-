@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
+@Entity(tableName = "search_criteria")
 @Data
 @NoArgsConstructor
 public class RoomSearchCriteria {

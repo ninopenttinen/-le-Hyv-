@@ -30,12 +30,19 @@ public class SavedDataRepository {
   private final MutableLiveData<Recipe> recipe = new MutableLiveData<>();
 
   public SavedDataRepository(@NonNull Application application) {
-
     appDatabase = AppDatabase.getInstance(application);
     recipeDao = appDatabase.getRecipeDao();
     shoppinListDao = appDatabase.getShoppingListDao();
     ingredientDao = appDatabase.getIngredientDao();
+  }
 
+  @Transaction
+  public void removeIngredientFromShoppingList(String ing) {
+    RoomShoppingListItem listItem = shoppinListDao.findByIngredientName(ing);
+
+    if(listItem != null) {
+      shoppinListDao.delete(listItem);
+    }
   }
 
   @Transaction
@@ -93,8 +100,6 @@ public class SavedDataRepository {
     for(RoomShoppingListItem i : listItems){
       shoppinListDao.insertOne(i);
     }
-
-    String s ="j";
-
   }
+
 }
