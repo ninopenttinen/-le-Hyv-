@@ -1,6 +1,7 @@
 package com.example.ole;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +19,8 @@ import com.example.ole.database.AppDatabase;
 import com.example.ole.model.Ingredient;
 import com.example.ole.model.Recipe;
 import com.example.ole.roomsitems.RoomRecipeWithIngredients;
+import com.example.ole.viewmodel.FavoritesViewModel;
+import com.example.ole.viewmodel.RecipeViewModel;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import org.parceler.Parcels;
@@ -28,6 +31,7 @@ import java.util.List;
 
 public class FavoritesView extends AppCompatActivity {
 
+    FavoritesViewModel favoritesViewModel;
     AppDatabase appDatabase;
     RecipeDao recipeDao;
     List<RoomRecipeWithIngredients> recipeWithIngredients;
@@ -43,6 +47,9 @@ public class FavoritesView extends AppCompatActivity {
         appDatabase = AppDatabase.getInstance(this);
         recipeDao  = appDatabase.getRecipeDao();
         recipeWithIngredients = recipeDao.getAllRecipeWithIngredients();
+
+        favoritesViewModel = new ViewModelProvider(this, new ViewModelProvider.AndroidViewModelFactory(this.getApplication()))
+                .get(FavoritesViewModel.class);
 
         updateFavorites(recipeWithIngredients);
     }
@@ -100,9 +107,20 @@ public class FavoritesView extends AppCompatActivity {
 
         favListView.setOnItemLongClickListener((parent, view, position, id) -> {
 
+            Recipe recipeToBeRemoved = new Recipe(
+                    null,
+                    null,
+                    favRecipe.get(position).roomRecipe.getRecipeUrl(),
+                    null,
+                    null,
+                    null);
+
             BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(FavoritesView.this, R.style.BottomSheetDialogTheme);
             View bottomSheetView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.bottom_popup_layout,
                     (LinearLayout)findViewById(R.id.bottomSheetContainer));
+
+            bottomSheetDialog.setContentView(bottomSheetView);
+            bottomSheetDialog.show();
 
             bottomSheetView.findViewById(R.id.cancel_button).setOnClickListener(v1 -> {
                 Toast.makeText(FavoritesView.this, "Canceled", Toast.LENGTH_LONG).show();
@@ -110,16 +128,17 @@ public class FavoritesView extends AppCompatActivity {
             });
 
             bottomSheetView.findViewById(R.id.confirm_button).setOnClickListener(v1 -> {
-                // TODO: Must also be removed from Db
+                removeFromFav(recipeToBeRemoved);
                 favItemHashMap.remove(position);
                 simpleAdapter.notifyDataSetChanged();
                 Toast.makeText(FavoritesView.this, "Removed from favorites", Toast.LENGTH_LONG).show();
                 bottomSheetDialog.dismiss();
             });
-
-            bottomSheetDialog.setContentView(bottomSheetView);
-            bottomSheetDialog.show();
             return true;
         });
+    }
+
+    public void removeFromFav(Recipe rec){
+        favoritesViewModel.removeRecipeFromFavourites(rec);
     }
 }

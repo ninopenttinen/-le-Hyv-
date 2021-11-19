@@ -52,7 +52,6 @@ public class SavedDataRepository {
             roomIngredient.setMeasure(ingredient.getMeasure());
             roomIngredient.setText(ingredient.getText());
             roomIngredient.setFk_recipe(recipeID);
-
             ingredientDao.insertAll(roomIngredient);
         }
     }
