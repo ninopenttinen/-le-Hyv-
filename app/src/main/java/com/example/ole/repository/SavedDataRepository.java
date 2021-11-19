@@ -8,12 +8,15 @@ import androidx.room.Transaction;
 
 import com.example.ole.dao.IngredientDao;
 import com.example.ole.dao.RecipeDao;
+import com.example.ole.dao.ShoppingListDao;
 import com.example.ole.database.AppDatabase;
 import com.example.ole.model.Ingredient;
 import com.example.ole.model.Recipe;
 import com.example.ole.roomsitems.RoomIngredient;
 import com.example.ole.roomsitems.RoomRecipe;
+import com.example.ole.roomsitems.RoomShoppingListItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -22,6 +25,7 @@ public class SavedDataRepository {
   private final AppDatabase appDatabase; // tarjoilee daot
   private final RecipeDao recipeDao; // rajapinta roomsiin
   private final IngredientDao ingredientDao;
+  private final ShoppingListDao shoppinListDao;
 
   private final MutableLiveData<Recipe> recipe = new MutableLiveData<>();
 
@@ -29,6 +33,7 @@ public class SavedDataRepository {
 
     appDatabase = AppDatabase.getInstance(application);
     recipeDao = appDatabase.getRecipeDao();
+    shoppinListDao = appDatabase.getShoppingListDao();
     ingredientDao = appDatabase.getIngredientDao();
 
   }
@@ -73,5 +78,23 @@ public class SavedDataRepository {
       return false;
     }
     return roomRecipe.getRecipeUrl().equals(recipe.getUrl());
+  }
+
+  public void addIngredientsToCart(List<Ingredient> ingredients){
+    List<RoomShoppingListItem> listItems = new ArrayList<>();
+
+    for(Ingredient i : ingredients ){
+      RoomShoppingListItem roomShoppingListItem = new RoomShoppingListItem();
+      roomShoppingListItem.setIngredient(i.getName());
+      roomShoppingListItem.setAmount(i.getQuantity());
+      listItems.add(roomShoppingListItem);
+    }
+
+    for(RoomShoppingListItem i : listItems){
+      shoppinListDao.insertOne(i);
+    }
+
+    String s ="j";
+
   }
 }

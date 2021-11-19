@@ -24,6 +24,7 @@ import java.util.stream.Collectors;
 
 public class RecipeView extends AppCompatActivity {
 
+  private List<Ingredient> ingredientsToCart;
   private RecipeViewModel recipeViewModel;
   private Recipe recipe;
 
@@ -88,12 +89,18 @@ public class RecipeView extends AppCompatActivity {
             .collect(Collectors.toList()));
 
     listView.setAdapter(adapter);
+
+    ingredientsToCart = ingredients;
   }
 
   public void onClickUrl(View view) {
     Intent intent = new Intent(getApplicationContext(), WebViewView.class);
     intent.putExtra("url", recipe.getUrl());
     startActivity(intent);
+  }
+
+  public void AddToCart(View view){
+    recipeViewModel.addToCart(ingredientsToCart);
   }
 
   public void addToFav(Recipe recipe) {
