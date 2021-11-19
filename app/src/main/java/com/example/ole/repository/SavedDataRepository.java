@@ -62,6 +62,7 @@ public class SavedDataRepository {
         RoomRecipe roomRecipe = recipeDao.findUrl(recipe.getUrl());
 
         if(isRecipeInFavorites(recipe)){
+            roomRecipe.setFavourite(false);
             recipeDao.delete(roomRecipe);
         }
     }
