@@ -10,15 +10,14 @@ import com.example.ole.repository.SavedDataRepository;
 
 public class FavoritesViewModel extends AndroidViewModel {
 
-    private final SavedDataRepository savedDataRepository;
+  private final SavedDataRepository savedDataRepository;
 
-    public FavoritesViewModel(@NonNull Application application) {
-        super(application);
+  public FavoritesViewModel(@NonNull Application application) {
+    super(application);
+    savedDataRepository = new SavedDataRepository(application);
+  }
 
-        savedDataRepository = new SavedDataRepository(application);
-    }
-
-    public void removeRecipeFromFavourites(Recipe recipe){
-        savedDataRepository.removeRecipeFromFavourites(recipe);
-    }
+  public void removeRecipeFromFavourites(Recipe recipe) {
+    savedDataRepository.removeRecipeFromFavourites(recipe);
+  }
 }

@@ -1,18 +1,16 @@
 package com.example.ole;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.ole.model.Ingredient;
 import com.example.ole.model.Recipe;
@@ -26,88 +24,87 @@ import java.util.stream.Collectors;
 
 public class RecipeView extends AppCompatActivity {
 
-    private RecipeViewModel recipeViewModel;
-    private Recipe recipe;
+  private RecipeViewModel recipeViewModel;
+  private Recipe recipe;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recipe_view);
-        recipe = Parcels.unwrap(getIntent().getParcelableExtra("recipe"));
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_recipe_view);
+    recipe = Parcels.unwrap(getIntent().getParcelableExtra("recipe"));
 
-        recipeViewModel = new ViewModelProvider(this, new ViewModelProvider.AndroidViewModelFactory(this.getApplication()))
-                .get(RecipeViewModel.class);
+    recipeViewModel = new ViewModelProvider(this, new ViewModelProvider.AndroidViewModelFactory(this.getApplication()))
+        .get(RecipeViewModel.class);
 
-        TextView recipeNameTextView = findViewById(R.id.recipeNameTextView);
-        recipeNameTextView.setText(getString(R.string.recipe_name_value, recipe.getLabel()));
+    TextView recipeNameTextView = findViewById(R.id.recipeNameTextView);
+    recipeNameTextView.setText(getString(R.string.recipe_name_value, recipe.getLabel()));
 
-        ImageView recipeImageView = findViewById(R.id.recipeImageView);
-        recipeImageView.setImageBitmap(recipe.getImage());
+    ImageView recipeImageView = findViewById(R.id.recipeImageView);
+    recipeImageView.setImageBitmap(recipe.getImage());
 
-        TextView recipeTotalTime = findViewById(R.id.timeTextNumberView);
-        TextView recipeTotalTimeView = findViewById(R.id.timeTextView);
+    TextView recipeTotalTime = findViewById(R.id.timeTextNumberView);
+    TextView recipeTotalTimeView = findViewById(R.id.timeTextView);
 
-        if(recipe.getTotalTime().equals("0.0")){
-            recipeTotalTime.setVisibility(View.GONE);
-            recipeTotalTimeView.setVisibility(View.GONE);
-        } else {
-            recipeTotalTime.setText(recipe.getTotalTime());
-        }
-
-
-        ToggleButton toggle = (ToggleButton) findViewById(R.id.addRemoveButton2);
-        if(checkFavorites(recipe)){
-            toggle.setTextOff("Remove From Favorites");
-            toggle.setChecked(true);
-        } else {
-            toggle.setTextOn("Add To Favorites");
-            toggle.setChecked(false);
-        }
-
-        toggle.setOnClickListener(v -> {
-            if(toggle.isChecked()){
-                toggle.setTextOn("Remove From Favorites");
-                addToFav(recipe);
-                toggle.setChecked(true);
-            } else {
-                toggle.setTextOff("Add To Favorites");
-                removeFromFav(recipe);
-                toggle.setChecked(false);
-            }
-        });
-
-        createListView(recipe.getIngredients());
+    if (recipe.getTotalTime().equals("0.0")) {
+      recipeTotalTime.setVisibility(View.GONE);
+      recipeTotalTimeView.setVisibility(View.GONE);
+    } else {
+      recipeTotalTime.setText(recipe.getTotalTime());
     }
 
-    private void createListView(List<Ingredient> ingredients) {
-        ListView listView;
-        ArrayAdapter adapter;
-        listView = findViewById(R.id.ingredients_list_view);
-
-        adapter = new ArrayAdapter(RecipeView.this,
-                android.R.layout.simple_list_item_1,
-                ingredients.stream()
-                        .map(Ingredient::getText)
-                        .collect(Collectors.toList()));
-
-        listView.setAdapter(adapter);
+    ToggleButton toggle = findViewById(R.id.addRemoveButton2);
+    if (checkFavorites(recipe)) {
+      toggle.setTextOff("Remove From Favorites");
+      toggle.setChecked(true);
+    } else {
+      toggle.setTextOn("Add To Favorites");
+      toggle.setChecked(false);
     }
 
-    public void onClickUrl(View view) {
-        Intent intent = new Intent(getApplicationContext(), WebViewView.class);
-        intent.putExtra("url",recipe.getUrl());
-        startActivity(intent);
-    }
+    toggle.setOnClickListener(v -> {
+      if (toggle.isChecked()) {
+        toggle.setTextOn("Remove From Favorites");
+        addToFav(recipe);
+        toggle.setChecked(true);
+      } else {
+        toggle.setTextOff("Add To Favorites");
+        removeFromFav(recipe);
+        toggle.setChecked(false);
+      }
+    });
 
-    public void addToFav(Recipe recipe) {
-        recipeViewModel.addRecipeToFavourites(recipe);
-    }
+    createListView(recipe.getIngredients());
+  }
 
-    public void removeFromFav(Recipe recipe){
-        recipeViewModel.removeRecipeFromFavourites(recipe);
-    }
+  private void createListView(List<Ingredient> ingredients) {
+    ListView listView;
+    ArrayAdapter adapter;
+    listView = findViewById(R.id.ingredients_list_view);
 
-    public boolean checkFavorites(Recipe recipe){
-        return recipeViewModel.checkFavorites(recipe);
-    }
+    adapter = new ArrayAdapter(RecipeView.this,
+        android.R.layout.simple_list_item_1,
+        ingredients.stream()
+            .map(Ingredient::getText)
+            .collect(Collectors.toList()));
+
+    listView.setAdapter(adapter);
+  }
+
+  public void onClickUrl(View view) {
+    Intent intent = new Intent(getApplicationContext(), WebViewView.class);
+    intent.putExtra("url", recipe.getUrl());
+    startActivity(intent);
+  }
+
+  public void addToFav(Recipe recipe) {
+    recipeViewModel.addRecipeToFavourites(recipe);
+  }
+
+  public void removeFromFav(Recipe recipe) {
+    recipeViewModel.removeRecipeFromFavourites(recipe);
+  }
+
+  public boolean checkFavorites(Recipe recipe) {
+    return recipeViewModel.checkFavorites(recipe);
+  }
 }

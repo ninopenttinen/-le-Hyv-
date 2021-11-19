@@ -19,59 +19,59 @@ import java.util.List;
 
 public class SavedDataRepository {
 
-    private AppDatabase appDatabase; // tarjoilee daot
-    private RecipeDao recipeDao; // rajapinta roomsiin
-    private IngredientDao ingredientDao;
+  private final AppDatabase appDatabase; // tarjoilee daot
+  private final RecipeDao recipeDao; // rajapinta roomsiin
+  private final IngredientDao ingredientDao;
 
-    private MutableLiveData<Recipe> recipe = new MutableLiveData<>();
+  private final MutableLiveData<Recipe> recipe = new MutableLiveData<>();
 
-    public SavedDataRepository(@NonNull Application application) {
+  public SavedDataRepository(@NonNull Application application) {
 
-        appDatabase = AppDatabase.getInstance(application);
-        recipeDao  = appDatabase.getRecipeDao();
-        ingredientDao = appDatabase.getIngredientDao();
+    appDatabase = AppDatabase.getInstance(application);
+    recipeDao = appDatabase.getRecipeDao();
+    ingredientDao = appDatabase.getIngredientDao();
 
+  }
+
+  @Transaction
+  public void addRecipeToFavourites(Recipe recipe) {
+    RoomRecipe roomsRecipe = new RoomRecipe();
+    roomsRecipe.setImageUrl(recipe.getUrl());
+    roomsRecipe.setName(recipe.getLabel());
+    roomsRecipe.setPreparationTime(recipe.getTotalTime());
+    roomsRecipe.setRecipeUrl(recipe.getUrl());
+    roomsRecipe.setFavourite(true);
+
+    long recipeID = recipeDao.insertOne(roomsRecipe);
+
+    List<Ingredient> ingredients = recipe.getIngredients();
+    for (Ingredient ingredient : ingredients) {
+      RoomIngredient roomIngredient = new RoomIngredient();
+      roomIngredient.setName(ingredient.getName());
+      roomIngredient.setQuantity(ingredient.getQuantity());
+      roomIngredient.setMeasure(ingredient.getMeasure());
+      roomIngredient.setText(ingredient.getText());
+      roomIngredient.setFk_recipe(recipeID);
+      ingredientDao.insertAll(roomIngredient);
     }
+  }
 
-    @Transaction
-    public void addRecipeToFavourites(Recipe recipe) {
-        RoomRecipe roomsRecipe = new RoomRecipe();
-        roomsRecipe.setImageUrl(recipe.getUrl());
-        roomsRecipe.setName(recipe.getLabel());
-        roomsRecipe.setPreparationTime(recipe.getTotalTime());
-        roomsRecipe.setRecipeUrl(recipe.getUrl());
-        roomsRecipe.setFavourite(true);
 
-        long recipeID = recipeDao.insertOne(roomsRecipe);
+  public void removeRecipeFromFavourites(Recipe recipe) {
+    RoomRecipe roomRecipe = recipeDao.findUrl(recipe.getUrl());
 
-        List<Ingredient> ingredients = recipe.getIngredients();
-        for (Ingredient ingredient : ingredients) {
-            RoomIngredient roomIngredient = new RoomIngredient();
-            roomIngredient.setName(ingredient.getName());
-            roomIngredient.setQuantity(ingredient.getQuantity());
-            roomIngredient.setMeasure(ingredient.getMeasure());
-            roomIngredient.setText(ingredient.getText());
-            roomIngredient.setFk_recipe(recipeID);
-            ingredientDao.insertAll(roomIngredient);
-        }
+    if (isRecipeInFavorites(recipe)) {
+      roomRecipe.setFavourite(false);
+      recipeDao.delete(roomRecipe);
     }
+  }
 
+  public boolean isRecipeInFavorites(Recipe recipe) {
+    RoomRecipe roomRecipe = recipeDao.findUrl(recipe.getUrl());
 
-    public void removeRecipeFromFavourites(Recipe recipe){
-        RoomRecipe roomRecipe = recipeDao.findUrl(recipe.getUrl());
-
-        if(isRecipeInFavorites(recipe)){
-            roomRecipe.setFavourite(false);
-            recipeDao.delete(roomRecipe);
-        }
+    if (roomRecipe == null) {
+      return false;
     }
-
-    public boolean isRecipeInFavorites(Recipe recipe){
-        RoomRecipe roomRecipe = recipeDao.findUrl(recipe.getUrl());
-
-        if(roomRecipe == null){
-            return false;
-        }
-        return roomRecipe.getRecipeUrl().equals(recipe.getUrl());
-    }
+    return roomRecipe.getRecipeUrl().equals(recipe.getUrl());
+  }
 }
