@@ -14,11 +14,7 @@
         android:textColor="#FFFF"
         android:textSize="20sp">
     </TextView>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginHorizontal="20dp"
-        android:background="#FFFF"/>
+
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -37,6 +33,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
+                layout="@layout/meal_type_filters" />
+
+            <include
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                layout="@layout/dish_type_filters" />
+
+            <include
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
                 layout="@layout/diet_filters" />
 
             <include
@@ -44,29 +52,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 layout="@layout/health_filters" />
-
-            <TextView
-                android:id="@+id/health_filters"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TESTI2"
-                android:visibility="gone"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_margin="20dp"
-                android:text="@string/filters_activity_meal_type"
-                android:textColor="#FFFF"
-                android:textSize="20sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_margin="20dp"
-                android:text="@string/filters_activity_dish_type"
-                android:textColor="#FFFF"
-                android:textSize="20sp" />
 
             <TextView
                 android:layout_width="match_parent"

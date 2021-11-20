@@ -6,10 +6,11 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import com.example.ole.dao.FiltersDao;
 import com.example.ole.dao.IngredientDao;
 import com.example.ole.dao.RecipeDao;
-import com.example.ole.dao.SearchCriteriaDao;
 import com.example.ole.dao.ShoppingListDao;
+import com.example.ole.roomsitems.RoomFilter;
 import com.example.ole.roomsitems.RoomIngredient;
 import com.example.ole.roomsitems.RoomRecipe;
 import com.example.ole.roomsitems.RoomSearchCriteria;
@@ -20,7 +21,8 @@ import com.example.ole.roomsitems.RoomShoppingList;
     RoomRecipe.class,
     RoomSearchCriteria.class,
     RoomShoppingList.class,
-}, version = 1, exportSchema = false)
+    RoomFilter.class,
+}, version = 3, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
   private static final String DB_NAME = "database";
   private static volatile AppDatabase instance;
@@ -43,7 +45,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
   public abstract RecipeDao getRecipeDao();
 
-  public abstract SearchCriteriaDao getSearchCriteriaDao();
+  public abstract FiltersDao getFiltersDao();
 
   public abstract ShoppingListDao getShoppingListDao();
 }

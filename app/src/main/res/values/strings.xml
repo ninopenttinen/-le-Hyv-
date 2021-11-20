@@ -56,4 +56,31 @@
     <string name="health_filters_vegan">Vegan</string>
     <string name="health_filters_vegetarian">Vegetarian</string>
     <string name="health_filters_wheat_free">Wheat free</string>
+
+    <string name="meal_type_filters_title">Meal type</string>
+    <string name="meal_type_filters_breakfast">Breakfast</string>
+    <string name="meal_type_filters_dinner">Dinner</string>
+    <string name="meal_type_filters_lunch">Lunch</string>
+    <string name="meal_type_filters_snack">Snack</string>
+    <string name="meal_type_filters_teatime">Teatime</string>
+
+    <string name="dish_type_filters_title">Dish type</string>
+    <string name="dish_type_filters_biscuits_and_cookies">Biscuits and cookies</string>
+    <string name="dish_type_filters_bread">Bread</string>
+    <string name="dish_type_filters_cereals">Cereals</string>
+    <string name="dish_type_filters_condiments_and_sauces">Condiments and sauces</string>
+    <string name="dish_type_filters_desserts">Desserts</string>
+    <string name="dish_type_filters_drinks">Drinks</string>
+    <string name="dish_type_filters_main_course">Main course</string>
+    <string name="dish_type_filters_pancake">Pancake</string>
+    <string name="dish_type_filters_preps">Preps</string>
+    <string name="dish_type_filters_preserve">Preserve</string>
+    <string name="dish_type_filters_salad">Salad</string>
+    <string name="dish_type_filters_sandwiches">Sandwiches</string>
+    <string name="dish_type_filters_side_dish">Side dish</string>
+    <string name="dish_type_filters_soup">Soup</string>
+    <string name="dish_type_filters_starter">Starter</string>
+    <string name="dish_type_filters_sweets">Sweets</string>
+
+
 </resources>

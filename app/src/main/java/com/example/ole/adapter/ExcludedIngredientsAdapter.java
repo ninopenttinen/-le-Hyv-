@@ -51,7 +51,7 @@ public class ExcludedIngredientsAdapter extends RecyclerView.Adapter<ExcludedIng
 
         ViewHolder(View itemView) {
             super(itemView);
-            textView = itemView.findViewById(R.id.tvAnimalName);
+            textView = itemView.findViewById(R.id.excluded_ingredient_text_view);
             itemView.setOnClickListener(this);
         }
 
