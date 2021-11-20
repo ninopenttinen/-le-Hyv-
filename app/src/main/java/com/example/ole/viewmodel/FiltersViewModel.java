@@ -29,6 +29,8 @@ public class FiltersViewModel extends AndroidViewModel {
         filters_PLACEHOLDER.add(new Filter(FilterType.EXCLUDED, "peanuts"));
         filters_PLACEHOLDER.add(new Filter(FilterType.EXCLUDED, "fish"));
         filters_PLACEHOLDER.add(new Filter(FilterType.EXCLUDED, "chicken"));
+        filters_PLACEHOLDER.add(new Filter(FilterType.DIET, "Balanced"));
+        filters_PLACEHOLDER.add(new Filter(FilterType.DIET, "High Protein"));
 
         filters.setValue(filters_PLACEHOLDER);
     }
@@ -38,8 +40,13 @@ public class FiltersViewModel extends AndroidViewModel {
     }
 
     public void addFilter(Filter filter) {
-        filters_PLACEHOLDER.add(filter);
-        filters.setValue(filters_PLACEHOLDER);
+        if (filters_PLACEHOLDER.stream()
+                .noneMatch(f ->
+                    f.getFilterType().equals(filter.getFilterType()) &&
+                    f.getFilterName().equals(filter.getFilterName()))) {
+            filters_PLACEHOLDER.add(filter);
+            filters.setValue(filters_PLACEHOLDER);
+        }
     }
 
     public void removeExclusionFilter(String filterName) {
@@ -49,9 +56,11 @@ public class FiltersViewModel extends AndroidViewModel {
         filters.setValue(filters_PLACEHOLDER);
     }
 
-    public void removeFilter(String filterName) {
+    public void removeFilter(Filter filter) {
+        //if (filters_PLACEHOLDER.stream().anyMatch(f -> f.getFilterType() == filter.getFilterType() && f.getFilterName().equals(filter.getFilterName()))) {
+        //}
         filters_PLACEHOLDER.removeIf(f ->
-                !f.getFilterType().equals(FilterType.EXCLUDED) && f.getFilterName().equals(filterName)
+            f.getFilterType().equals(filter.getFilterType()) && f.getFilterName().equals(filter.getFilterName())
         );
         filters.setValue(filters_PLACEHOLDER);
     }

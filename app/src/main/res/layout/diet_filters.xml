@@ -14,7 +14,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:text="@string/filters_activity_diet"
+            android:text="@string/diet_filters_title"
             android:textColor="#FFFF"
             android:textSize="20sp"/>
         <Space
@@ -39,54 +39,60 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:orientation="vertical"
-        android:visibility="visible" >
+        android:visibility="gone" >
 
         <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/diet_balanced"
+            android:id="@+id/diet_balanced_filter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:textSize="18sp"
+            android:onClick="handleToggle"
             android:text="@string/diet_filters_balanced" />
 
         <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/diet_high_fiber"
+            android:id="@+id/diet_high_fiber_filter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:textSize="18sp"
+            android:onClick="handleToggle"
             android:text="@string/diet_filters_high_fiber" />
 
         <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/diet_high_protein"
+            android:id="@+id/diet_high_protein_filter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:textSize="18sp"
+            android:onClick="handleToggle"
             android:text="@string/diet_filters_high_protein" />
 
         <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/diet_low_carb"
+            android:id="@+id/diet_low_carb_filter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:textSize="18sp"
+            android:onClick="handleToggle"
             android:text="@string/diet_filters_low_carb" />
 
         <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/diet_low_fat"
+            android:id="@+id/diet_low_fat_filter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:textSize="18sp"
+            android:onClick="handleToggle"
             android:text="@string/diet_filters_low_fat" />
 
         <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/diet_low_sodium"
+            android:id="@+id/diet_low_sodium_filter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:textSize="18sp"
+            android:onClick="handleToggle"
             android:text="@string/diet_filters_low_sodium" />
 
     </LinearLayout>

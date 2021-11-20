@@ -21,13 +21,12 @@
 
     <string name="filters_activity_title">Filters</string>
 
-    <string name="filters_activity_diet">Diet</string>
-    <string name="filters_activity_health">Health</string>
     <string name="filters_activity_meal_type">Meal type</string>
     <string name="filters_activity_dish_type">Dish type</string>
     <string name="filters_activity_excluded">Excluded ingredients:</string>
     <string name="filters_activity_edit_text_hint">Add ingredient…</string>
 
+    <string name="diet_filters_title">Diet</string>
     <string name="diet_filters_balanced">Balanced</string>
     <string name="diet_filters_high_fiber">High fiber</string>
     <string name="diet_filters_high_protein">High protein</string>
@@ -35,4 +34,26 @@
     <string name="diet_filters_low_fat">Low fat</string>
     <string name="diet_filters_low_sodium">Low sodium</string>
 
+    <string name="health_filters_title">Health</string>
+    <string name="health_filters_alcohol_free">Alcohol free</string>
+    <string name="health_filters_dairy_free">Dairy free</string>
+    <string name="health_filters_egg_free">Egg free</string>
+    <string name="health_filters_fish_free">Fish free</string>
+    <string name="health_filters_fodmap_free">Fodmap free</string>
+    <string name="health_filters_gluten_free">Gluten free</string>
+    <string name="health_filters_immuno_supportive">Immuno supportive</string>
+    <string name="health_filters_keto_friendly">Keto friendly</string>
+    <string name="health_filters_kidney_friendly">Kidney friendly</string>
+    <string name="health_filters_low_fat_abs">Low fat abs</string>
+    <string name="health_filters_low_potassium">Low potassium</string>
+    <string name="health_filters_low_sugar">Low sugar</string>
+    <string name="health_filters_paleo">Paleo</string>
+    <string name="health_filters_peanut_free">Peanut free</string>
+    <string name="health_filters_pescatarian">Pescatarian</string>
+    <string name="health_filters_pork_free">Pork free</string>
+    <string name="health_filters_red_meat_free">Red meat free</string>
+    <string name="health_filters_soy_free">Soy free</string>
+    <string name="health_filters_vegan">Vegan</string>
+    <string name="health_filters_vegetarian">Vegetarian</string>
+    <string name="health_filters_wheat_free">Wheat free</string>
 </resources>
