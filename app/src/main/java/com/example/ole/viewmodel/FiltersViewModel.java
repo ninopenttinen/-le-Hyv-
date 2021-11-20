@@ -6,28 +6,22 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
-import androidx.lifecycle.MutableLiveData;
 
 import com.example.ole.model.Filter;
-import com.example.ole.model.FilterType;
 import com.example.ole.repository.SavedDataRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class FiltersViewModel extends AndroidViewModel {
 
     private final SavedDataRepository savedDataRepository;
 
-    private final LiveData<List<Filter>> fromDatabase;
     private final MediatorLiveData<List<Filter>> filters = new MediatorLiveData<>();
-
 
     public FiltersViewModel(@NonNull Application application) {
         super(application);
         savedDataRepository = new SavedDataRepository(application);
-        fromDatabase = savedDataRepository.getFilters();
-        filters.addSource(fromDatabase, filters::setValue);
+        filters.addSource(savedDataRepository.getFilters(), filters::setValue);
     }
 
     public LiveData<List<Filter>> getFilters() {
