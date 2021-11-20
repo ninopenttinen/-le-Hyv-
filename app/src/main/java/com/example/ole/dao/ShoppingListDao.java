@@ -15,6 +15,9 @@ public interface ShoppingListDao {
   @Query("SELECT ingredient FROM shopping_list")
   List<String> getAllIngredients();
 
+  @Query("SELECT * FROM shopping_list")
+  List<RoomShoppingListItem> getAllShoppingListItems();
+
   @Insert
   long insertOne(RoomShoppingListItem shoppingListItem);
 

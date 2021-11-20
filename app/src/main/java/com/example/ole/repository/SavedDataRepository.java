@@ -12,12 +12,14 @@ import com.example.ole.dao.ShoppingListDao;
 import com.example.ole.database.AppDatabase;
 import com.example.ole.model.Ingredient;
 import com.example.ole.model.Recipe;
+import com.example.ole.model.ShoppingListItem;
 import com.example.ole.roomsitems.RoomIngredient;
 import com.example.ole.roomsitems.RoomRecipe;
 import com.example.ole.roomsitems.RoomShoppingListItem;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class SavedDataRepository {
@@ -40,7 +42,7 @@ public class SavedDataRepository {
   public void removeIngredientFromShoppingList(String ing) {
     RoomShoppingListItem listItem = shoppinListDao.findByIngredientName(ing);
 
-    if(listItem != null) {
+    if (listItem != null) {
       shoppinListDao.delete(listItem);
     }
   }
@@ -87,19 +89,28 @@ public class SavedDataRepository {
     return roomRecipe.getRecipeUrl().equals(recipe.getUrl());
   }
 
-  public void addIngredientsToCart(List<Ingredient> ingredients){
+  public void addIngredientsToCart(List<Ingredient> ingredients) {
     List<RoomShoppingListItem> listItems = new ArrayList<>();
 
-    for(Ingredient i : ingredients ){
+    for (Ingredient i : ingredients) {
       RoomShoppingListItem roomShoppingListItem = new RoomShoppingListItem();
       roomShoppingListItem.setIngredient(i.getName());
       roomShoppingListItem.setAmount(i.getQuantity());
       listItems.add(roomShoppingListItem);
     }
 
-    for(RoomShoppingListItem i : listItems){
+    for (RoomShoppingListItem i : listItems) {
       shoppinListDao.insertOne(i);
     }
+  }
+
+  public List<ShoppingListItem> getAllShoppingListItems() {
+    return shoppinListDao.getAllShoppingListItems()
+        .stream()
+        .map(item -> new ShoppingListItem(
+            item.getIngredient(), item.getAmount()
+        ))
+        .collect(Collectors.toList());
   }
 
 }

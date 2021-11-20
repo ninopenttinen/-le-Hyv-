@@ -20,7 +20,6 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ShoppingCartView extends AppCompatActivity {
-  private final List<String> shoppingItemList = new ArrayList<>();
   private final List<HashMap<String, String>> shoppingItemHashMapList = new ArrayList<>();
   private SimpleAdapter simpleAdapter;
   private ShoppingListDao shoppingListDao;
@@ -51,7 +50,7 @@ public class ShoppingCartView extends AppCompatActivity {
     roomShoppingListItem1.setIngredient("kebab");
     roomShoppingListItem1.setAmount(999.0);
     shoppingListDao.insertAll(roomShoppingListItem, roomShoppingListItem1);
-    List<String> ingredientsList = shoppingListDao.getAllIngredients();
+    List<String> ingredientsList = shoppingListViewModel.getAllIngredients();
 
     for (String ingredientString : ingredientsList) {
       HashMap<String, String> ingredientItemHash = new HashMap<>();
