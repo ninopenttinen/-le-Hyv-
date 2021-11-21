@@ -39,7 +39,10 @@ public class SuggestionsView extends AppCompatActivity {
         suggestionsViewModel = new ViewModelProvider(this, new SuggestionsViewModelFactory(this.getApplication(), category))
                 .get(SuggestionsViewModel.class);
 
-        suggestionsViewModel.getSuggestions().observe(this, suggestions -> displaySuggestions(suggestions));
+        suggestionsViewModel.getSuggestions().observe(this, suggestions -> {
+            displaySuggestions(suggestions);
+            findViewById(R.id.next_suggestions_button).setClickable(!suggestions.isNoRecipes());
+        });
     }
 
     private void displaySuggestions(Suggestions suggestions) {
@@ -95,6 +98,7 @@ public class SuggestionsView extends AppCompatActivity {
     }
 
     public void getNextSuggestions(View view) {
+        findViewById(R.id.next_suggestions_button).setClickable(false);
         suggestionsViewModel.nextSuggestions();
     }
 }

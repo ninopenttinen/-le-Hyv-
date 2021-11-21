@@ -18,19 +18,49 @@
         android:id="@+id/suggestions_grid_view"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="150dp"
         android:fadingEdge="horizontal"
         android:fadingEdgeLength="100dp"
         android:numColumns="2" />
 
-    <ImageView
+    <androidx.cardview.widget.CardView
         android:id="@+id/next_suggestions_button"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true"
         android:onClick="getNextSuggestions"
-        android:contentDescription="re-roll"
-        app:srcCompat="@drawable/ic_baseline_refresh_24" />
+        android:clickable="false" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp" >
+
+            <ImageView
+                android:id="@+id/next_suggestions_button_image"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_baseline_refresh_24"
+                android:contentDescription="" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/next_suggestions_button_image"
+                android:layout_marginHorizontal="5dp"
+                android:layout_centerVertical="true"
+                android:text="Next"
+                android:textSize="30sp" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>
