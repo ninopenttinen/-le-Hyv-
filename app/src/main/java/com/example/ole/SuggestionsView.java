@@ -84,16 +84,19 @@ public class SuggestionsView extends AppCompatActivity {
     }
 
     private List<HashMap<String, Object>> buildHashmapFromSuggestions(Suggestions suggestions) {
+        List<HashMap<String, Object>> suggestionsHashMap = new ArrayList<>();
+
         HashMap<String, Object> firstSuggestion = new HashMap<>();
         firstSuggestion.put("label", suggestions.getFirstSuggestion().getLabel());
         firstSuggestion.put("image", suggestions.getFirstSuggestion().getImage());
-        HashMap<String, Object> secondSuggestion = new HashMap<>();
-        secondSuggestion.put("label", suggestions.getSecondSuggestion().getLabel());
-        secondSuggestion.put("image", suggestions.getSecondSuggestion().getImage());
-
-        List<HashMap<String, Object>> suggestionsHashMap = new ArrayList<>();
         suggestionsHashMap.add(firstSuggestion);
-        suggestionsHashMap.add(secondSuggestion);
+
+        if (suggestions.getSecondSuggestion() != null ) {
+            HashMap<String, Object> secondSuggestion = new HashMap<>();
+            secondSuggestion.put("label", suggestions.getSecondSuggestion().getLabel());
+            secondSuggestion.put("image", suggestions.getSecondSuggestion().getImage());
+            suggestionsHashMap.add(secondSuggestion);
+        }
         return suggestionsHashMap;
     }
 

@@ -94,7 +94,6 @@ public class RecipesRepository {
                         );
                         newRecipes.add(newRecipe);
                     }
-                    System.out.println(newRecipes);
                     recipes.postValue(newRecipes);
                 }
             }
