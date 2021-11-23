@@ -14,7 +14,7 @@ public interface EdamamApi {
             @Query("diet") List<String> diet,
             @Query("health") List<String> health,
             @Query("cuisineType") String cuisineType,
-            @Query("mealType") String mealType,
+            @Query("mealType") List<String> mealType,
             @Query("dishType") List<String> dishType,
             @Query("excluded") List<String> excluded
     );

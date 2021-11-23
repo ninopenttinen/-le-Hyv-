@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/dish_type_collapse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:onClick="showContents" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="@string/dish_type_filters_title"
+            android:textColor="#FFFF"
+            android:textSize="20sp"/>
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+        <ImageView
+            android:id="@+id/dish_type_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_baseline_arrow_drop_up_24" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#FFFF"/>
+
+    <LinearLayout
+        android:id="@+id/dish_type_filters"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/dish_type_biscuits_and_cookies_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:onClick="handleToggle"
+            android:text="@string/dish_type_filters_biscuits_and_cookies" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/dish_type_bread_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:onClick="handleToggle"
+            android:text="@string/dish_type_filters_bread" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/dish_type_cereals_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:onClick="handleToggle"
+            android:text="@string/dish_type_filters_cereals" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/dish_type_condiments_and_sauces_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:onClick="handleToggle"
+            android:text="@string/dish_type_filters_condiments_and_sauces" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/dish_type_desserts_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:onClick="handleToggle"
+            android:text="@string/dish_type_filters_desserts" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/dish_type_drinks_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:onClick="handleToggle"
+            android:text="@string/dish_type_filters_drinks" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/dish_type_main_course_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:onClick="handleToggle"
+            android:text="@string/dish_type_filters_main_course" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/dish_type_pancake_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:onClick="handleToggle"
+            android:text="@string/dish_type_filters_pancake" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/dish_type_preps_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:onClick="handleToggle"
+            android:text="@string/dish_type_filters_preps" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/dish_type_preserve_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:onClick="handleToggle"
+            android:text="@string/dish_type_filters_preserve" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/dish_type_salad_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:onClick="handleToggle"
+            android:text="@string/dish_type_filters_salad" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/dish_type_sandwiches_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:onClick="handleToggle"
+            android:text="@string/dish_type_filters_sandwiches" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/dish_type_side_dish_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:onClick="handleToggle"
+            android:text="@string/dish_type_filters_side_dish" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/dish_type_soup_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:onClick="handleToggle"
+            android:text="@string/dish_type_filters_soup" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/dish_type_starter_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:onClick="handleToggle"
+            android:text="@string/dish_type_filters_starter" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/dish_type_sweets_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:onClick="handleToggle"
+            android:text="@string/dish_type_filters_sweets" />
+
+    </LinearLayout>
+</LinearLayout>

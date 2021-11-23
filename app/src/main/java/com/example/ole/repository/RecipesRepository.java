@@ -38,15 +38,13 @@ public class RecipesRepository {
     public RecipesRepository(@NonNull Application application, SearchFilters searchFilters) {
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(chain -> {
-                    String app_id = BuildConfig.API_ID;
-                    String app_key = BuildConfig.API_KEY;
                     HttpUrl url = chain
                             .request()
                             .url()
                             .newBuilder()
                             .addQueryParameter("type", "public")
-                            .addQueryParameter("app_id", app_id)
-                            .addQueryParameter("app_key", app_key)
+                            .addQueryParameter("app_id", BuildConfig.API_ID)
+                            .addQueryParameter("app_key", BuildConfig.API_KEY)
                             .addQueryParameter("random", "true")
                             .build();
                     return chain.proceed(chain.request().newBuilder().url(url).build());
@@ -96,7 +94,6 @@ public class RecipesRepository {
                         );
                         newRecipes.add(newRecipe);
                     }
-                    System.out.println(newRecipes);
                     recipes.postValue(newRecipes);
                 }
             }

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/health_collapse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:onClick="showContents" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="@string/health_filters_title"
+            android:textColor="#FFFF"
+            android:textSize="20sp"/>
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+        <ImageView
+            android:id="@+id/health_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_baseline_arrow_drop_up_24" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#FFFF"/>
+
+    <LinearLayout
+        android:id="@+id/health_filters"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/health_alcohol_free_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:onClick="handleToggle"
+            android:text="@string/health_filters_alcohol_free" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/health_dairy_free_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:onClick="handleToggle"
+            android:text="@string/health_filters_dairy_free" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/health_egg_free_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:onClick="handleToggle"
+            android:text="@string/health_filters_egg_free" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/health_fish_free_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:onClick="handleToggle"
+            android:text="@string/health_filters_fish_free" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/health_fodmap_free_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:onClick="handleToggle"
+            android:text="@string/health_filters_fodmap_free" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/health_gluten_free_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:onClick="handleToggle"
+            android:text="@string/health_filters_gluten_free" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/health_immuno_supportive_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:onClick="handleToggle"
+            android:text="@string/health_filters_immuno_supportive" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/health_keto_friendly_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:onClick="handleToggle"
+            android:text="@string/health_filters_keto_friendly" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/health_kidney_friendly_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:onClick="handleToggle"
+            android:text="@string/health_filters_kidney_friendly" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/health_low_fat_abs_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:onClick="handleToggle"
+            android:text="@string/health_filters_low_fat_abs" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/health_low_potassium_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:onClick="handleToggle"
+            android:text="@string/health_filters_low_potassium" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/health_low_sugar_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:onClick="handleToggle"
+            android:text="@string/health_filters_low_sugar" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/health_paleo_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:onClick="handleToggle"
+            android:text="@string/health_filters_paleo" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/health_peanut_free_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:onClick="handleToggle"
+            android:text="@string/health_filters_peanut_free" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/health_pescatarian_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:onClick="handleToggle"
+            android:text="@string/health_filters_pescatarian" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/health_pork_free_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:onClick="handleToggle"
+            android:text="@string/health_filters_pork_free" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/health_red_meat_free_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:onClick="handleToggle"
+            android:text="@string/health_filters_red_meat_free" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/health_soy_free_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:onClick="handleToggle"
+            android:text="@string/health_filters_soy_free" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/health_vegan_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:onClick="handleToggle"
+            android:text="@string/health_filters_vegan" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/health_vegetarian_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:onClick="handleToggle"
+            android:text="@string/health_filters_vegetarian" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/health_wheat_free_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:onClick="handleToggle"
+            android:text="@string/health_filters_wheat_free" />
+
+    </LinearLayout>
+</LinearLayout>

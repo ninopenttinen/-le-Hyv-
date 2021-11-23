@@ -18,6 +18,12 @@ import com.example.ole.roomsitems.RoomRecipe;
 import com.example.ole.roomsitems.RoomShoppingListItem;
 
 import java.util.ArrayList;
+import androidx.lifecycle.LiveData;
+
+import com.example.ole.dao.FiltersDao;
+import com.example.ole.model.Filter;
+import com.example.ole.roomsitems.RoomFilter;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,14 +34,19 @@ public class SavedDataRepository {
   private final RecipeDao recipeDao; // rajapinta roomsiin
   private final IngredientDao ingredientDao;
   private final ShoppingListDao shoppinListDao;
+  private FiltersDao filtersDao;
 
   private final MutableLiveData<Recipe> recipe = new MutableLiveData<>();
+    private MutableLiveData<List<Filter>> filters = new MutableLiveData<>();
 
   public SavedDataRepository(@NonNull Application application) {
     appDatabase = AppDatabase.getInstance(application);
     recipeDao = appDatabase.getRecipeDao();
     shoppinListDao = appDatabase.getShoppingListDao();
     ingredientDao = appDatabase.getIngredientDao();
+    filtersDao = appDatabase.getFiltersDao();
+
+    setFilters();
   }
 
   @Transaction
@@ -113,4 +124,28 @@ public class SavedDataRepository {
         .collect(Collectors.toList());
   }
 
+  private void setFilters() {
+      List<RoomFilter> roomFilters = filtersDao.getAll();
+      List<Filter> convertedFilters = roomFilters.stream()
+              .map(f -> new Filter(f.getType(), f.getName()))
+              .collect(Collectors.toList());
+      filters.setValue(convertedFilters);
+  }
+
+  public void addFilter(Filter filter) {
+      RoomFilter roomFilter = new RoomFilter();
+      roomFilter.setName(filter.getFilterName());
+      roomFilter.setType(filter.getFilterType());
+      filtersDao.insert(roomFilter);
+      setFilters();
+  }
+
+  public void removeFilter(Filter filter) {
+      filtersDao.delete(filter.getFilterName(), filter.getFilterType());
+      setFilters();
+  }
+
+  public LiveData<List<Filter>> getFilters() {
+      return filters;
+  }
 }

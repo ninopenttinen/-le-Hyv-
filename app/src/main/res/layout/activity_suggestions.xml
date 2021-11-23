@@ -1,47 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_bg"
-    tools:context=".SuggestionsView">
-
-    <GridView
-        android:id="@+id/suggestionsGridView"
-        android:layout_width="412dp"
-        android:layout_height="295dp"
-        android:fadingEdge="horizontal"
-        android:numColumns="2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:orientation="vertical"
+    android:background="@drawable/gradient_bg">
 
     <TextView
-        android:id="@+id/categoryTextView"
-        android:layout_width="178dp"
-        android:layout_height="43dp"
-        android:text="@string/selected_category_value"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/suggestionsGridView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/category_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="@string/activity_suggestions_title"
+        android:gravity="center"
+        android:textSize="20sp" />
 
-    <ImageView
-        android:id="@+id/nextSuggestionsButton"
+    <GridView
+        android:id="@+id/suggestions_grid_view"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="150dp"
+        android:fadingEdge="horizontal"
+        android:fadingEdgeLength="100dp"
+        android:numColumns="2" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/next_suggestions_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true"
         android:onClick="getNextSuggestions"
-        android:contentDescription="re-roll"
-        app:srcCompat="@drawable/ic_baseline_refresh_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/suggestionsGridView" />
+        android:clickable="false" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp" >
+
+            <ImageView
+                android:id="@+id/next_suggestions_button_image"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_baseline_refresh_24"
+                android:contentDescription="" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/next_suggestions_button_image"
+                android:layout_marginHorizontal="5dp"
+                android:layout_centerVertical="true"
+                android:text="Next"
+                android:textSize="30sp" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

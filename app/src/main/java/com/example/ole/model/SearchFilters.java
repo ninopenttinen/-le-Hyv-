@@ -6,11 +6,11 @@ public class SearchFilters {
     List<String> diet;
     List<String> health;
     String cuisineType;
-    String mealType;
+    List<String> mealType;
     List<String> dishType;
     List<String> excluded;
 
-    public SearchFilters(List<String> diet, List<String> health, String cuisineType, String mealType, List<String> dishType, List<String> excluded) {
+    public SearchFilters(List<String> diet, List<String> health, String cuisineType, List<String> mealType, List<String> dishType, List<String> excluded) {
         this.diet = diet;
         this.health = health;
         this.cuisineType = cuisineType;
@@ -43,11 +43,11 @@ public class SearchFilters {
         this.cuisineType = cuisineType;
     }
 
-    public String getMealType() {
+    public List<String> getMealType() {
         return mealType;
     }
 
-    public void setMealType(String mealType) {
+    public void setMealType(List<String> mealType) {
         this.mealType = mealType;
     }
 
