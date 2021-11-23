@@ -40,16 +40,8 @@ public class ShoppingCartView extends AppCompatActivity {
   }
 
   private void initializeListView() {
-    // DEV
     final String adapterIngredientName = "ingredientName";
-    shoppingListDao.deleteAll();
-    RoomShoppingListItem roomShoppingListItem = new RoomShoppingListItem();
-    roomShoppingListItem.setIngredient("pizza");
-    roomShoppingListItem.setAmount(123.0);
-    RoomShoppingListItem roomShoppingListItem1 = new RoomShoppingListItem();
-    roomShoppingListItem1.setIngredient("kebab");
-    roomShoppingListItem1.setAmount(999.0);
-    shoppingListDao.insertAll(roomShoppingListItem, roomShoppingListItem1);
+
     List<String> ingredientsList = shoppingListViewModel.getAllIngredients();
 
     for (String ingredientString : ingredientsList) {
