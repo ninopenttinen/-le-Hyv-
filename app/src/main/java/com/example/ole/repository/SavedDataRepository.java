@@ -15,6 +15,7 @@ import com.example.ole.model.Recipe;
 import com.example.ole.model.ShoppingListItem;
 import com.example.ole.roomsitems.RoomIngredient;
 import com.example.ole.roomsitems.RoomRecipe;
+import com.example.ole.roomsitems.RoomRecipeWithIngredients;
 import com.example.ole.roomsitems.RoomShoppingListItem;
 
 import java.util.ArrayList;
@@ -33,29 +34,51 @@ public class SavedDataRepository {
   private final AppDatabase appDatabase; // tarjoilee daot
   private final RecipeDao recipeDao; // rajapinta roomsiin
   private final IngredientDao ingredientDao;
-  private final ShoppingListDao shoppinListDao;
+  private final ShoppingListDao shoppingListDao;
   private FiltersDao filtersDao;
 
-  private final MutableLiveData<Recipe> recipe = new MutableLiveData<>();
+  private final MutableLiveData<List<Recipe>> recipes = new MutableLiveData<>();
     private MutableLiveData<List<Filter>> filters = new MutableLiveData<>();
 
   public SavedDataRepository(@NonNull Application application) {
     appDatabase = AppDatabase.getInstance(application);
     recipeDao = appDatabase.getRecipeDao();
-    shoppinListDao = appDatabase.getShoppingListDao();
+    shoppingListDao = appDatabase.getShoppingListDao();
     ingredientDao = appDatabase.getIngredientDao();
     filtersDao = appDatabase.getFiltersDao();
 
+    setRecipes();
     setFilters();
   }
 
   @Transaction
   public void removeIngredientFromShoppingList(String ing) {
-    RoomShoppingListItem listItem = shoppinListDao.findByIngredientName(ing);
+    RoomShoppingListItem listItem = shoppingListDao.findByIngredientName(ing);
 
     if (listItem != null) {
-      shoppinListDao.delete(listItem);
+      shoppingListDao.delete(listItem);
     }
+  }
+
+  private void setRecipes() {
+    List<RoomRecipeWithIngredients> roomRecipes = recipeDao.getAllRecipeWithIngredients();
+    List<Recipe> convertedRecipes = roomRecipes.stream()
+            .map(r -> new Recipe(
+                    r.roomRecipe.getName(),
+                    null,
+                    r.roomRecipe.getRecipeUrl(),
+                    r.roomIngredients.stream()
+                            .map(i -> new Ingredient(i.getText(), i.getMeasure(), i.getQuantity(), i.getName()))
+                            .collect(Collectors.toList()),
+                    r.roomRecipe.getCalories(),
+                    r.roomRecipe.getPreparationTime()
+            ))
+            .collect(Collectors.toList());
+    recipes.setValue(convertedRecipes);
+  }
+
+  public LiveData<List<Recipe>> getRecipes() {
+    return recipes;
   }
 
   @Transaction
@@ -111,12 +134,12 @@ public class SavedDataRepository {
     }
 
     for (RoomShoppingListItem i : listItems) {
-      shoppinListDao.insertOne(i);
+      shoppingListDao.insertOne(i);
     }
   }
 
   public List<ShoppingListItem> getAllShoppingListItems() {
-    return shoppinListDao.getAllShoppingListItems()
+    return shoppingListDao.getAllShoppingListItems()
         .stream()
         .map(item -> new ShoppingListItem(
             item.getIngredient(), item.getAmount()

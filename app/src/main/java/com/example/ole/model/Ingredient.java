@@ -6,14 +6,13 @@ import org.parceler.ParcelConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-@AllArgsConstructor
 @Data
 @Parcel
 public class Ingredient {
-    String name;
-    Double quantity;
-    String measure;
     String text;
+    String measure;
+    Double quantity;
+    String name;
 
     @ParcelConstructor
     public Ingredient(String text, String measure, Double quantity, String name) {

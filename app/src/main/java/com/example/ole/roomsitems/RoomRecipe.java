@@ -28,6 +28,9 @@ public class RoomRecipe {
   @ColumnInfo(name = "preparation_time")
   private String preparationTime;
 
+  @ColumnInfo(name = "calories")
+  private String calories;
+
   @ColumnInfo(name = "favourite")
   private boolean favourite;
 }

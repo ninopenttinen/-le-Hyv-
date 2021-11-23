@@ -10,6 +10,7 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.ole.components.FavoriteRecipe;
@@ -32,31 +33,30 @@ public class FavoritesView extends AppCompatActivity {
   private final List<FavoriteRecipe> favItemArrayList = new ArrayList<FavoriteRecipe>();
   private final List<HashMap<String, String>> favItemHashMap = new ArrayList<>();
   FavoritesViewModel favoritesViewModel;
-  AppDatabase appDatabase;
-  RecipeDao recipeDao;
-  List<RoomRecipeWithIngredients> recipeWithIngredients;
-
+  
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_favorites);
 
-    appDatabase = AppDatabase.getInstance(this);
-    recipeDao = appDatabase.getRecipeDao();
-    recipeWithIngredients = recipeDao.getAllRecipeWithIngredients();
-
     favoritesViewModel = new ViewModelProvider(this, new ViewModelProvider.AndroidViewModelFactory(this.getApplication()))
         .get(FavoritesViewModel.class);
 
-    updateFavorites(recipeWithIngredients);
+    favoritesViewModel.getRecipes().observe(this, favoriteRecipes -> {
+      updateFavorites(favoriteRecipes);
+    });
   }
 
-  private void updateFavorites(List<RoomRecipeWithIngredients> favRecipe) {
+  @Override
+  protected void onResume() {
+    super.onResume();
+  }
 
-    for (int i = 0; i < favRecipe.size(); i++) {
+  private void updateFavorites(List<Recipe> favRecipes) {
+    for (int i = 0; i < favRecipes.size(); i++) {
       favItemArrayList.add(new FavoriteRecipe(
-          favRecipe.get(i).roomRecipe.getName(),
-          favRecipe.get(i).roomRecipe.getImageUrl()
+          favRecipes.get(i).getLabel(),
+          favRecipes.get(i).getUrl() // TODO: getUrl IS ONLY A PLACEHOLDER, replace with image bitmap
       ));
     }
 
@@ -72,33 +72,15 @@ public class FavoritesView extends AppCompatActivity {
         new int[]{R.id.fav_list_img_view, R.id.fav_label_view}
     );
 
-    ListView favListView = (ListView) findViewById(R.id.favorites_listView);
+    ListView favListView = findViewById(R.id.favorites_listView);
     favListView.setAdapter(simpleAdapter);
 
 
     favListView.setOnItemClickListener((parent, view, position, id) -> {
       Intent intent = new Intent(this, RecipeView.class);
 
-      List<Ingredient> tempIngredientList = new ArrayList<>();
-
-      for (int i = 0; i < favRecipe.get(position).roomIngredients.size(); i++) {
-        Ingredient tempIngredient = new Ingredient(favRecipe.get(position).roomIngredients.get(i).getName(),
-            favRecipe.get(position).roomIngredients.get(i).getQuantity(),
-            favRecipe.get(position).roomIngredients.get(i).getMeasure(),
-            favRecipe.get(position).roomIngredients.get(i).getText());
-        tempIngredientList.add(tempIngredient);
-      }
-
-      Recipe recipeToRecipeView = new Recipe(
-          favRecipe.get(position).roomRecipe.getName(),
-          null,
-          favRecipe.get(position).roomRecipe.getRecipeUrl(),
-          tempIngredientList,
-          null,
-          favRecipe.get(position).roomRecipe.getPreparationTime());
-
       // intent content name recipe
-      intent.putExtra("recipe", Parcels.wrap(recipeToRecipeView));
+      intent.putExtra("recipe", Parcels.wrap(favRecipes.get(position)));
       startActivity(intent);
     });
 
@@ -107,7 +89,7 @@ public class FavoritesView extends AppCompatActivity {
       Recipe recipeToBeRemoved = new Recipe(
           null,
           null,
-          favRecipe.get(position).roomRecipe.getRecipeUrl(),
+          favRecipes.get(position).getUrl(),
           null,
           null,
           null);
