@@ -13,13 +13,13 @@ import com.example.ole.dao.ShoppingListDao;
 import com.example.ole.roomsitems.RoomIngredient;
 import com.example.ole.roomsitems.RoomRecipe;
 import com.example.ole.roomsitems.RoomSearchCriteria;
-import com.example.ole.roomsitems.RoomShoppingList;
+import com.example.ole.roomsitems.RoomShoppingListItem;
 
 @Database(entities = {
     RoomIngredient.class,
     RoomRecipe.class,
     RoomSearchCriteria.class,
-    RoomShoppingList.class,
+    RoomShoppingListItem.class,
 }, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
   private static final String DB_NAME = "database";
@@ -39,11 +39,9 @@ public abstract class AppDatabase extends RoomDatabase {
         .build();
   }
 
-  public abstract IngredientDao getIngredientDao();
 
-  public abstract RecipeDao getRecipeDao();
-
-  public abstract SearchCriteriaDao getSearchCriteriaDao();
-
-  public abstract ShoppingListDao getShoppingListDao();
+    public abstract IngredientDao getIngredientDao();
+    public abstract RecipeDao getRecipeDao();
+    public abstract ShoppingListDao getShoppingListDao();
+    public abstract SearchCriteriaDao getSearchCriteriaDao();
 }

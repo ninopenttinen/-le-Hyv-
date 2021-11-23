@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Entity(tableName = "shopping_list")
 @Data
 @NoArgsConstructor
-public class RoomShoppingList {
+public class RoomShoppingListItem {
 
   @PrimaryKey(autoGenerate = true)
   private long shoppingListId;
@@ -19,5 +19,5 @@ public class RoomShoppingList {
   private String ingredient;
 
   @ColumnInfo(name = "ingredient_amount")
-  private float amount;
+  private Double amount;
 }

@@ -20,6 +20,9 @@ public interface RecipeDao {
   @Query("SELECT * FROM recipes WHERE recipe_name LIKE :name LIMIT 1")
   RoomRecipe findByRecipeName(String name);
 
+  @Query("SELECT * FROM recipes WHERE recipe_url LIKE :name LIMIT 1")
+  RoomRecipe findUrl(String name);
+
   @Transaction
   @Query("SELECT * FROM recipes")
   List<RoomRecipeWithIngredients> getAllRecipeWithIngredients();
