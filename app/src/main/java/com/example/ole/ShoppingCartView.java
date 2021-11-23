@@ -22,7 +22,6 @@ import java.util.List;
 public class ShoppingCartView extends AppCompatActivity {
   private final List<HashMap<String, String>> shoppingItemHashMapList = new ArrayList<>();
   private SimpleAdapter simpleAdapter;
-  private ShoppingListDao shoppingListDao;
   private ShoppingListViewModel shoppingListViewModel;
 
   @Override
@@ -30,8 +29,6 @@ public class ShoppingCartView extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_cart);
 
-    AppDatabase appDatabase = AppDatabase.getInstance(getApplicationContext());
-    shoppingListDao = appDatabase.getShoppingListDao();
     shoppingListViewModel = new ViewModelProvider(
         this, new ViewModelProvider.AndroidViewModelFactory(this.getApplication())
     ).get(ShoppingListViewModel.class);
