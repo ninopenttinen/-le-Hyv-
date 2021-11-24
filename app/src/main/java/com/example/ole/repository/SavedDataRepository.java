@@ -66,7 +66,7 @@ public class SavedDataRepository {
     List<Recipe> convertedRecipes = roomRecipes.stream()
             .map(r -> new Recipe(
                     r.roomRecipe.getName(),
-                    Utility.convertByteArrayToBitMap( r.roomRecipe.getImageData() ),
+                    Utility.byteArrayToBitmap( r.roomRecipe.getImageData() ),
                     r.roomRecipe.getRecipeUrl(),
                     r.roomIngredients.stream()
                             .map(i -> new Ingredient(i.getText(), i.getMeasure(), i.getQuantity(), i.getName()))
@@ -89,7 +89,7 @@ public class SavedDataRepository {
     roomsRecipe.setName(recipe.getLabel());
     roomsRecipe.setPreparationTime(recipe.getTotalTime());
     roomsRecipe.setRecipeUrl(recipe.getUrl());
-    roomsRecipe.setImageData( Utility.convertBitMapToByteArray(recipe.getImage() ));
+    roomsRecipe.setImageData( Utility.bitmapToByteArray(recipe.getImage() ));
     roomsRecipe.setFavourite(true);
 
     long recipeID = recipeDao.insertOne(roomsRecipe);
