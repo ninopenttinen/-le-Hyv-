@@ -1,6 +1,7 @@
 package com.example.ole;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,7 +29,7 @@ import java.util.List;
 public class FavoritesView extends AppCompatActivity {
 
   private final List<FavoriteRecipe> favItemArrayList = new ArrayList<FavoriteRecipe>();
-  private final List<HashMap<String, String>> favItemHashMap = new ArrayList<>();
+  private final List<HashMap<String, Object>> favItemHashMapList = new ArrayList<>();
   FavoritesViewModel favoritesViewModel;
   
   @Override
@@ -53,41 +54,34 @@ public class FavoritesView extends AppCompatActivity {
     for (int i = 0; i < favRecipes.size(); i++) {
       favItemArrayList.add(new FavoriteRecipe(
           favRecipes.get(i).getLabel(),
-          Utility.bitmapToString( favRecipes.get(i).getImage() )
+          favRecipes.get(i).getImage()
       ));
     }
 
     for (FavoriteRecipe i : favItemArrayList) {
-      HashMap<String, String> favoriteItemHash = new HashMap<>();
+      HashMap<String, Object> favoriteItemHash = new HashMap<>();
       favoriteItemHash.put("favName", i.mFavoriteRecipe);
       favoriteItemHash.put("favImg", i.mFavoriteImage);
-      favItemHashMap.add(favoriteItemHash);
+      favItemHashMapList.add(favoriteItemHash);
     }
 
-    SimpleAdapter simpleAdapter = new SimpleAdapter(this, favItemHashMap, R.layout.favorites_list_view,
+    SimpleAdapter simpleAdapter = new SimpleAdapter(this, favItemHashMapList, R.layout.favorites_list_view,
         new String[]{"favImg", "favName"},
         new int[]{R.id.fav_list_img_view, R.id.fav_label_view}
     );
 
-    simpleAdapter.setViewBinder(new SimpleAdapter.ViewBinder() {
-      @Override
-      public boolean setViewValue(View view, Object data, String textRepresentation) {
-
-        if (view.getId() == R.id.fav_list_img_view) {
-
-          ((ImageView) view).setImageBitmap(
-             Utility.stringToBitmap(data.toString())
-          );
-          return true;
-        } else {
-          return false;
-        }
+    simpleAdapter.setViewBinder((view, data, textRepresentation) -> {
+      if ( view.getId() == R.id.fav_list_img_view && data instanceof Bitmap ) {
+        ImageView imageView = (ImageView) view;
+        Bitmap bitmap = (Bitmap) data;
+        imageView.setImageBitmap(bitmap);
+        return true;
       }
+      return false;
     });
 
     ListView favListView = findViewById(R.id.favorites_listView);
     favListView.setAdapter(simpleAdapter);
-
 
     favListView.setOnItemClickListener((parent, view, position, id) -> {
       Intent intent = new Intent(this, RecipeView.class);
@@ -121,7 +115,7 @@ public class FavoritesView extends AppCompatActivity {
 
       bottomSheetView.findViewById(R.id.confirm_button).setOnClickListener(v1 -> {
         removeFromFav(recipeToBeRemoved);
-        favItemHashMap.remove(position);
+        favItemHashMapList.remove(position);
         simpleAdapter.notifyDataSetChanged();
         Toast.makeText(FavoritesView.this, "Removed from favorites", Toast.LENGTH_LONG).show();
         bottomSheetDialog.dismiss();
