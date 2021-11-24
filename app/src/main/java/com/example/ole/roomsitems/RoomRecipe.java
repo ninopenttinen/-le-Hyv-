@@ -22,6 +22,9 @@ public class RoomRecipe {
   @ColumnInfo(name = "image_url")
   private String imageUrl;
 
+  @ColumnInfo(name = "image_data", typeAffinity = ColumnInfo.BLOB)
+  private byte[] imageData;
+
   @ColumnInfo(name = "recipe_url")
   private String recipeUrl;
 

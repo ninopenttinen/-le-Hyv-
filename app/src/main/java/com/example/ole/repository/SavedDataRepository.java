@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 import androidx.room.Transaction;
 
+import com.example.ole.common.Utility;
 import com.example.ole.dao.IngredientDao;
 import com.example.ole.dao.RecipeDao;
 import com.example.ole.dao.ShoppingListDao;
@@ -65,7 +66,7 @@ public class SavedDataRepository {
     List<Recipe> convertedRecipes = roomRecipes.stream()
             .map(r -> new Recipe(
                     r.roomRecipe.getName(),
-                    null,
+                    Utility.convertByteArrayToBitMap( r.roomRecipe.getImageData() ),
                     r.roomRecipe.getRecipeUrl(),
                     r.roomIngredients.stream()
                             .map(i -> new Ingredient(i.getText(), i.getMeasure(), i.getQuantity(), i.getName()))
@@ -88,6 +89,7 @@ public class SavedDataRepository {
     roomsRecipe.setName(recipe.getLabel());
     roomsRecipe.setPreparationTime(recipe.getTotalTime());
     roomsRecipe.setRecipeUrl(recipe.getUrl());
+    roomsRecipe.setImageData( Utility.convertBitMapToByteArray(recipe.getImage() ));
     roomsRecipe.setFavourite(true);
 
     long recipeID = recipeDao.insertOne(roomsRecipe);

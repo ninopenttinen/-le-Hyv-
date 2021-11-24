@@ -3,10 +3,23 @@ package com.example.ole.common;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import androidx.annotation.NonNull;
+
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URL;
 
 public class Utility {
+
+    public static byte[] convertBitMapToByteArray(Bitmap bitmap) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        return stream.toByteArray();
+    }
+
+    public static Bitmap convertByteArrayToBitMap(byte[] imageData) {
+        return BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
+    }
 
     // NOTE: Can't be ran in main thread!
     public static Bitmap loadImageAsBitmap(String imageUrl) {
@@ -19,4 +32,5 @@ public class Utility {
         }
         return bm;
     }
+
 }
