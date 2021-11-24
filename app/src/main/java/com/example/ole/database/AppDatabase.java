@@ -22,7 +22,7 @@ import com.example.ole.roomsitems.RoomShoppingListItem;
     RoomSearchCriteria.class,
     RoomShoppingListItem.class,
     RoomFilter.class,
-}, version = 4, exportSchema = false)
+}, version = 5, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
   private static final String DB_NAME = "database";
   private static volatile AppDatabase instance;

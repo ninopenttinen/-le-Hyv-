@@ -11,6 +11,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ole.model.Suggestions;
 import com.example.ole.viewmodel.SuggestionsViewModel;
@@ -43,12 +44,16 @@ public class SuggestionsView extends AppCompatActivity {
             displaySuggestions(suggestions);
             findViewById(R.id.next_suggestions_button).setClickable(!suggestions.isNoRecipes());
         });
+
     }
+
 
     private void displaySuggestions(Suggestions suggestions) {
         if (suggestions.isNoRecipes()) {
             return;
         }
+
+        findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
 
         SimpleAdapter adapter = new SimpleAdapter(
                 this,
@@ -81,6 +86,8 @@ public class SuggestionsView extends AppCompatActivity {
             }
             startActivity(intent);
         });
+
+        findViewById(R.id.loadingPanel).setVisibility(View.GONE);
     }
 
     private List<HashMap<String, Object>> buildHashmapFromSuggestions(Suggestions suggestions) {
@@ -101,6 +108,7 @@ public class SuggestionsView extends AppCompatActivity {
     }
 
     public void getNextSuggestions(View view) {
+        findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
         findViewById(R.id.next_suggestions_button).setClickable(false);
         suggestionsViewModel.nextSuggestions();
     }
