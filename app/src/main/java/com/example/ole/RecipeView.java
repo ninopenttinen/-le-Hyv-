@@ -1,6 +1,10 @@
 package com.example.ole;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.LightingColorFilter;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -39,8 +43,6 @@ public class RecipeView extends AppCompatActivity {
     setContentView(R.layout.activity_recipe_view);
     recipe = Parcels.unwrap(getIntent().getParcelableExtra("recipe"));
 
-    //TODO: cart Button
-
     recipeViewModel = new ViewModelProvider(this, new ViewModelProvider.AndroidViewModelFactory(this.getApplication()))
         .get(RecipeViewModel.class);
 
@@ -52,8 +54,9 @@ public class RecipeView extends AppCompatActivity {
   }
 
   private void initCartButton() {
-    cartButton = findViewById(R.id.c_button);
-    cartButton.setEnabled(false);
+    cartButton = findViewById(R.id.AddToCartButton);
+    cartButton.setVisibility(View.GONE);
+    cartButton.setTextSize(14);
   }
 
   private void initRecipeElements() {
@@ -126,6 +129,13 @@ public class RecipeView extends AppCompatActivity {
         tempIngList.remove(ingredients.get(position));
       }
       cartButton.setEnabled(!tempIngList.isEmpty());
+
+      if(tempIngList.isEmpty()){
+        cartButton.setVisibility(View.GONE);
+      } else {
+        cartButton.setVisibility(View.VISIBLE);
+      }
+
     });
     ingredientsToCart = tempIngList;
   }
