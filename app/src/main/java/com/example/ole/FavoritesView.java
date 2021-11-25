@@ -4,21 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.ole.components.FavoriteRecipe;
-import com.example.ole.dao.RecipeDao;
-import com.example.ole.database.AppDatabase;
-import com.example.ole.model.Ingredient;
 import com.example.ole.model.Recipe;
-import com.example.ole.roomsitems.RoomRecipeWithIngredients;
 import com.example.ole.viewmodel.FavoritesViewModel;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
@@ -33,7 +27,9 @@ public class FavoritesView extends AppCompatActivity {
   private final List<FavoriteRecipe> favItemArrayList = new ArrayList<FavoriteRecipe>();
   private final List<HashMap<String, String>> favItemHashMap = new ArrayList<>();
   FavoritesViewModel favoritesViewModel;
-  
+  SimpleAdapter simpleAdapter;
+  ListView favListView;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -42,14 +38,7 @@ public class FavoritesView extends AppCompatActivity {
     favoritesViewModel = new ViewModelProvider(this, new ViewModelProvider.AndroidViewModelFactory(this.getApplication()))
         .get(FavoritesViewModel.class);
 
-    favoritesViewModel.getRecipes().observe(this, favoriteRecipes -> {
-      updateFavorites(favoriteRecipes);
-    });
-  }
-
-  @Override
-  protected void onResume() {
-    super.onResume();
+    favoritesViewModel.getRecipes().observe(this, this::updateFavorites);
   }
 
   private void updateFavorites(List<Recipe> favRecipes) {
@@ -67,19 +56,17 @@ public class FavoritesView extends AppCompatActivity {
       favItemHashMap.add(favoriteItemHash);
     }
 
-    SimpleAdapter simpleAdapter = new SimpleAdapter(this, favItemHashMap, R.layout.favorites_list_view,
+    simpleAdapter = new SimpleAdapter(this, favItemHashMap, R.layout.favorites_list_view,
         new String[]{"favImg", "favName"},
         new int[]{R.id.fav_list_img_view, R.id.fav_label_view}
     );
 
-    ListView favListView = findViewById(R.id.favorites_listView);
+    favListView = findViewById(R.id.favorites_listView);
     favListView.setAdapter(simpleAdapter);
 
 
     favListView.setOnItemClickListener((parent, view, position, id) -> {
       Intent intent = new Intent(this, RecipeView.class);
-
-      // intent content name recipe
       intent.putExtra("recipe", Parcels.wrap(favRecipes.get(position)));
       startActivity(intent);
     });
@@ -96,7 +83,7 @@ public class FavoritesView extends AppCompatActivity {
 
       BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(FavoritesView.this, R.style.BottomSheetDialogTheme);
       View bottomSheetView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.bottom_popup_layout,
-          (LinearLayout) findViewById(R.id.bottomSheetContainer));
+          findViewById(R.id.bottomSheetContainer));
 
       bottomSheetDialog.setContentView(bottomSheetView);
       bottomSheetDialog.show();
