@@ -13,27 +13,27 @@ import java.util.List;
 
 public class RecipeViewModel extends AndroidViewModel {
 
-    private final SavedDataRepository savedDataRepository;
+  private final SavedDataRepository savedDataRepository;
 
-    public RecipeViewModel(@NonNull Application application) {
-        super(application);
+  public RecipeViewModel(@NonNull Application application) {
+    super(application);
 
-        savedDataRepository = new SavedDataRepository(application);
-    }
+    savedDataRepository = new SavedDataRepository(application);
+  }
 
-    public void addRecipeToFavourites(Recipe recipe) {
-        savedDataRepository.addRecipeToFavourites(recipe);
-    }
+  public void addRecipeToFavourites(Recipe recipe) {
+    savedDataRepository.addRecipeToFavourites(recipe);
+  }
 
-    public void removeRecipeFromFavourites(Recipe recipe){
-        savedDataRepository.removeRecipeFromFavourites(recipe);
-    }
+  public void removeRecipeFromFavourites(Recipe recipe) {
+    savedDataRepository.removeRecipeFromFavourites(recipe);
+  }
 
-    public boolean checkFavorites(Recipe recipe){
-        return savedDataRepository.isRecipeInFavorites(recipe);
-    }
+  public boolean checkFavorites(Recipe recipe) {
+    return savedDataRepository.isRecipeInFavorites(recipe);
+  }
 
-    public void addToCart(List<Ingredient> ing){
-        savedDataRepository.addIngredientsToCart(ing);
-    }
+  public void addToCart(List<Ingredient> ing) {
+    savedDataRepository.addIngredientsToCart(ing);
+  }
 }

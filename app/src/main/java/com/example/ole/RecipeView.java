@@ -1,16 +1,20 @@
 package com.example.ole;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckedTextView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.ole.model.Ingredient;
 import com.example.ole.model.Recipe;
@@ -18,6 +22,7 @@ import com.example.ole.viewmodel.RecipeViewModel;
 
 import org.parceler.Parcels;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,6 +32,7 @@ public class RecipeView extends AppCompatActivity {
   private List<Ingredient> ingredientsToCart;
   private RecipeViewModel recipeViewModel;
   private Recipe recipe;
+  private Button cartButton;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +42,9 @@ public class RecipeView extends AppCompatActivity {
 
     recipeViewModel = new ViewModelProvider(this, new ViewModelProvider.AndroidViewModelFactory(this.getApplication()))
         .get(RecipeViewModel.class);
+
+    cartButton = findViewById(R.id.c_button);
+    cartButton.setEnabled(false);
 
     TextView recipeNameTextView = findViewById(R.id.recipeNameTextView);
     recipeNameTextView.setText(getString(R.string.recipe_name_value, recipe.getLabel()));
@@ -83,14 +92,32 @@ public class RecipeView extends AppCompatActivity {
     listView = findViewById(R.id.ingredients_list_view);
 
     adapter = new ArrayAdapter(RecipeView.this,
-        android.R.layout.simple_list_item_1,
+        android.R.layout.simple_list_item_multiple_choice,
         ingredients.stream()
             .map(Ingredient::getText)
             .collect(Collectors.toList()));
 
     listView.setAdapter(adapter);
 
-    ingredientsToCart = ingredients;
+    List<Ingredient> tempIngList = new ArrayList<>();
+
+
+    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+      @Override
+      public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        CheckedTextView checkedTextView = ((CheckedTextView) view);
+        checkedTextView.setChecked(!checkedTextView.isChecked());
+
+        if (checkedTextView.isChecked()) {
+          tempIngList.add(ingredients.get(position));
+        } else {
+          tempIngList.remove(ingredients.get(position));
+        }
+        cartButton.setEnabled(!tempIngList.isEmpty());
+      }
+    });
+    ingredientsToCart = tempIngList;
   }
 
   public void onClickUrl(View view) {
@@ -99,8 +126,9 @@ public class RecipeView extends AppCompatActivity {
     startActivity(intent);
   }
 
-  public void AddToCart(View view){
+  public void AddToCart(View view) {
     recipeViewModel.addToCart(ingredientsToCart);
+    Toast.makeText(RecipeView.this, "Shopping Cart Updated", Toast.LENGTH_SHORT).show();
   }
 
   public void addToFav(Recipe recipe) {
