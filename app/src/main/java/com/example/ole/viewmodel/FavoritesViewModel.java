@@ -7,10 +7,8 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 
-import com.example.ole.model.Filter;
 import com.example.ole.model.Recipe;
 import com.example.ole.repository.SavedDataRepository;
-import com.example.ole.roomsitems.RoomRecipeWithIngredients;
 
 import java.util.List;
 

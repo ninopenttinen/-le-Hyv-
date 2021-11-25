@@ -16,6 +16,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.ole.common.Utility;
 import com.example.ole.components.FavoriteRecipe;
+import com.example.ole.dao.RecipeDao;
+import com.example.ole.database.AppDatabase;
+import com.example.ole.model.Ingredient;
 import com.example.ole.model.Recipe;
 import com.example.ole.viewmodel.FavoritesViewModel;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -40,14 +43,7 @@ public class FavoritesView extends AppCompatActivity {
     favoritesViewModel = new ViewModelProvider(this, new ViewModelProvider.AndroidViewModelFactory(this.getApplication()))
         .get(FavoritesViewModel.class);
 
-    favoritesViewModel.getRecipes().observe(this, favoriteRecipes -> {
-      updateFavorites(favoriteRecipes);
-    });
-  }
-
-  @Override
-  protected void onResume() {
-    super.onResume();
+    favoritesViewModel.getRecipes().observe(this, this::updateFavorites);
   }
 
   private void updateFavorites(List<Recipe> favRecipes) {
@@ -85,8 +81,6 @@ public class FavoritesView extends AppCompatActivity {
 
     favListView.setOnItemClickListener((parent, view, position, id) -> {
       Intent intent = new Intent(this, RecipeView.class);
-
-      // intent content name recipe
       intent.putExtra("recipe", Parcels.wrap(favRecipes.get(position)));
       startActivity(intent);
     });
@@ -103,7 +97,7 @@ public class FavoritesView extends AppCompatActivity {
 
       BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(FavoritesView.this, R.style.BottomSheetDialogTheme);
       View bottomSheetView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.bottom_popup_layout,
-          (LinearLayout) findViewById(R.id.bottomSheetContainer));
+          findViewById(R.id.bottomSheetContainer));
 
       bottomSheetDialog.setContentView(bottomSheetView);
       bottomSheetDialog.show();

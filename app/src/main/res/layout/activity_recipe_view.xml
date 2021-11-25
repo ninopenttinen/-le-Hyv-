@@ -45,6 +45,23 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <Button
+                android:id="@+id/AddToCartButton"
+                android:layout_width="134dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="#00FFFFFF"
+                android:gravity="center"
+                android:minHeight="48dp"
+                android:onClick="AddToCart"
+                android:shadowColor="#00FFFFFF"
+                android:text="Add to Cart"
+                android:textColor="#FFF"
+                app:drawableStartCompat="@drawable/ic_baseline_checklist_rtl_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
             <TextView
                 android:id="@+id/timeTextView"
                 android:layout_width="208dp"
@@ -130,18 +147,8 @@
                 app:layout_constraintBottom_toTopOf="@+id/showRecipeTextView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ingredientsTextView" />
-
-            <Button
-                android:id="@+id/c_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="8dp"
-                android:onClick="AddToCart"
-                android:text="Button"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/ingredientsTextView"
+                app:layout_constraintVertical_bias="0.0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
