@@ -5,9 +5,9 @@ import android.graphics.Bitmap;
 public class FavoriteRecipe {
 
     public String mFavoriteRecipe = "";
-    public String mFavoriteImage = "";
+    public Bitmap mFavoriteImage;
 
-    public FavoriteRecipe(String aFavoriteRecipe, String aFavoriteImage){
+    public FavoriteRecipe(String aFavoriteRecipe, Bitmap aFavoriteImage){
         mFavoriteRecipe = aFavoriteRecipe;
         mFavoriteImage = aFavoriteImage;
     }

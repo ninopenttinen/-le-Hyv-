@@ -1,8 +1,5 @@
 package com.example.ole;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -12,6 +9,9 @@ import android.widget.ImageView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.ole.model.Suggestions;
 import com.example.ole.viewmodel.SuggestionsViewModel;
@@ -40,18 +40,16 @@ public class SuggestionsView extends AppCompatActivity {
         suggestionsViewModel = new ViewModelProvider(this, new SuggestionsViewModelFactory(this.getApplication(), category))
                 .get(SuggestionsViewModel.class);
 
-        suggestionsViewModel.getSuggestions().observe(this, suggestions -> {
-            displaySuggestions(suggestions);
-            findViewById(R.id.next_suggestions_button).setClickable(!suggestions.isNoRecipes());
-        });
+    suggestionsViewModel.getSuggestions().observe(this, suggestions -> {
+      displaySuggestions(suggestions);
+      findViewById(R.id.next_suggestions_button).setClickable(!suggestions.isNoRecipes());
+    });
+  }
 
+  private void displaySuggestions(Suggestions suggestions) {
+    if (suggestions.isNoRecipes()) {
+      return;
     }
-
-
-    private void displaySuggestions(Suggestions suggestions) {
-        if (suggestions.isNoRecipes()) {
-            return;
-        }
 
         findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
 
@@ -63,18 +61,18 @@ public class SuggestionsView extends AppCompatActivity {
                 new int[] {R.id.suggestion_text_view, R.id.suggestionImageView}
         );
 
-        adapter.setViewBinder((view, data, textRepresentation) -> {
-            if ((view instanceof ImageView) & (data instanceof Bitmap)) {
-                ImageView iv = (ImageView) view;
-                Bitmap bm = (Bitmap) data;
-                iv.setImageBitmap(bm);
-                return true;
-            }
-            return false;
-        });
+    adapter.setViewBinder((view, data, textRepresentation) -> {
+      if ((view instanceof ImageView) & (data instanceof Bitmap)) {
+        ImageView iv = (ImageView) view;
+        Bitmap bm = (Bitmap) data;
+        iv.setImageBitmap(bm);
+        return true;
+      }
+      return false;
+    });
 
-        GridView suggestionsGridView = findViewById(R.id.suggestions_grid_view);
-        suggestionsGridView.setAdapter(adapter);
+    GridView suggestionsGridView = findViewById(R.id.suggestions_grid_view);
+    suggestionsGridView.setAdapter(adapter);
 
         suggestionsGridView.setOnItemClickListener((parent, view, position, id) -> {
             Intent intent = new Intent(this, RecipeView.class);
@@ -90,22 +88,22 @@ public class SuggestionsView extends AppCompatActivity {
         findViewById(R.id.loadingPanel).setVisibility(View.GONE);
     }
 
-    private List<HashMap<String, Object>> buildHashmapFromSuggestions(Suggestions suggestions) {
-        List<HashMap<String, Object>> suggestionsHashMap = new ArrayList<>();
+  private List<HashMap<String, Object>> buildHashmapFromSuggestions(Suggestions suggestions) {
+    List<HashMap<String, Object>> suggestionsHashMap = new ArrayList<>();
 
-        HashMap<String, Object> firstSuggestion = new HashMap<>();
-        firstSuggestion.put("label", suggestions.getFirstSuggestion().getLabel());
-        firstSuggestion.put("image", suggestions.getFirstSuggestion().getImage());
-        suggestionsHashMap.add(firstSuggestion);
+    HashMap<String, Object> firstSuggestion = new HashMap<>();
+    firstSuggestion.put("label", suggestions.getFirstSuggestion().getLabel());
+    firstSuggestion.put("image", suggestions.getFirstSuggestion().getImage());
+    suggestionsHashMap.add(firstSuggestion);
 
-        if (suggestions.getSecondSuggestion() != null ) {
-            HashMap<String, Object> secondSuggestion = new HashMap<>();
-            secondSuggestion.put("label", suggestions.getSecondSuggestion().getLabel());
-            secondSuggestion.put("image", suggestions.getSecondSuggestion().getImage());
-            suggestionsHashMap.add(secondSuggestion);
-        }
-        return suggestionsHashMap;
+    if (suggestions.getSecondSuggestion() != null) {
+      HashMap<String, Object> secondSuggestion = new HashMap<>();
+      secondSuggestion.put("label", suggestions.getSecondSuggestion().getLabel());
+      secondSuggestion.put("image", suggestions.getSecondSuggestion().getImage());
+      suggestionsHashMap.add(secondSuggestion);
     }
+    return suggestionsHashMap;
+  }
 
     public void getNextSuggestions(View view) {
         findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);

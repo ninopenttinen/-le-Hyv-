@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.GridView;
 import android.widget.SimpleAdapter;
 
+import com.example.ole.common.Utility;
 import com.example.ole.components.CategoryItem;
 
 import java.util.ArrayList;
