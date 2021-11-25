@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.room.Transaction;
 
+import com.example.ole.common.Utility;
 import com.example.ole.dao.FiltersDao;
 import com.example.ole.dao.IngredientDao;
 import com.example.ole.dao.RecipeDao;
@@ -60,17 +61,17 @@ public class SavedDataRepository {
   private void setRecipes() {
     List<RoomRecipeWithIngredients> roomRecipes = recipeDao.getAllRecipeWithIngredients();
     List<Recipe> convertedRecipes = roomRecipes.stream()
-        .map(r -> new Recipe(
-            r.roomRecipe.getName(),
-            null,
-            r.roomRecipe.getRecipeUrl(),
-            r.roomIngredients.stream()
-                .map(i -> new Ingredient(i.getText(), i.getMeasure(), i.getQuantity(), i.getName()))
-                .collect(Collectors.toList()),
-            r.roomRecipe.getCalories(),
-            r.roomRecipe.getPreparationTime()
-        ))
-        .collect(Collectors.toList());
+            .map(r -> new Recipe(
+                    r.roomRecipe.getName(),
+                    Utility.byteArrayToBitmap( r.roomRecipe.getImageData() ),
+                    r.roomRecipe.getRecipeUrl(),
+                    r.roomIngredients.stream()
+                            .map(i -> new Ingredient(i.getText(), i.getMeasure(), i.getQuantity(), i.getName()))
+                            .collect(Collectors.toList()),
+                    r.roomRecipe.getCalories(),
+                    r.roomRecipe.getPreparationTime()
+            ))
+            .collect(Collectors.toList());
     recipes.setValue(convertedRecipes);
   }
 
@@ -85,6 +86,7 @@ public class SavedDataRepository {
     roomsRecipe.setName(recipe.getLabel());
     roomsRecipe.setPreparationTime(recipe.getTotalTime());
     roomsRecipe.setRecipeUrl(recipe.getUrl());
+    roomsRecipe.setImageData( Utility.bitmapToByteArray(recipe.getImage() ));
     roomsRecipe.setFavourite(true);
 
     long recipeID = recipeDao.insertOne(roomsRecipe);
