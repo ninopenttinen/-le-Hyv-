@@ -1,10 +1,6 @@
 package com.example.ole;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.LightingColorFilter;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -65,11 +61,9 @@ public class RecipeView extends AppCompatActivity {
 
     ImageView recipeImageView = findViewById(R.id.recipeImageView);
     recipeImageView.setImageBitmap(recipe.getImage());
-
   }
 
   private void initToggleButton() {
-
     ToggleButton toggle = findViewById(R.id.addRemoveButton2);
     if (checkFavorites(recipe)) {
       toggle.setTextOff("Remove From Favorites");
@@ -130,12 +124,11 @@ public class RecipeView extends AppCompatActivity {
       }
       cartButton.setEnabled(!tempIngList.isEmpty());
 
-      if(tempIngList.isEmpty()){
+      if (tempIngList.isEmpty()) {
         cartButton.setVisibility(View.GONE);
       } else {
         cartButton.setVisibility(View.VISIBLE);
       }
-
     });
     ingredientsToCart = tempIngList;
   }
