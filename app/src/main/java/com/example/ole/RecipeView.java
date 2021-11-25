@@ -3,7 +3,6 @@ package com.example.ole;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckedTextView;
@@ -40,27 +39,33 @@ public class RecipeView extends AppCompatActivity {
     setContentView(R.layout.activity_recipe_view);
     recipe = Parcels.unwrap(getIntent().getParcelableExtra("recipe"));
 
+    //TODO: cart Button
+
     recipeViewModel = new ViewModelProvider(this, new ViewModelProvider.AndroidViewModelFactory(this.getApplication()))
         .get(RecipeViewModel.class);
 
+    initCartButton();
+    initRecipeElements();
+    initToggleButton();
+    handleTimeElements();
+    createListView(recipe.getIngredients());
+  }
+
+  private void initCartButton() {
     cartButton = findViewById(R.id.c_button);
     cartButton.setEnabled(false);
+  }
 
+  private void initRecipeElements() {
     TextView recipeNameTextView = findViewById(R.id.recipeNameTextView);
     recipeNameTextView.setText(getString(R.string.recipe_name_value, recipe.getLabel()));
 
     ImageView recipeImageView = findViewById(R.id.recipeImageView);
     recipeImageView.setImageBitmap(recipe.getImage());
 
-    TextView recipeTotalTime = findViewById(R.id.timeTextNumberView);
-    TextView recipeTotalTimeView = findViewById(R.id.timeTextView);
+  }
 
-    if (recipe.getTotalTime().equals("0.0")) {
-      recipeTotalTime.setVisibility(View.GONE);
-      recipeTotalTimeView.setVisibility(View.GONE);
-    } else {
-      recipeTotalTime.setText(recipe.getTotalTime());
-    }
+  private void initToggleButton() {
 
     ToggleButton toggle = findViewById(R.id.addRemoveButton2);
     if (checkFavorites(recipe)) {
@@ -82,11 +87,22 @@ public class RecipeView extends AppCompatActivity {
         toggle.setChecked(false);
       }
     });
+  }
 
-    createListView(recipe.getIngredients());
+  private void handleTimeElements() {
+    TextView recipeTotalTime = findViewById(R.id.timeTextNumberView);
+    TextView recipeTotalTimeView = findViewById(R.id.timeTextView);
+
+    if (recipe.getTotalTime().equals("0.0")) {
+      recipeTotalTime.setVisibility(View.GONE);
+      recipeTotalTimeView.setVisibility(View.GONE);
+    } else {
+      recipeTotalTime.setText(recipe.getTotalTime());
+    }
   }
 
   private void createListView(List<Ingredient> ingredients) {
+    List<Ingredient> tempIngList = new ArrayList<>();
     ListView listView;
     ArrayAdapter adapter;
     listView = findViewById(R.id.ingredients_list_view);
@@ -99,23 +115,17 @@ public class RecipeView extends AppCompatActivity {
 
     listView.setAdapter(adapter);
 
-    List<Ingredient> tempIngList = new ArrayList<>();
+    listView.setOnItemClickListener((parent, view, position, id) -> {
 
+      CheckedTextView checkedTextView = ((CheckedTextView) view);
+      checkedTextView.setChecked(!checkedTextView.isChecked());
 
-    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-      @Override
-      public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-        CheckedTextView checkedTextView = ((CheckedTextView) view);
-        checkedTextView.setChecked(!checkedTextView.isChecked());
-
-        if (checkedTextView.isChecked()) {
-          tempIngList.add(ingredients.get(position));
-        } else {
-          tempIngList.remove(ingredients.get(position));
-        }
-        cartButton.setEnabled(!tempIngList.isEmpty());
+      if (checkedTextView.isChecked()) {
+        tempIngList.add(ingredients.get(position));
+      } else {
+        tempIngList.remove(ingredients.get(position));
       }
+      cartButton.setEnabled(!tempIngList.isEmpty());
     });
     ingredientsToCart = tempIngList;
   }
