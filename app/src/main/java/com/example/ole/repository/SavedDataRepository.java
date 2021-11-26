@@ -111,6 +111,7 @@ public class SavedDataRepository {
       roomRecipe.setFavourite(false);
       recipeDao.delete(roomRecipe);
     }
+    setRecipes();
   }
 
   public boolean isRecipeInFavorites(Recipe recipe) {

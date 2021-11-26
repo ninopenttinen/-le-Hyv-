@@ -31,8 +31,6 @@ import java.util.List;
 
 public class FavoritesView extends AppCompatActivity {
 
-  private final List<FavoriteRecipe> favItemArrayList = new ArrayList<FavoriteRecipe>();
-  private final List<HashMap<String, Object>> favItemHashMapList = new ArrayList<>();
   FavoritesViewModel favoritesViewModel;
   
   @Override
@@ -46,7 +44,11 @@ public class FavoritesView extends AppCompatActivity {
     favoritesViewModel.getRecipes().observe(this, this::updateFavorites);
   }
 
+
   private void updateFavorites(List<Recipe> favRecipes) {
+    List<HashMap<String, Object>> favItemHashMapList = new ArrayList<>();
+    List<FavoriteRecipe> favItemArrayList = new ArrayList<>();
+
     for (int i = 0; i < favRecipes.size(); i++) {
       favItemArrayList.add(new FavoriteRecipe(
           favRecipes.get(i).getLabel(),
@@ -109,8 +111,6 @@ public class FavoritesView extends AppCompatActivity {
 
       bottomSheetView.findViewById(R.id.confirm_button).setOnClickListener(v1 -> {
         removeFromFav(recipeToBeRemoved);
-        favItemHashMapList.remove(position);
-        simpleAdapter.notifyDataSetChanged();
         Toast.makeText(FavoritesView.this, "Removed from favorites", Toast.LENGTH_LONG).show();
         bottomSheetDialog.dismiss();
       });
@@ -118,7 +118,7 @@ public class FavoritesView extends AppCompatActivity {
     });
   }
 
-  public void removeFromFav(Recipe rec) {
-    favoritesViewModel.removeRecipeFromFavourites(rec);
+  public void removeFromFav(Recipe recipe) {
+    favoritesViewModel.removeRecipeFromFavourites(recipe);
   }
 }
