@@ -7,6 +7,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 
+import com.example.ole.common.ServiceLocator;
 import com.example.ole.model.Recipe;
 import com.example.ole.repository.SavedDataRepository;
 
@@ -20,7 +21,7 @@ public class FavoritesViewModel extends AndroidViewModel {
 
   public FavoritesViewModel(@NonNull Application application) {
     super(application);
-    savedDataRepository = new SavedDataRepository(application);
+    savedDataRepository = ServiceLocator.getInstance(application).getSavedDataRepository();
     recipes.addSource(savedDataRepository.getRecipes(), recipes::setValue);
   }
 

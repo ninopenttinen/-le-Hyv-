@@ -5,6 +5,7 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 
+import com.example.ole.common.ServiceLocator;
 import com.example.ole.model.Ingredient;
 import com.example.ole.model.Recipe;
 import com.example.ole.repository.SavedDataRepository;
@@ -18,7 +19,7 @@ public class RecipeViewModel extends AndroidViewModel {
   public RecipeViewModel(@NonNull Application application) {
     super(application);
 
-    savedDataRepository = new SavedDataRepository(application);
+    savedDataRepository = ServiceLocator.getInstance(application).getSavedDataRepository();
   }
 
   public void addRecipeToFavourites(Recipe recipe) {
