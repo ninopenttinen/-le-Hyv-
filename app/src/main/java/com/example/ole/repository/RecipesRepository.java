@@ -93,8 +93,12 @@ public class RecipesRepository {
                                 recipeDto.getRecipeDto().getTotalTime()
                         );
                         newRecipes.add(newRecipe);
+                        // add only even amount of recipes, or uneven if it's the last recipe
+                        if ( (newRecipes.size() & 1) == 0
+                                || response.body().getRecipeBody().size() == newRecipes.size() ) {
+                            recipes.postValue(newRecipes);
+                        }
                     }
-                    recipes.postValue(newRecipes);
                 }
             }
 

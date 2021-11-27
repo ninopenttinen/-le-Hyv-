@@ -28,6 +28,7 @@ public class SuggestionsViewModel extends AndroidViewModel {
   private final MediatorLiveData<Suggestions> suggestions = new MediatorLiveData<>();
   private final MediatorLiveData<List<Filter>> filters = new MediatorLiveData<>();
   private final String selectedCategory;
+  private boolean nextSuggestionsRequested = true;
 
   public SuggestionsViewModel(@NonNull Application application, String category) {
     super(application);
@@ -45,7 +46,11 @@ public class SuggestionsViewModel extends AndroidViewModel {
     fetchedRecipes = recipesRepository.getRecipes();
 
     suggestions.addSource(fetchedRecipes, recipes -> {
-      suggestions.setValue(updateSuggestions(0, recipes.size()));
+      if (nextSuggestionsRequested) {
+        suggestions.setValue( updateSuggestions(0, recipes.size()) );
+      } else {
+        suggestions.getValue().setTotalFetchedRecipes(recipes.size());
+      }
     });
   }
 
@@ -74,6 +79,7 @@ public class SuggestionsViewModel extends AndroidViewModel {
   public void nextSuggestions() {
     int totalSuggested = suggestions.getValue().getTotalSuggestedRecipes();
     int totalFetched = suggestions.getValue().getTotalFetchedRecipes();
+    nextSuggestionsRequested = true;
 
     if (totalSuggested >= totalFetched) {
       fetchMoreRecipes();
@@ -90,10 +96,12 @@ public class SuggestionsViewModel extends AndroidViewModel {
     if (totalFetched == totalSuggested + 1) {
       newSuggestions.setFirstSuggestion(fetchedRecipes.getValue().get(totalSuggested));
       newSuggestions.setTotalSuggestedRecipes(totalSuggested + 1);
-    } else if (totalFetched >= 2) {
+      nextSuggestionsRequested = false;
+    } else if (totalFetched >= totalSuggested + 2) {
       newSuggestions.setFirstSuggestion(fetchedRecipes.getValue().get(totalSuggested));
       newSuggestions.setSecondSuggestion(fetchedRecipes.getValue().get(totalSuggested + 1));
       newSuggestions.setTotalSuggestedRecipes(totalSuggested + 2);
+      nextSuggestionsRequested = false;
     }
     return newSuggestions;
   }
