@@ -1,5 +1,6 @@
 package com.example.ole;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.helper.widget.Layer;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -8,6 +9,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageButton;
@@ -26,6 +28,7 @@ import com.example.ole.model.Ingredient;
 import com.example.ole.model.Recipe;
 import com.example.ole.roomsitems.RoomRecipe;
 import com.example.ole.roomsitems.RoomRecipeWithIngredients;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import org.parceler.Parcels;
@@ -35,7 +38,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class FavoritesView extends AppCompatActivity {
+public class FavoritesView extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
     AppDatabase appDatabase;
     RecipeDao recipeDao;
@@ -43,6 +46,9 @@ public class FavoritesView extends AppCompatActivity {
 
     private final List<FavoriteRecipe> favItemArrayList = new ArrayList<FavoriteRecipe>();
     private final List<HashMap<String, String>> favItemHashMap = new ArrayList<>();
+
+    BottomNavigationView bottomNavigationView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +60,42 @@ public class FavoritesView extends AppCompatActivity {
         recipeWithIngredients = recipeDao.getAllRecipeWithIngredients();
 
         updateFavorites(recipeWithIngredients);
+
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(FavoritesView.this);
+        bottomNavigationView.setSelectedItemId(R.id.bottom_menu_button_favorites);
+    }
+    @Override
+    public void onBackPressed() {
+        // TODO Auto-generated method stub
+        super.onBackPressed();
+        overridePendingTransition(0,0);
+    }
+
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.bottom_menu_button_home:
+                Intent intentHome = new Intent(FavoritesView.this, CategoryView.class);
+                startActivity(intentHome);
+                overridePendingTransition(0,0);
+                break;
+
+            case R.id.bottom_menu_button_favorites:
+                return true;
+
+            case R.id.bottom_menu_button_cart:
+                Intent intentCart = new Intent(FavoritesView.this, ShoppingCartView.class);
+                startActivity(intentCart);
+                overridePendingTransition(0,0);
+                break;
+
+            case R.id.bottom_menu_button_settings:
+                Intent intentSettings = new Intent(FavoritesView.this, FiltersView.class);
+                startActivity(intentSettings);
+                overridePendingTransition(0,0);
+                break;
+        }
+        return false;
     }
 
     private void updateFavorites(List<RoomRecipeWithIngredients> favRecipe){
