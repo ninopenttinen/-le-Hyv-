@@ -35,7 +35,7 @@
     <TextView
         android:id="@+id/fav_label_view"
         android:layout_width="182dp"
-        android:layout_height="44dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:clickable="false"
