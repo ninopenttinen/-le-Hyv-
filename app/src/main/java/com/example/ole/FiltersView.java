@@ -21,6 +21,7 @@ public class FiltersView extends AppCompatActivity implements BottomNavigationVi
     //private ArrayList<String> selectedItems = new ArrayList<String>();
     BottomNavigationView bottomNavigationView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +30,8 @@ public class FiltersView extends AppCompatActivity implements BottomNavigationVi
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(FiltersView.this);
         bottomNavigationView.setSelectedItemId(R.id.bottom_menu_button_settings);
+
+
     }
     @Override
     public void onBackPressed() {
@@ -37,21 +40,45 @@ public class FiltersView extends AppCompatActivity implements BottomNavigationVi
         overridePendingTransition(0,0);
     }
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        String homeState = getIntent().getStringExtra("HomeState");
+        String category = getIntent().getStringExtra("category");
+        String recipe = getIntent().getStringExtra("recipe");
+
         switch (item.getItemId()) {
             case R.id.bottom_menu_button_home:
-                Intent intentHome = new Intent(FiltersView.this, CategoryView.class);
+                Intent intentHome;
+                if (homeState.equals("categoryView")){
+                    intentHome = new Intent(FiltersView.this, CategoryView.class);
+                }
+                else if (homeState.equals("suggestionsView")){
+                    intentHome = new Intent(FiltersView.this, SuggestionsView.class);
+                }
+                else if (homeState.equals("recipeView")){
+                    intentHome = new Intent(FiltersView.this, RecipeView.class);
+                }
+                else{
+                    return false;
+                }
+                intentHome.putExtra("category", category);
+                intentHome.putExtra("recipe",recipe);
                 startActivity(intentHome);
                 overridePendingTransition(0,0);
                 break;
 
             case R.id.bottom_menu_button_favorites:
                 Intent intentFavorites = new Intent(FiltersView.this, FavoritesView.class);
+                intentFavorites.putExtra("HomeState",homeState);
+                intentFavorites.putExtra("category", category);
+                intentFavorites.putExtra("recipe",recipe);
                 startActivity(intentFavorites);
                 overridePendingTransition(0,0);
                 break;
 
             case R.id.bottom_menu_button_cart:
                 Intent intentCart = new Intent(FiltersView.this, ShoppingCartView.class);
+                intentCart.putExtra("HomeState",homeState);
+                intentCart.putExtra("category", category);
+                intentCart.putExtra("recipe",recipe);
                 startActivity(intentCart);
                 overridePendingTransition(0,0);
                 break;

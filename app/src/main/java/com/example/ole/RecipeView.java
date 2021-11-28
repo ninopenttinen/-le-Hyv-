@@ -1,10 +1,12 @@
 package com.example.ole;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -18,6 +20,7 @@ import com.example.ole.model.Ingredient;
 import com.example.ole.model.Recipe;
 import com.example.ole.roomsitems.RoomIngredient;
 import com.example.ole.roomsitems.RoomRecipe;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.parceler.Parcels;
 
@@ -25,12 +28,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class RecipeView extends AppCompatActivity {
+public class RecipeView extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
     private static List<String> ingredientsList = new ArrayList<String>();
     public String recipeUrl;
     private RoomRecipe roomsRecipe;
     private RoomIngredient roomIngredient;
+    BottomNavigationView bottomNavigationView;
 
     // tarjoilee daot
     AppDatabase appDatabase;
@@ -72,6 +76,54 @@ public class RecipeView extends AppCompatActivity {
         recipeTotalTime.setText(recipe.getTotalTime());
 
         createListView(recipe.getIngredients());
+
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(RecipeView.this);
+        bottomNavigationView.setSelectedItemId(R.id.bottom_menu_button_home);
+    }
+    @Override
+    public void onBackPressed() {
+        // TODO Auto-generated method stub
+        //super.onBackPressed();
+        Intent backIntent = new Intent(RecipeView.this, SuggestionsView.class);
+        overridePendingTransition(0,0);
+    }
+
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        String category = getIntent().getStringExtra("category");
+        //Recipe recipe = Parcels.unwrap(getIntent().getParcelableExtra("recipe"));
+        switch (item.getItemId()) {
+            case R.id.bottom_menu_button_home:
+                return true;
+
+            case R.id.bottom_menu_button_favorites:
+                Intent intentFavorites = new Intent(RecipeView.this, FavoritesView.class);
+                intentFavorites.putExtra("HomeState", "recipeView");
+                intentFavorites.putExtra("category",category);
+                //intentFavorites.putExtra("recipe",recipe);
+                startActivity(intentFavorites);
+                overridePendingTransition(0,0);
+                break;
+
+            case R.id.bottom_menu_button_cart:
+                Intent intentCart = new Intent(RecipeView.this, ShoppingCartView.class);
+                intentCart.putExtra("HomeState", "recipeView");
+                intentCart.putExtra("category",category);
+                //intentCart.putExtra("recipe",recipe);
+                startActivity(intentCart);
+                overridePendingTransition(0,0);
+                break;
+
+            case R.id.bottom_menu_button_settings:
+                Intent intentSettings = new Intent(RecipeView.this, FiltersView.class);
+                intentSettings.putExtra("HomeState", "RecipeView");
+                intentSettings.putExtra("category",category);
+                //intentSettings.putExtra("recipe",recipe);
+                startActivity(intentSettings);
+                overridePendingTransition(0,0);
+                break;
+        }
+        return false;
     }
 
     private void createListView(List<Ingredient> ingredients) {

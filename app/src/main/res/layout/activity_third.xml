@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -109,7 +109,7 @@
                 android:layout_width="134dp"
                 android:layout_height="48dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="272dp"
                 android:gravity="center"
                 android:onClick="onClickUrl"
                 android:text="@string/recipe_hyperlink"
@@ -121,12 +121,11 @@
             <ListView
                 android:id="@+id/ingredients_list_view"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/list_view_round_corners"
-                app:layout_constraintBottom_toTopOf="@+id/showRecipeTextView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ingredientsTextView" />
@@ -135,9 +134,20 @@
 
 
     </LinearLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:itemBackground="@color/design_default_color_primary"
+        app:labelVisibilityMode="unlabeled"
+        app:menu="@menu/bottom_menu" />
 
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+</RelativeLayout>
 
 
 

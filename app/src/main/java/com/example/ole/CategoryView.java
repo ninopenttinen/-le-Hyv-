@@ -58,18 +58,21 @@ public class CategoryView extends AppCompatActivity implements BottomNavigationV
 
       case R.id.bottom_menu_button_favorites:
         Intent intentFavorites = new Intent(CategoryView.this, FavoritesView.class);
+        intentFavorites.putExtra("HomeState", "categoryView");
         startActivity(intentFavorites);
         overridePendingTransition(0,0);
         break;
 
       case R.id.bottom_menu_button_cart:
         Intent intentCart = new Intent(CategoryView.this, ShoppingCartView.class);
+        intentCart.putExtra("HomeState", "categoryView");
         startActivity(intentCart);
         overridePendingTransition(0,0);
         break;
 
       case R.id.bottom_menu_button_settings:
         Intent intentSettings = new Intent(CategoryView.this, FiltersView.class);
+        intentSettings.putExtra("HomeState", "categoryView");
         startActivity(intentSettings);
         overridePendingTransition(0,0);
         break;
