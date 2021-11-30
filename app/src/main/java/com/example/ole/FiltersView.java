@@ -1,5 +1,7 @@
 package com.example.ole;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.content.res.ResourcesCompat;
@@ -9,7 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
@@ -22,16 +27,19 @@ import com.example.ole.model.Filter;
 import com.example.ole.model.FilterType;
 import com.example.ole.viewmodel.FiltersViewModel;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class FiltersView extends AppCompatActivity implements ExcludedIngredientsAdapter.ItemClickListener {
+public class FiltersView extends AppCompatActivity implements ExcludedIngredientsAdapter.ItemClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
 
     FiltersViewModel filtersViewModel;
     ExcludedIngredientsAdapter adapter;
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +57,65 @@ public class FiltersView extends AppCompatActivity implements ExcludedIngredient
         });
 
         setEditTextListeners(findViewById(R.id.ingredient_filter_edit_text));
+
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(FiltersView.this);
+        bottomNavigationView.setSelectedItemId(R.id.bottom_menu_button_settings);
+
+    }
+    @Override
+    public void onBackPressed() {
+        // TODO Auto-generated method stub
+        super.onBackPressed();
+        overridePendingTransition(0,0);
+    }
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        String homeState = getIntent().getStringExtra("HomeState");
+        String category = getIntent().getStringExtra("category");
+        String recipe = getIntent().getStringExtra("recipe");
+        switch (item.getItemId()) {
+            case R.id.bottom_menu_button_home:
+                Intent intentHome;
+                if (homeState.equals("categoryView")){
+                    intentHome = new Intent(FiltersView.this, CategoryView.class);
+                }
+                else if (homeState.equals("suggestionsView")){
+                    intentHome = new Intent(FiltersView.this, SuggestionsView.class);
+                }
+                else if (homeState.equals("recipeView")){
+                    intentHome = new Intent(FiltersView.this, RecipeView.class);
+                }
+                else{
+                    return false;
+                }
+                intentHome.putExtra("category", category);
+                intentHome.putExtra("recipe",recipe);
+                startActivity(intentHome);
+                overridePendingTransition(0,0);
+                break;
+
+            case R.id.bottom_menu_button_favorites:
+                Intent intentFavorites = new Intent(FiltersView.this, FavoritesView.class);
+                intentFavorites.putExtra("HomeState",homeState);
+                intentFavorites.putExtra("category", category);
+                intentFavorites.putExtra("recipe",recipe);
+                startActivity(intentFavorites);
+                overridePendingTransition(0,0);
+                break;
+
+            case R.id.bottom_menu_button_cart:
+                Intent intentCart = new Intent(FiltersView.this, ShoppingCartView.class);
+                intentCart.putExtra("HomeState",homeState);
+                intentCart.putExtra("category", category);
+                intentCart.putExtra("recipe",recipe);
+                startActivity(intentCart);
+                overridePendingTransition(0,0);
+                break;
+
+            case R.id.bottom_menu_button_settings:
+                return true;
+        }
+        return false;
     }
 
     @SuppressLint("NonConstantResourceId")

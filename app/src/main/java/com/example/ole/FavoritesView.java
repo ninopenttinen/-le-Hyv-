@@ -1,9 +1,16 @@
 package com.example.ole;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.helper.widget.Layer;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -21,6 +28,9 @@ import com.example.ole.database.AppDatabase;
 import com.example.ole.model.Ingredient;
 import com.example.ole.model.Recipe;
 import com.example.ole.viewmodel.FavoritesViewModel;
+import com.example.ole.roomsitems.RoomRecipe;
+import com.example.ole.roomsitems.RoomRecipeWithIngredients;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import org.parceler.Parcels;
@@ -29,11 +39,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class FavoritesView extends AppCompatActivity {
+public class FavoritesView extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
   FavoritesViewModel favoritesViewModel;
-  
-  @Override
+    BottomNavigationView bottomNavigationView;
+
+
+    @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_favorites);
@@ -42,8 +54,68 @@ public class FavoritesView extends AppCompatActivity {
         .get(FavoritesViewModel.class);
 
     favoritesViewModel.getRecipes().observe(this, this::updateFavorites);
+
+    bottomNavigationView = findViewById(R.id.bottomNavigationView);
+      bottomNavigationView.setOnNavigationItemSelectedListener(FavoritesView.this);
+      bottomNavigationView.setSelectedItemId(R.id.bottom_menu_button_favorites);
   }
 
+    @Override
+    public void onBackPressed() {
+        // TODO Auto-generated method stub
+        super.onBackPressed();
+        overridePendingTransition(0,0);
+    }
+
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        String homeState = getIntent().getStringExtra("HomeState");
+        String category = getIntent().getStringExtra("category");
+        String recipe = getIntent().getStringExtra("recipe");
+        switch (item.getItemId()) {
+            case R.id.bottom_menu_button_home:
+                Intent intentHome;
+                if (homeState.equals("categoryView")){
+                    intentHome = new Intent(FavoritesView.this, CategoryView.class);
+                }
+                else if (homeState.equals("suggestionsView")){
+                    intentHome = new Intent(FavoritesView.this, SuggestionsView.class);
+                }
+                else if (homeState.equals("recipeView")){
+                    intentHome = new Intent(FavoritesView.this, RecipeView.class);
+                }
+                else {
+                    return false;
+                }
+                intentHome.putExtra("category", category);
+                intentHome.putExtra("recipe",recipe);
+                startActivity(intentHome);
+                overridePendingTransition(0,0);
+                break;
+
+            case R.id.bottom_menu_button_favorites:
+                return true;
+
+            case R.id.bottom_menu_button_cart:
+                Intent intentCart = new Intent(FavoritesView.this, ShoppingCartView.class);
+                intentCart.putExtra("HomeState",homeState);
+                intentCart.putExtra("category", category);
+                intentCart.putExtra("recipe",recipe);
+
+                startActivity(intentCart);
+                overridePendingTransition(0,0);
+                break;
+
+            case R.id.bottom_menu_button_settings:
+                Intent intentSettings = new Intent(FavoritesView.this, FiltersView.class);
+                intentSettings.putExtra("HomeState",homeState);
+                intentSettings.putExtra("category", category);
+                intentSettings.putExtra("recipe",recipe);
+                startActivity(intentSettings);
+                overridePendingTransition(0,0);
+                break;
+        }
+        return false;
+    }
 
   private void updateFavorites(List<Recipe> favRecipes) {
     List<HashMap<String, Object>> favItemHashMapList = new ArrayList<>();

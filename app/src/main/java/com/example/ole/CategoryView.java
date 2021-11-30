@@ -1,24 +1,33 @@
 package com.example.ole;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.SimpleAdapter;
 
 import com.example.ole.common.Utility;
 import com.example.ole.components.CategoryItem;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class CategoryView extends AppCompatActivity {
+public class CategoryView extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
+
   private final List<CategoryItem> categoryItemArrayList = new ArrayList<CategoryItem>();
   private List<HashMap<String, String>> categoryItemHashMapList = new ArrayList<>();
   private SimpleAdapter simpleAdapter;
+
+  BottomNavigationView bottomNavigationView;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +35,49 @@ public class CategoryView extends AppCompatActivity {
     setContentView(R.layout.activity_main);
 
     setCategoryView();
+
+    bottomNavigationView = findViewById(R.id.bottomNavigationView);
+    bottomNavigationView.setOnNavigationItemSelectedListener(CategoryView.this);
+    bottomNavigationView.setSelectedItemId(R.id.bottom_menu_button_home);
   }
+  @Override
+  public void onBackPressed() {
+    // TODO Auto-generated method stub
+    super.onBackPressed();
+    overridePendingTransition(0,0);
+  }
+
+  @Override
+  public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+    switch (item.getItemId()) {
+      case R.id.bottom_menu_button_home:
+        return true;
+
+      case R.id.bottom_menu_button_favorites:
+        Intent intentFavorites = new Intent(CategoryView.this, FavoritesView.class);
+        intentFavorites.putExtra("HomeState", "categoryView");
+        startActivity(intentFavorites);
+        overridePendingTransition(0,0);
+        break;
+
+      case R.id.bottom_menu_button_cart:
+        Intent intentCart = new Intent(CategoryView.this, ShoppingCartView.class);
+        intentCart.putExtra("HomeState", "categoryView");
+        startActivity(intentCart);
+        overridePendingTransition(0,0);
+        break;
+
+      case R.id.bottom_menu_button_settings:
+        Intent intentSettings = new Intent(CategoryView.this, FiltersView.class);
+        intentSettings.putExtra("HomeState", "categoryView");
+        startActivity(intentSettings);
+        overridePendingTransition(0,0);
+        break;
+    }
+    return false;
+  }
+
+
 
   private void setCategoryView() {
     int categorySize = getResources().getStringArray(R.array.cuisine_types_string).length;
