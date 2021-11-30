@@ -1,13 +1,8 @@
 package com.example.ole;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -20,7 +15,6 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.ole.model.Suggestions;
 import com.example.ole.viewmodel.SuggestionsViewModel;
 import com.example.ole.viewmodel.factory.SuggestionsViewModelFactory;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.parceler.Parcels;
 
@@ -28,10 +22,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class SuggestionsView extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
+public class SuggestionsView extends AppCompatActivity {
 
   private SuggestionsViewModel suggestionsViewModel;
-  BottomNavigationView bottomNavigationView;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -49,57 +42,8 @@ public class SuggestionsView extends AppCompatActivity implements BottomNavigati
     suggestionsViewModel.getSuggestions().observe(this, suggestions -> {
       displaySuggestions(suggestions);
       findViewById(R.id.next_suggestions_button).setClickable(!suggestions.isNoRecipes());
-
-      bottomNavigationView = findViewById(R.id.bottomNavigationView);
-      bottomNavigationView.setOnNavigationItemSelectedListener(SuggestionsView.this);
-      bottomNavigationView.setSelectedItemId(R.id.bottom_menu_button_home);
     });
   }
-
-
-  @Override
-  public void onBackPressed() {
-    // TODO Auto-generated method stub
-    //super.onBackPressed();
-    Intent backIntent = new Intent(SuggestionsView.this, CategoryView.class);
-    startActivity(backIntent);
-    overridePendingTransition(0,0);
-  }
-
-  @Override
-  public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-    String category = getIntent().getStringExtra("category");
-    switch (item.getItemId()) {
-      case R.id.bottom_menu_button_home:
-        return true;
-
-      case R.id.bottom_menu_button_favorites:
-        Intent intentFavorites = new Intent(SuggestionsView.this, FavoritesView.class);
-        intentFavorites.putExtra("HomeState", "suggestionsView");
-        intentFavorites.putExtra("category",category);
-        startActivity(intentFavorites);
-        overridePendingTransition(0,0);
-        break;
-
-      case R.id.bottom_menu_button_cart:
-        Intent intentCart = new Intent(SuggestionsView.this, ShoppingCartView.class);
-        intentCart.putExtra("HomeState", "suggestionsView");
-        intentCart.putExtra("category",category);
-        startActivity(intentCart);
-        overridePendingTransition(0,0);
-        break;
-
-      case R.id.bottom_menu_button_settings:
-        Intent intentSettings = new Intent(SuggestionsView.this, FiltersView.class);
-        intentSettings.putExtra("HomeState", "suggestionsView");
-        intentSettings.putExtra("category",category);
-        startActivity(intentSettings);
-        overridePendingTransition(0,0);
-        break;
-    }
-    return false;
-  }
-
 
   private void displaySuggestions(Suggestions suggestions) {
     if (suggestions.isNoRecipes()) {
