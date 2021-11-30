@@ -58,7 +58,6 @@ public class SuggestionsView extends AppCompatActivity implements BottomNavigati
     //super.onBackPressed();
     Intent backIntent = new Intent(SuggestionsView.this, CategoryView.class);
     startActivity(backIntent);
-
     overridePendingTransition(0,0);
   }
 
