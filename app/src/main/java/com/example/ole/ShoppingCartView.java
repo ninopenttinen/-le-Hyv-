@@ -15,9 +15,12 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.ole.dao.ShoppingListDao;
 import com.example.ole.database.AppDatabase;
+import com.example.ole.model.Recipe;
 import com.example.ole.roomsitems.RoomShoppingListItem;
 import com.example.ole.viewmodel.ShoppingListViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -56,7 +59,8 @@ public class ShoppingCartView extends AppCompatActivity implements BottomNavigat
   public boolean onNavigationItemSelected(@NonNull MenuItem item) {
     String homeState = getIntent().getStringExtra("HomeState");
     String category = getIntent().getStringExtra("category");
-    String recipe = getIntent().getStringExtra("recipe");
+    //String recipe = getIntent().getStringExtra("recipe");
+    Recipe recipe = Parcels.unwrap(getIntent().getParcelableExtra("recipe"));
     switch (item.getItemId()) {
       case R.id.bottom_menu_button_home:
         Intent intentHome;
@@ -73,7 +77,7 @@ public class ShoppingCartView extends AppCompatActivity implements BottomNavigat
           return true;
         }
         intentHome.putExtra("category", category);
-        intentHome.putExtra("recipe",recipe);
+        intentHome.putExtra("recipe", Parcels.wrap(recipe));
         startActivity(intentHome);
         overridePendingTransition(0,0);
         break;
@@ -82,7 +86,7 @@ public class ShoppingCartView extends AppCompatActivity implements BottomNavigat
         Intent intentFavorites = new Intent(ShoppingCartView.this, FavoritesView.class);
         intentFavorites.putExtra("HomeState",homeState);
         intentFavorites.putExtra("category", category);
-        intentFavorites.putExtra("recipe",recipe);
+        intentFavorites.putExtra("recipe", Parcels.wrap(recipe));
         startActivity(intentFavorites);
         overridePendingTransition(0,0);
         break;
@@ -94,7 +98,7 @@ public class ShoppingCartView extends AppCompatActivity implements BottomNavigat
         Intent intentSettings = new Intent(ShoppingCartView.this, FiltersView.class);
         intentSettings.putExtra("HomeState",homeState);
         intentSettings.putExtra("category", category);
-        intentSettings.putExtra("recipe",recipe);
+        intentSettings.putExtra("recipe", Parcels.wrap(recipe));
         startActivity(intentSettings);
         overridePendingTransition(0,0);
         break;

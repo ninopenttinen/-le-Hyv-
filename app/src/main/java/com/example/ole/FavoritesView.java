@@ -63,7 +63,9 @@ public class FavoritesView extends AppCompatActivity implements BottomNavigation
   public boolean onNavigationItemSelected(@NonNull MenuItem item) {
     String homeState = getIntent().getStringExtra("HomeState");
     String category = getIntent().getStringExtra("category");
-    String recipe = getIntent().getStringExtra("recipe");
+    //String recipe = getIntent().getStringExtra("recipe");
+    Recipe recipe = Parcels.unwrap(getIntent().getParcelableExtra("recipe"));
+
     switch (item.getItemId()) {
       case R.id.bottom_menu_button_home:
         Intent intentHome;
@@ -80,7 +82,7 @@ public class FavoritesView extends AppCompatActivity implements BottomNavigation
           return false;
         }
         intentHome.putExtra("category", category);
-        intentHome.putExtra("recipe",recipe);
+        intentHome.putExtra("recipe", Parcels.wrap(recipe));
         startActivity(intentHome);
         overridePendingTransition(0,0);
         break;
@@ -92,7 +94,7 @@ public class FavoritesView extends AppCompatActivity implements BottomNavigation
         Intent intentCart = new Intent(FavoritesView.this, ShoppingCartView.class);
         intentCart.putExtra("HomeState",homeState);
         intentCart.putExtra("category", category);
-        intentCart.putExtra("recipe",recipe);
+        intentCart.putExtra("recipe", Parcels.wrap(recipe));
 
         startActivity(intentCart);
         overridePendingTransition(0,0);
@@ -102,7 +104,7 @@ public class FavoritesView extends AppCompatActivity implements BottomNavigation
         Intent intentSettings = new Intent(FavoritesView.this, FiltersView.class);
         intentSettings.putExtra("HomeState",homeState);
         intentSettings.putExtra("category", category);
-        intentSettings.putExtra("recipe",recipe);
+        intentSettings.putExtra("recipe", Parcels.wrap(recipe));
         startActivity(intentSettings);
         overridePendingTransition(0,0);
         break;

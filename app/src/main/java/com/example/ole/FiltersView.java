@@ -23,8 +23,11 @@ import android.widget.LinearLayout;
 import com.example.ole.adapter.ExcludedIngredientsAdapter;
 import com.example.ole.model.Filter;
 import com.example.ole.model.FilterType;
+import com.example.ole.model.Recipe;
 import com.example.ole.viewmodel.FiltersViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -70,7 +73,8 @@ public class FiltersView extends AppCompatActivity implements ExcludedIngredient
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         String homeState = getIntent().getStringExtra("HomeState");
         String category = getIntent().getStringExtra("category");
-        String recipe = getIntent().getStringExtra("recipe");
+        //String recipe = getIntent().getStringExtra("recipe");
+        Recipe recipe = Parcels.unwrap(getIntent().getParcelableExtra("recipe"));
 
         switch (item.getItemId()) {
             case R.id.bottom_menu_button_home:
@@ -88,7 +92,7 @@ public class FiltersView extends AppCompatActivity implements ExcludedIngredient
                     return false;
                 }
                 intentHome.putExtra("category", category);
-                intentHome.putExtra("recipe",recipe);
+                intentHome.putExtra("recipe", Parcels.wrap(recipe));
                 startActivity(intentHome);
                 overridePendingTransition(0,0);
                 break;
@@ -97,7 +101,7 @@ public class FiltersView extends AppCompatActivity implements ExcludedIngredient
                 Intent intentFavorites = new Intent(FiltersView.this, FavoritesView.class);
                 intentFavorites.putExtra("HomeState",homeState);
                 intentFavorites.putExtra("category", category);
-                intentFavorites.putExtra("recipe",recipe);
+                intentFavorites.putExtra("recipe", Parcels.wrap(recipe));
                 startActivity(intentFavorites);
                 overridePendingTransition(0,0);
                 break;
@@ -106,7 +110,7 @@ public class FiltersView extends AppCompatActivity implements ExcludedIngredient
                 Intent intentCart = new Intent(FiltersView.this, ShoppingCartView.class);
                 intentCart.putExtra("HomeState",homeState);
                 intentCart.putExtra("category", category);
-                intentCart.putExtra("recipe",recipe);
+                intentCart.putExtra("recipe", Parcels.wrap(recipe));
                 startActivity(intentCart);
                 overridePendingTransition(0,0);
                 break;
