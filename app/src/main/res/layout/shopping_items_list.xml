@@ -17,7 +17,7 @@
             android:id="@+id/shoppingItemName"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:textColor="#FFFF"
+            android:textColor="@color/black"
             android:textSize="20sp" />
 
         <Space
@@ -31,7 +31,7 @@
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:text="X"
-            android:textColor="#FFFF"
+            android:textColor="@color/black"
             android:textSize="20sp" />
     </LinearLayout>
 

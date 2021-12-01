@@ -15,12 +15,14 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:text="@string/diet_filters_title"
-            android:textColor="#FFFF"
+            android:textColor="@color/black"
             android:textSize="20sp"/>
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/black"
+        />
         <ImageView
             android:id="@+id/diet_arrow"
             android:layout_width="wrap_content"
@@ -46,6 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
+            android:textColor="@color/black"
             android:textSize="18sp"
             android:onClick="handleToggle"
             android:text="@string/diet_filters_balanced" />
@@ -55,6 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
+            android:textColor="@color/black"
             android:textSize="18sp"
             android:onClick="handleToggle"
             android:text="@string/diet_filters_high_fiber" />
@@ -64,6 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
+            android:textColor="@color/black"
             android:textSize="18sp"
             android:onClick="handleToggle"
             android:text="@string/diet_filters_high_protein" />
@@ -73,6 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
+            android:textColor="@color/black"
             android:textSize="18sp"
             android:onClick="handleToggle"
             android:text="@string/diet_filters_low_carb" />
@@ -81,6 +87,7 @@
             android:id="@+id/diet_low_fat_filter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:layout_marginBottom="10dp"
             android:textSize="18sp"
             android:onClick="handleToggle"
@@ -90,6 +97,7 @@
             android:id="@+id/diet_low_sodium_filter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:layout_marginBottom="10dp"
             android:textSize="18sp"
             android:onClick="handleToggle"

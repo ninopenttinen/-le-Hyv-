@@ -31,12 +31,11 @@ import java.util.stream.Collectors;
 
 public class RecipeView extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
+  BottomNavigationView bottomNavigationView;
   private List<Ingredient> ingredientsToCart;
   private RecipeViewModel recipeViewModel;
   private Recipe recipe;
   private Button cartButton;
-
-  BottomNavigationView bottomNavigationView;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +62,7 @@ public class RecipeView extends AppCompatActivity implements BottomNavigationVie
     // TODO Auto-generated method stub
     //super.onBackPressed();
     Intent backIntent = new Intent(RecipeView.this, SuggestionsView.class);
-    overridePendingTransition(0,0);
+    overridePendingTransition(0, 0);
   }
 
   public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -75,28 +74,28 @@ public class RecipeView extends AppCompatActivity implements BottomNavigationVie
       case R.id.bottom_menu_button_favorites:
         Intent intentFavorites = new Intent(RecipeView.this, FavoritesView.class);
         intentFavorites.putExtra("HomeState", "recipeView");
-        intentFavorites.putExtra("category",category);
+        intentFavorites.putExtra("category", category);
         intentFavorites.putExtra("recipe", Parcels.wrap(recipe));
         startActivity(intentFavorites);
-        overridePendingTransition(0,0);
+        overridePendingTransition(0, 0);
         break;
 
       case R.id.bottom_menu_button_cart:
         Intent intentCart = new Intent(RecipeView.this, ShoppingCartView.class);
         intentCart.putExtra("HomeState", "recipeView");
-        intentCart.putExtra("category",category);
+        intentCart.putExtra("category", category);
         intentCart.putExtra("recipe", Parcels.wrap(recipe));
         startActivity(intentCart);
-        overridePendingTransition(0,0);
+        overridePendingTransition(0, 0);
         break;
 
       case R.id.bottom_menu_button_settings:
         Intent intentSettings = new Intent(RecipeView.this, FiltersView.class);
         intentSettings.putExtra("HomeState", "RecipeView");
-        intentSettings.putExtra("category",category);
+        intentSettings.putExtra("category", category);
         intentSettings.putExtra("recipe", Parcels.wrap(recipe));
         startActivity(intentSettings);
-        overridePendingTransition(0,0);
+        overridePendingTransition(0, 0);
         break;
     }
     return false;
@@ -158,7 +157,7 @@ public class RecipeView extends AppCompatActivity implements BottomNavigationVie
     listView = findViewById(R.id.ingredients_list_view);
 
     adapter = new ArrayAdapter(RecipeView.this,
-        android.R.layout.simple_list_item_multiple_choice,
+        R.layout.simple_list_item_multiple_choice1,
         ingredients.stream()
             .map(Ingredient::getText)
             .collect(Collectors.toList()));

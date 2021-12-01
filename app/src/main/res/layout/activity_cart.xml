@@ -13,7 +13,7 @@
         android:layout_height="40dp"
         android:gravity="center"
         android:text="@string/cart_activity_header"
-        android:textColor="#FFFF"
+        android:textColor="@color/black"
         android:textSize="20sp" />
 
     <ListView

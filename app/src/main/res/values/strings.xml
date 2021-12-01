@@ -85,6 +85,7 @@
     <string name="dish_type_filters_soup">Soup</string>
     <string name="dish_type_filters_starter">Starter</string>
     <string name="dish_type_filters_sweets">Sweets</string>
+    <string name="category">Category</string>
 
 
 </resources>
