@@ -26,7 +26,6 @@ import com.example.ole.model.FilterType;
 import com.example.ole.viewmodel.FiltersViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -56,7 +55,7 @@ public class FiltersView extends AppCompatActivity implements ExcludedIngredient
 
         setEditTextListeners(findViewById(R.id.ingredient_filter_edit_text));
 
-        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView = findViewById(R.id.bottom_navigation_view);
         bottomNavigationView.setOnNavigationItemSelectedListener(FiltersView.this);
         bottomNavigationView.setSelectedItemId(R.id.bottom_menu_button_settings);
     }

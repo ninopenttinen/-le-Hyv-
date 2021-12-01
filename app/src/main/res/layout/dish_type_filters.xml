@@ -15,8 +15,9 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:text="@string/dish_type_filters_title"
-            android:textColor="#FFFF"
-            android:textSize="20sp"/>
+            android:textColor="@color/text_color_1"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
         <Space
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -31,7 +32,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#FFFF"/>
+        android:background="@color/text_color_1"/>
 
     <LinearLayout
         android:id="@+id/dish_type_filters"
@@ -47,6 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:textSize="18sp"
+            android:textColor="@color/text_color_1"
             android:onClick="handleToggle"
             android:text="@string/dish_type_filters_biscuits_and_cookies" />
 
@@ -56,6 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:textSize="18sp"
+            android:textColor="@color/text_color_1"
             android:onClick="handleToggle"
             android:text="@string/dish_type_filters_bread" />
 
@@ -65,6 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:textSize="18sp"
+            android:textColor="@color/text_color_1"
             android:onClick="handleToggle"
             android:text="@string/dish_type_filters_cereals" />
 
@@ -74,6 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:textSize="18sp"
+            android:textColor="@color/text_color_1"
             android:onClick="handleToggle"
             android:text="@string/dish_type_filters_condiments_and_sauces" />
 
@@ -83,6 +88,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:textSize="18sp"
+            android:textColor="@color/text_color_1"
             android:onClick="handleToggle"
             android:text="@string/dish_type_filters_desserts" />
 
@@ -92,6 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:textSize="18sp"
+            android:textColor="@color/text_color_1"
             android:onClick="handleToggle"
             android:text="@string/dish_type_filters_drinks" />
 
@@ -101,6 +108,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:textSize="18sp"
+            android:textColor="@color/text_color_1"
             android:onClick="handleToggle"
             android:text="@string/dish_type_filters_main_course" />
 
@@ -110,6 +118,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:textSize="18sp"
+            android:textColor="@color/text_color_1"
             android:onClick="handleToggle"
             android:text="@string/dish_type_filters_pancake" />
 
@@ -119,6 +128,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:textSize="18sp"
+            android:textColor="@color/text_color_1"
             android:onClick="handleToggle"
             android:text="@string/dish_type_filters_preps" />
 
@@ -128,6 +138,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:textSize="18sp"
+            android:textColor="@color/text_color_1"
             android:onClick="handleToggle"
             android:text="@string/dish_type_filters_preserve" />
 
@@ -137,6 +148,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:textSize="18sp"
+            android:textColor="@color/text_color_1"
             android:onClick="handleToggle"
             android:text="@string/dish_type_filters_salad" />
 
@@ -146,6 +158,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:textSize="18sp"
+            android:textColor="@color/text_color_1"
             android:onClick="handleToggle"
             android:text="@string/dish_type_filters_sandwiches" />
 
@@ -155,6 +168,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:textSize="18sp"
+            android:textColor="@color/text_color_1"
             android:onClick="handleToggle"
             android:text="@string/dish_type_filters_side_dish" />
 
@@ -164,6 +178,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:textSize="18sp"
+            android:textColor="@color/text_color_1"
             android:onClick="handleToggle"
             android:text="@string/dish_type_filters_soup" />
 
@@ -173,6 +188,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:textSize="18sp"
+            android:textColor="@color/text_color_1"
             android:onClick="handleToggle"
             android:text="@string/dish_type_filters_starter" />
 
@@ -182,6 +198,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:textSize="18sp"
+            android:textColor="@color/text_color_1"
             android:onClick="handleToggle"
             android:text="@string/dish_type_filters_sweets" />
 

@@ -10,5 +10,6 @@
     android:paddingRight="6dip"
     android:paddingVertical="15dp"
     android:textSize="14sp"
-    android:textColor="@color/black"
+    android:textColor="@color/text_color_1"
+    android:checkMarkTint="@color/base_color_4"
     />

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_bg"
+    android:background="@drawable/background_color"
     tools:context=".RecipeView">
 
     <LinearLayout
@@ -38,8 +38,9 @@
             android:layout_height="50dp"
             android:gravity="center"
             android:text="@string/recipe_name_value"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textColor="@color/text_color_1"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -57,7 +58,7 @@
                 android:onClick="AddToCart"
                 android:shadowColor="#00FFFFFF"
                 android:text="Add to Cart"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color_1"
                 app:drawableStartCompat="@drawable/ic_baseline_checklist_rtl_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -72,7 +73,7 @@
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:text="@string/cooking_time_minutes"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color_1"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -86,7 +87,7 @@
                 android:layout_marginEnd="16dp"
                 android:gravity="center"
                 android:text=""
-                android:textColor="@color/black"
+                android:textColor="@color/text_color_1"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -103,7 +104,7 @@
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:text="@string/ingredients"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color_1"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -119,7 +120,7 @@
                 android:backgroundTint="#65FFFFFF"
                 android:textOff="Add To Favorites"
                 android:textOn="Remove From Favorites"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color_1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -135,7 +136,9 @@
                 android:minHeight="48dp"
                 android:onClick="onClickUrl"
                 android:text="@string/recipe_hyperlink"
-                app:drawableEndCompat="@drawable/ic_baseline_arrow_pink"
+                android:textColor="#0645AD"
+                android:textStyle="bold"
+                app:drawableEndCompat="@drawable/ic_baseline_arrow_right"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -146,7 +149,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="15dp"
-                android:textColor="@color/black"
+                android:textColor="@color/text_color_1"
                 android:background="@drawable/list_view_round_corners"
                 app:layout_constraintBottom_toTopOf="@+id/showRecipeTextView"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -159,14 +162,16 @@
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
+        android:id="@+id/bottom_navigation_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:background="@color/base_color_4"
+        app:itemTextColor="@color/bottom_nav_color"
+        app:itemIconTint="@color/bottom_nav_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:itemBackground="@color/design_default_color_primary"
         app:labelVisibilityMode="unlabeled"
         app:menu="@menu/bottom_menu" />
 

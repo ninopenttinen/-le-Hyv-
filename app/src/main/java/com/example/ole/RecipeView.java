@@ -52,7 +52,7 @@ public class RecipeView extends AppCompatActivity implements BottomNavigationVie
     handleTimeElements();
     createListView(recipe.getIngredients());
 
-    bottomNavigationView = findViewById(R.id.bottomNavigationView);
+    bottomNavigationView = findViewById(R.id.bottom_navigation_view);
     bottomNavigationView.setOnNavigationItemSelectedListener(RecipeView.this);
     bottomNavigationView.setSelectedItemId(R.id.bottom_menu_button_home);
   }
@@ -157,7 +157,7 @@ public class RecipeView extends AppCompatActivity implements BottomNavigationVie
     listView = findViewById(R.id.ingredients_list_view);
 
     adapter = new ArrayAdapter(RecipeView.this,
-        R.layout.simple_list_item_multiple_choice1,
+        R.layout.simple_list_item_multiple_choice,
         ingredients.stream()
             .map(Ingredient::getText)
             .collect(Collectors.toList()));

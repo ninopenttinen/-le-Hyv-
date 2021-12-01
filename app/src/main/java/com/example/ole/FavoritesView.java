@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
@@ -16,11 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.ole.common.Utility;
 import com.example.ole.components.FavoriteRecipe;
-import com.example.ole.dao.RecipeDao;
-import com.example.ole.database.AppDatabase;
-import com.example.ole.model.Ingredient;
 import com.example.ole.model.Recipe;
 import com.example.ole.viewmodel.FavoritesViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -48,7 +43,7 @@ public class FavoritesView extends AppCompatActivity implements BottomNavigation
 
     favoritesViewModel.getRecipes().observe(this, this::updateFavorites);
 
-    bottomNavigationView = findViewById(R.id.bottomNavigationView);
+    bottomNavigationView = findViewById(R.id.bottom_navigation_view);
     bottomNavigationView.setOnNavigationItemSelectedListener(FavoritesView.this);
     bottomNavigationView.setSelectedItemId(R.id.bottom_menu_button_favorites);
   }
@@ -144,7 +139,7 @@ public class FavoritesView extends AppCompatActivity implements BottomNavigation
       return false;
     });
 
-    ListView favListView = findViewById(R.id.favorites_listView);
+    ListView favListView = findViewById(R.id.favorites_list_view);
     favListView.setAdapter(simpleAdapter);
 
     favListView.setOnItemClickListener((parent, view, position, id) -> {

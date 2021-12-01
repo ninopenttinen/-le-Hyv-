@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_bg"
+    android:background="@drawable/background_color"
     android:orientation="vertical"
     tools:context=".FiltersView">
 
@@ -13,8 +13,9 @@
         android:layout_height="40dp"
         android:gravity="center"
         android:text="@string/favorites"
-        android:textColor="#FFFF"
-        android:textSize="20sp" />
+        android:textColor="@color/text_color_1"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -22,7 +23,7 @@
         android:orientation="vertical">
 
         <ListView
-            android:id="@+id/favorites_listView"
+            android:id="@+id/favorites_list_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
@@ -32,7 +33,7 @@
             android:paddingVertical="20dp" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigationView"
+            android:id="@+id/bottom_navigation_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

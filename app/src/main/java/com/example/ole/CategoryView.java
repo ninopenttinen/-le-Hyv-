@@ -27,11 +27,11 @@ public class CategoryView extends AppCompatActivity implements BottomNavigationV
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
+    setContentView(R.layout.activity_category);
 
     setCategoryView();
 
-    bottomNavigationView = findViewById(R.id.bottomNavigationView);
+    bottomNavigationView = findViewById(R.id.bottom_navigation_view);
     bottomNavigationView.setOnNavigationItemSelectedListener(CategoryView.this);
     bottomNavigationView.setSelectedItemId(R.id.bottom_menu_button_home);
   }

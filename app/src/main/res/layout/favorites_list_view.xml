@@ -42,6 +42,7 @@
         android:focusable="false"
         android:gravity="center"
         android:text="@string/fav_recipe_name"
+        android:textColor="@color/text_color_1"
         app:layout_constraintStart_toEndOf="@+id/favorite_card_view"
         app:layout_constraintTop_toTopOf="parent" />
 

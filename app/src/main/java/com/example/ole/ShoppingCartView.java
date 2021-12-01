@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -13,9 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.ole.dao.ShoppingListDao;
-import com.example.ole.database.AppDatabase;
-import com.example.ole.roomsitems.RoomShoppingListItem;
 import com.example.ole.viewmodel.ShoppingListViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -41,7 +38,7 @@ public class ShoppingCartView extends AppCompatActivity implements BottomNavigat
 
     initializeListView();
 
-    bottomNavigationView = findViewById(R.id.bottomNavigationView);
+    bottomNavigationView = findViewById(R.id.bottom_navigation_view);
     bottomNavigationView.setOnNavigationItemSelectedListener(ShoppingCartView.this);
     bottomNavigationView.setSelectedItemId(R.id.bottom_menu_button_cart);
   }
@@ -124,7 +121,7 @@ public class ShoppingCartView extends AppCompatActivity implements BottomNavigat
       public View getView(int position, View convertView, ViewGroup parent) {
         View view = super.getView(position, convertView, parent);
 
-        Button itemDeleteButton = view.findViewById(R.id.shoppingItemDeleteButton);
+        ImageButton itemDeleteButton = view.findViewById(R.id.shoppingItemDeleteButton);
 
         itemDeleteButton.setOnClickListener(arg0 -> {
           shoppingListViewModel.removeIngredientFromShoppingList(
@@ -138,7 +135,7 @@ public class ShoppingCartView extends AppCompatActivity implements BottomNavigat
       }
     };
 
-    ListView shoppingItemsListView = findViewById(R.id.shoppingItemsList);
+    ListView shoppingItemsListView = findViewById(R.id.shopping_items_list);
     shoppingItemsListView.setAdapter(simpleAdapter);
   }
 }

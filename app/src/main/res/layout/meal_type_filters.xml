@@ -15,8 +15,9 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:text="@string/meal_type_filters_title"
-            android:textColor="#FFFF"
-            android:textSize="20sp"/>
+            android:textColor="@color/text_color_1"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
         <Space
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -31,7 +32,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#FFFF"/>
+        android:background="@color/text_color_1"/>
 
     <LinearLayout
         android:id="@+id/meal_type_filters"
@@ -47,6 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:textSize="18sp"
+            android:textColor="@color/text_color_1"
             android:onClick="handleToggle"
             android:text="@string/meal_type_filters_breakfast" />
 
@@ -56,6 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:textSize="18sp"
+            android:textColor="@color/text_color_1"
             android:onClick="handleToggle"
             android:text="@string/meal_type_filters_dinner" />
 
@@ -65,6 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:textSize="18sp"
+            android:textColor="@color/text_color_1"
             android:onClick="handleToggle"
             android:text="@string/meal_type_filters_lunch" />
 
@@ -74,6 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:textSize="18sp"
+            android:textColor="@color/text_color_1"
             android:onClick="handleToggle"
             android:text="@string/meal_type_filters_snack" />
 
@@ -83,6 +88,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:textSize="18sp"
+            android:textColor="@color/text_color_1"
             android:onClick="handleToggle"
             android:text="@string/meal_type_filters_teatime" />
 

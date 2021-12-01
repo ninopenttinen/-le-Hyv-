@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/gradient_bg">
+    android:background="@drawable/background_color">
 
     <TextView
         android:id="@+id/category_text_view"
@@ -12,8 +12,9 @@
         android:layout_height="40dp"
         android:text="@string/activity_suggestions_title"
         android:gravity="center"
-        android:textColor="@color/black"
-        android:textSize="20sp" />
+        android:textColor="@color/text_color_1"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
 
     <GridView
         android:id="@+id/suggestions_grid_view"
@@ -34,12 +35,13 @@
         app:cardElevation="5dp"
         app:cardUseCompatPadding="true"
         android:onClick="getNextSuggestions"
-        android:clickable="false" >
+        android:clickable="false"
+        app:cardBackgroundColor="@color/base_color_1">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="10dp" >
+            android:layout_margin="10dp">
 
             <ImageView
                 android:id="@+id/next_suggestions_button_image"
@@ -54,13 +56,23 @@
 
     </androidx.cardview.widget.CardView>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Reroll"
+        android:gravity="center"
+        android:textColor="@color/text_color_1"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
+        android:id="@+id/bottom_navigation_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:layout_weight="1"
-        app:itemBackground="@color/design_default_color_primary"
+        android:background="@color/base_color_4"
+        app:itemTextColor="@color/bottom_nav_color"
+        app:itemIconTint="@color/bottom_nav_color"
         app:labelVisibilityMode="unlabeled"
         app:menu="@menu/bottom_menu" />
 

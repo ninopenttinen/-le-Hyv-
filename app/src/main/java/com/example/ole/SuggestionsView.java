@@ -49,7 +49,7 @@ public class SuggestionsView extends AppCompatActivity implements BottomNavigati
       findViewById(R.id.next_suggestions_button).setClickable(!suggestions.isNoRecipes());
     });
 
-    bottomNavigationView = findViewById(R.id.bottomNavigationView);
+    bottomNavigationView = findViewById(R.id.bottom_navigation_view);
     bottomNavigationView.setOnNavigationItemSelectedListener(SuggestionsView.this);
     bottomNavigationView.setSelectedItemId(R.id.bottom_menu_button_home);
   }
