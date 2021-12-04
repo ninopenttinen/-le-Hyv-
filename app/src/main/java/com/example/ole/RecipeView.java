@@ -62,7 +62,8 @@ public class RecipeView extends AppCompatActivity implements BottomNavigationVie
     // TODO Auto-generated method stub
     //super.onBackPressed();
     Intent backIntent = new Intent(RecipeView.this, SuggestionsView.class);
-    overridePendingTransition(0, 0);
+    startActivity(backIntent);
+    overridePendingTransition(0,0);
   }
 
   public boolean onNavigationItemSelected(@NonNull MenuItem item) {
