@@ -57,7 +57,7 @@ public class FiltersView extends AppCompatActivity implements ExcludedIngredient
 
         bottomNavigationView = findViewById(R.id.bottom_navigation_view);
         bottomNavigationView.setOnNavigationItemSelectedListener(FiltersView.this);
-        bottomNavigationView.setSelectedItemId(R.id.bottom_menu_button_settings);
+        bottomNavigationView.setSelectedItemId(R.id.bottom_menu_button_filters);
     }
 
     @Override
@@ -110,7 +110,7 @@ public class FiltersView extends AppCompatActivity implements ExcludedIngredient
                 overridePendingTransition(0,0);
                 break;
 
-            case R.id.bottom_menu_button_settings:
+            case R.id.bottom_menu_button_filters:
                 return true;
         }
         return false;

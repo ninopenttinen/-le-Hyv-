@@ -63,7 +63,7 @@ public class CategoryView extends AppCompatActivity implements BottomNavigationV
         overridePendingTransition(0,0);
         break;
 
-      case R.id.bottom_menu_button_settings:
+      case R.id.bottom_menu_button_filters:
         Intent intentSettings = new Intent(CategoryView.this, FiltersView.class);
         intentSettings.putExtra("HomeState", "categoryView");
         startActivity(intentSettings);

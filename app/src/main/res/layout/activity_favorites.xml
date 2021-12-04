@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -9,38 +9,38 @@
     tools:context=".FiltersView">
 
     <TextView
+        android:id="@+id/favorites_title_text_view"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="@string/favorites"
         android:textColor="@color/text_color_1"
         android:textSize="20sp"
         android:textStyle="bold"/>
 
-    <RelativeLayout
+    <ListView
+        android:id="@+id/favorites_list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_above="@+id/bottom_navigation_view"
+        android:layout_below="@+id/favorites_title_text_view"
+        android:layout_marginTop="20dp"
+        android:clickable="true"
+        android:descendantFocusability="blocksDescendants"
+        android:focusable="true"
+        android:paddingHorizontal="20dp"/>
 
-        <ListView
-            android:id="@+id/favorites_list_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:descendantFocusability="blocksDescendants"
-            android:focusable="true"
-            android:paddingHorizontal="20dp"
-            android:paddingVertical="20dp" />
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/base_color_4"
+        app:itemTextColor="@color/bottom_nav_color"
+        app:itemIconTint="@color/bottom_nav_color"
+        app:labelVisibilityMode="unlabeled"
+        app:menu="@menu/bottom_menu" />
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_navigation_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            app:itemBackground="@color/design_default_color_primary"
-            app:labelVisibilityMode="unlabeled"
-            app:menu="@menu/bottom_menu" />
 
-    </RelativeLayout>
-
-</androidx.appcompat.widget.LinearLayoutCompat>
+</RelativeLayout>

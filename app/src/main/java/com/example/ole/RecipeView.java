@@ -89,7 +89,7 @@ public class RecipeView extends AppCompatActivity implements BottomNavigationVie
         overridePendingTransition(0, 0);
         break;
 
-      case R.id.bottom_menu_button_settings:
+      case R.id.bottom_menu_button_filters:
         Intent intentSettings = new Intent(RecipeView.this, FiltersView.class);
         intentSettings.putExtra("HomeState", "RecipeView");
         intentSettings.putExtra("category", category);

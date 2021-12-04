@@ -87,7 +87,7 @@ public class ShoppingCartView extends AppCompatActivity implements BottomNavigat
       case R.id.bottom_menu_button_cart:
         return true;
 
-      case R.id.bottom_menu_button_settings:
+      case R.id.bottom_menu_button_filters:
         Intent intentSettings = new Intent(ShoppingCartView.this, FiltersView.class);
         intentSettings.putExtra("HomeState",homeState);
         intentSettings.putExtra("category", category);

@@ -46,7 +46,7 @@ public class SuggestionsView extends AppCompatActivity implements BottomNavigati
 
     suggestionsViewModel.getSuggestions().observe(this, suggestions -> {
       displaySuggestions(suggestions);
-      findViewById(R.id.next_suggestions_button).setClickable(!suggestions.isNoRecipes());
+      findViewById(R.id.reroll_button).setClickable(!suggestions.isNoRecipes());
     });
 
     bottomNavigationView = findViewById(R.id.bottom_navigation_view);
@@ -86,7 +86,7 @@ public class SuggestionsView extends AppCompatActivity implements BottomNavigati
         overridePendingTransition(0,0);
         break;
 
-      case R.id.bottom_menu_button_settings:
+      case R.id.bottom_menu_button_filters:
         Intent intentSettings = new Intent(SuggestionsView.this, FiltersView.class);
         intentSettings.putExtra("HomeState", "suggestionsView");
         intentSettings.putExtra("category",category);
@@ -153,7 +153,7 @@ public class SuggestionsView extends AppCompatActivity implements BottomNavigati
   }
 
   public void getNextSuggestions(View view) {
-    findViewById(R.id.next_suggestions_button).setClickable(false);
+    findViewById(R.id.reroll_button).setClickable(false);
     suggestionsViewModel.nextSuggestions();
   }
 }

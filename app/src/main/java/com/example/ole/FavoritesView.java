@@ -93,7 +93,7 @@ public class FavoritesView extends AppCompatActivity implements BottomNavigation
         overridePendingTransition(0,0);
         break;
 
-      case R.id.bottom_menu_button_settings:
+      case R.id.bottom_menu_button_filters:
         Intent intentSettings = new Intent(FavoritesView.this, FiltersView.class);
         intentSettings.putExtra("HomeState",homeState);
         intentSettings.putExtra("category", category);
