@@ -144,8 +144,15 @@ public class FavoritesView extends AppCompatActivity implements BottomNavigation
     favListView.setAdapter(simpleAdapter);
 
     favListView.setOnItemClickListener((parent, view, position, id) -> {
+
+      String homeState = getIntent().getStringExtra("HomeState");
+      String category = getIntent().getStringExtra("category");
+      //Recipe recipe = Parcels.unwrap(getIntent().getParcelableExtra("recipe"));
+
       Intent intent = new Intent(this, RecipeView.class);
       intent.putExtra("recipe", Parcels.wrap(favRecipes.get(position)));
+      intent.putExtra("HomeState",homeState);
+      intent.putExtra("category",category);
       startActivity(intent);
     });
 

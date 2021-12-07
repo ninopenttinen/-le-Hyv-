@@ -60,11 +60,30 @@ public class RecipeView extends AppCompatActivity implements BottomNavigationVie
   @Override
   public void onBackPressed() {
     // TODO Auto-generated method stub
+    String homeState = getIntent().getStringExtra("HomeState");
     String category = getIntent().getStringExtra("category");
-    Intent backIntent = new Intent(RecipeView.this, SuggestionsView.class);
-    backIntent.putExtra("category", category);
-    startActivity(backIntent);
-    overridePendingTransition(0,0);
+
+    //boolean callerFavorites = getIntent().getBooleanExtra("callerFavorites", false);
+
+/*    if (callerFavorites){
+      callerFavorites = false;
+      Intent backIntentFavorites = new Intent(RecipeView.this, FavoritesView.class);
+      backIntentFavorites.putExtra("HomeState", "recipeView");
+      backIntentFavorites.putExtra("category", category);
+      backIntentFavorites.putExtra("recipe", Parcels.wrap(recipe));
+
+      startActivity(backIntentFavorites);
+      overridePendingTransition(0, 0);
+    }
+    else {
+
+ */
+      Intent backIntent = new Intent(RecipeView.this, SuggestionsView.class);
+      backIntent.putExtra("category", category);
+      backIntent.putExtra("HomeState", homeState);
+      startActivity(backIntent);
+      overridePendingTransition(0, 0);
+    //}
   }
 
   public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -191,6 +210,7 @@ public class RecipeView extends AppCompatActivity implements BottomNavigationVie
     Intent intent = new Intent(getApplicationContext(), WebViewView.class);
     intent.putExtra("url", recipe.getUrl());
     startActivity(intent);
+    overridePendingTransition(0, 0);
   }
 
   public void AddToCart(View view) {
