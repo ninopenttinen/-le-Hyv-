@@ -101,6 +101,7 @@ public class SavedDataRepository {
       roomIngredient.setFk_recipe(recipeID);
       ingredientDao.insertAll(roomIngredient);
     }
+    setRecipes();
   }
 
 
