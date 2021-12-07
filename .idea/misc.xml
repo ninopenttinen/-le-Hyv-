@@ -35,44 +35,79 @@
         <entry key="..\:/Koodit/mobiili/mobiili_uusi/Ole-Hyva/app/src/main/res/mipmap-anydpi-v26/mexican_round.xml" value="0.20729166666666668" />
         <entry key="..\:/Koodit/mobiili/mobiili_uusi/Ole-Hyva/app/src/main/res/mipmap-anydpi-v26/middle_eastern.xml" value="0.20729166666666668" />
         <entry key="..\:/Koodit/mobiili/mobiili_uusi/Ole-Hyva/app/src/main/res/mipmap-anydpi-v26/nordic.xml" value="0.20729166666666668" />
-        <entry key="..\:/Users/Janzk/Desktop/Ole-Hyva/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.25833333333333336" />
         <entry key="..\:/Users/Janzk/Desktop/Ole-Hyva/app/src/main/res/layout/activity_cart.xml" value="0.23385416666666667" />
         <entry key="..\:/Users/Janzk/Desktop/Ole-Hyva/app/src/main/res/layout/activity_favorites.xml" value="0.21979166666666666" />
         <entry key="..\:/Users/Janzk/Desktop/Ole-Hyva/app/src/main/res/layout/activity_main.xml" value="0.23385416666666667" />
-        <entry key="..\:/Users/Janzk/Desktop/Ole-Hyva/app/src/main/res/layout/activity_recipe_view.xml" value="0.2421875" />
         <entry key="..\:/Users/Janzk/Desktop/Ole-Hyva/app/src/main/res/layout/activity_second.xml" value="0.23385416666666667" />
         <entry key="..\:/Users/Janzk/Desktop/Ole-Hyva/app/src/main/res/layout/activity_settings.xml" value="0.23385416666666667" />
         <entry key="..\:/Users/Janzk/Desktop/Ole-Hyva/app/src/main/res/layout/category_grid_layout.xml" value="0.13541666666666666" />
-        <entry key="..\:/Users/Janzk/Desktop/Ole-Hyva/app/src/main/res/layout/favorites_list_view.xml" value="0.19114583333333332" />
         <entry key="..\:/Users/Janzk/Desktop/Ole-Hyva/app/src/main/res/layout/random_layout.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/Janzk/Desktop/Ole-Hyva/app/src/main/res/layout/recipe_layout.xml" value="0.13541666666666666" />
-        <entry key="..\:/Users/Janzk/Desktop/Ole-Hyva/app/src/main/res/layout/suggestion_card.xml" value="0.2421875" />
-        <entry key="..\:/Users/Janzk/Desktop/Ole-Hyva/app/src/main/res/mipmap-anydpi-v26/asian_round.xml" value="0.25833333333333336" />
-        <entry key="..\:/Users/Janzk/Desktop/Ole-Hyva/app/src/main/res/mipmap-anydpi-v26/british.xml" value="0.25833333333333336" />
-        <entry key="..\:/Users/Janzk/Desktop/Ole-Hyva/app/src/main/res/mipmap-anydpi-v26/british_round.xml" value="0.25833333333333336" />
-        <entry key="..\:/Users/Janzk/Desktop/Ole-Hyva/app/src/main/res/mipmap-anydpi-v26/caribbean.xml" value="0.25833333333333336" />
-        <entry key="..\:/Users/Janzk/Desktop/Ole-Hyva/app/src/main/res/mipmap-anydpi-v26/caribbean_round.xml" value="0.25833333333333336" />
-        <entry key="..\:/Users/Janzk/Desktop/Ole-Hyva/app/src/main/res/mipmap-anydpi-v26/italian.xml" value="0.25833333333333336" />
-        <entry key="..\:/Users/Janzk/Desktop/Ole-Hyva/app/src/main/res/mipmap-anydpi-v26/italian_round.xml" value="0.25833333333333336" />
-        <entry key="..\:/Users/Janzk/Desktop/Ole-Hyva/app/src/main/res/mipmap-anydpi-v26/japanese.xml" value="0.25833333333333336" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2703125" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/drawable/base_color_1.xml" value="0.2703125" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/drawable/base_color_2.xml" value="0.2703125" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/drawable/base_color_3.xml" value="0.2703125" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/drawable/base_color_4.xml" value="0.2703125" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/drawable/bottom_nav_color.xml" value="0.14635416666666667" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/drawable/bottom_popup.xml" value="0.14635416666666667" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/drawable/gradient_bg.xml" value="0.2703125" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/drawable/ic_baseline_arrow_drop_down_24.xml" value="0.2703125" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/drawable/ic_baseline_arrow_drop_up_24.xml" value="0.2703125" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/drawable/ic_baseline_arrow_forward_24.xml" value="0.2703125" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/drawable/ic_baseline_arrow_pink.xml" value="0.2703125" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/drawable/ic_baseline_arrow_right.xml" value="0.2703125" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/drawable/ic_baseline_checklist_rtl_24.xml" value="0.2703125" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/drawable/ic_baseline_clear_24.xml" value="0.2703125" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/drawable/ic_baseline_filter_alt_24.xml" value="0.14635416666666667" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/drawable/ic_baseline_highlight_off_24.xml" value="0.14635416666666667" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/drawable/ic_baseline_more_vert_24.xml" value="0.2703125" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/drawable/ic_baseline_refresh_24.xml" value="0.2703125" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.2703125" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/drawable/ic_baseline_shopping_cart_24.xml" value="0.14635416666666667" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/drawable/ic_bottom_menu_favorite.xml" value="0.14635416666666667" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/drawable/ic_bottom_menu_filter.xml" value="0.2703125" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/drawable/ic_bottom_menu_home.xml" value="0.14635416666666667" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/drawable/ic_bottom_menu_shopping_cart.xml" value="0.2703125" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2703125" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/drawable/ic_round_more_vert_24.xml" value="0.2703125" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/drawable/list_view_round_corners.xml" value="0.2703125" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/drawable/secondary_color.xml" value="0.2703125" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/drawable/text_view_round_corners.xml" value="0.2703125" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/layout/activity_cart.xml" value="0.13020833333333334" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/layout/activity_category.xml" value="0.2318840579710145" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/layout/activity_favorites.xml" value="0.13020833333333334" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/layout/activity_filters.xml" value="0.264" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/layout/activity_main.xml" value="0.13020833333333334" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/layout/activity_recipe_view.xml" value="0.2" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/layout/activity_suggestions.xml" value="0.176" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/layout/activity_web_view.xml" value="0.2318840579710145" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/layout/bottom_menu.xml" value="0.13020833333333334" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/layout/diet_filters.xml" value="0.23641304347826086" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/layout/dish_type_filters.xml" value="0.23641304347826086" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/layout/excluded_ingredient_card.xml" value="0.13020833333333334" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/layout/favorites_list_view.xml" value="0.23641304347826086" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/layout/health_filters.xml" value="0.23641304347826086" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/layout/meal_type_filters.xml" value="0.18840579710144928" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/layout/shopping_items_list.xml" value="0.536" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/layout/simple_list_item_multiple_choice.xml" value="0.4" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/layout/simple_list_item_multiple_choice1.xml" value="0.13020833333333334" />
+        <entry key="..\:/Users/Nino/AndroidStudioProjects/Ole-Hyva/app/src/main/res/menu/bottom_menu.xml" value="0.13020833333333334" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.4822916666666667" />
         <entry key="app/src/main/res/drawable/bottom_popup.xml" value="0.4822916666666667" />
         <entry key="app/src/main/res/drawable/gradient_bg.xml" value="0.4822916666666667" />
         <entry key="app/src/main/res/drawable/ic_baseline_arrow_forward_24.xml" value="0.4822916666666667" />
         <entry key="app/src/main/res/drawable/ic_baseline_arrow_pink.xml" value="0.4822916666666667" />
-        <entry key="app/src/main/res/drawable/ic_baseline_checklist_rtl_24.xml" value="0.4822916666666667" />
         <entry key="app/src/main/res/drawable/ic_baseline_refresh_24.xml" value="0.4822916666666667" />
         <entry key="app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.4822916666666667" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.4822916666666667" />
         <entry key="app/src/main/res/drawable/list_view_round_corners.xml" value="0.4822916666666667" />
         <entry key="app/src/main/res/drawable/round_corners.xml" value="0.4822916666666667" />
-        <entry key="app/src/main/res/layout/activity_favorites.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_filters.xml" value="0.38405797101449274" />
+        <entry key="app/src/main/res/layout/activity_favorites.xml" value="0.38697916666666665" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3138586956521739" />
         <entry key="app/src/main/res/layout/activity_recipe_view.xml" value="0.3917572463768116" />
         <entry key="app/src/main/res/layout/activity_second.xml" value="0.3220108695652174" />
         <entry key="app/src/main/res/layout/activity_settings.xml" value="0.327445652173913" />
-        <entry key="app/src/main/res/layout/activity_suggestions.xml" value="0.1360544217687075" />
+        <entry key="app/src/main/res/layout/activity_suggestions.xml" value="0.27239583333333334" />
         <entry key="app/src/main/res/layout/activity_third.xml" value="0.3138586956521739" />
         <entry key="app/src/main/res/layout/activity_web_view.xml" value="0.24375" />
         <entry key="app/src/main/res/layout/bottom_popup_layout.xml" value="0.4017210144927536" />

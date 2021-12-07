@@ -14,7 +14,8 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".WebViewView"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Design.NoActionBar"/>
         <activity
             android:name=".FavoritesView"
             android:exported="true"
