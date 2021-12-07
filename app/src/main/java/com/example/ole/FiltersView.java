@@ -73,7 +73,6 @@ public class FiltersView extends AppCompatActivity implements ExcludedIngredient
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         String homeState = getIntent().getStringExtra("HomeState");
         String category = getIntent().getStringExtra("category");
-        //String recipe = getIntent().getStringExtra("recipe");
         Recipe recipe = Parcels.unwrap(getIntent().getParcelableExtra("recipe"));
 
         switch (item.getItemId()) {

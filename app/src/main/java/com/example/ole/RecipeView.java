@@ -60,8 +60,9 @@ public class RecipeView extends AppCompatActivity implements BottomNavigationVie
   @Override
   public void onBackPressed() {
     // TODO Auto-generated method stub
-    //super.onBackPressed();
+    String category = getIntent().getStringExtra("category");
     Intent backIntent = new Intent(RecipeView.this, SuggestionsView.class);
+    backIntent.putExtra("category", category);
     startActivity(backIntent);
     overridePendingTransition(0,0);
   }
@@ -92,7 +93,7 @@ public class RecipeView extends AppCompatActivity implements BottomNavigationVie
 
       case R.id.bottom_menu_button_filters:
         Intent intentSettings = new Intent(RecipeView.this, FiltersView.class);
-        intentSettings.putExtra("HomeState", "RecipeView");
+        intentSettings.putExtra("HomeState", "recipeView");
         intentSettings.putExtra("category", category);
         intentSettings.putExtra("recipe", Parcels.wrap(recipe));
         startActivity(intentSettings);

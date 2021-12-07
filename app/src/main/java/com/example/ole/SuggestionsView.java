@@ -124,6 +124,8 @@ public class SuggestionsView extends AppCompatActivity implements BottomNavigati
     suggestionsGridView.setAdapter(adapter);
 
     suggestionsGridView.setOnItemClickListener((parent, view, position, id) -> {
+      String category = getIntent().getStringExtra("category");
+
       Intent intent = new Intent(this, RecipeView.class);
       if (position == 0) {
         intent.putExtra("recipe", Parcels.wrap(suggestions.getFirstSuggestion()));
@@ -131,6 +133,7 @@ public class SuggestionsView extends AppCompatActivity implements BottomNavigati
       if (position == 1) {
         intent.putExtra("recipe", Parcels.wrap(suggestions.getSecondSuggestion()));
       }
+      intent.putExtra("category",category);
       startActivity(intent);
     });
   }
