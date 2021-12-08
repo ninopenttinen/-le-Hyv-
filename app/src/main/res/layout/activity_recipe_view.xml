@@ -29,7 +29,8 @@
                 android:id="@+id/recipeImageView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:srcCompat="@tools:sample/avatars" />
+                tools:srcCompat="@tools:sample/avatars"
+                android:contentDescription="@string/recipe_activity_image_description"/>
         </androidx.cardview.widget.CardView>
 
         <TextView
@@ -57,7 +58,7 @@
                 android:minHeight="48dp"
                 android:onClick="AddToCart"
                 android:shadowColor="#00FFFFFF"
-                android:text="Add to Cart"
+                android:text="@string/recipe_activity_add_to_cart"
                 android:textColor="@color/text_color_1"
                 app:drawableStartCompat="@drawable/ic_baseline_checklist_rtl_24"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -118,8 +119,8 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="32dp"
                 android:backgroundTint="#65FFFFFF"
-                android:textOff="Add To Favorites"
-                android:textOn="Remove From Favorites"
+                android:textOff="@string/recipe_activity_add_to_favorites"
+                android:textOn="@string/recipe_activity_remove_from_favorites"
                 android:textColor="@color/text_color_1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"

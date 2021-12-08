@@ -52,7 +52,7 @@
                 android:layout_centerVertical="true"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/ic_baseline_refresh_24"
-                android:contentDescription="" />
+                android:contentDescription="@string/suggestions_activity_image" />
 
         </RelativeLayout>
 
@@ -62,7 +62,7 @@
         android:id="@+id/reroll_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Reroll"
+        android:text="@string/suggestions_activity_reroll"
         android:gravity="center"
         android:textColor="@color/text_color_1"
         android:textSize="16sp"

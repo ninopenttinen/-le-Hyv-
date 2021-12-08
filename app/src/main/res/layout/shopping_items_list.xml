@@ -31,7 +31,8 @@
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:textColor="@color/text_color_1"
-            android:src="@drawable/ic_baseline_highlight_off_24"/>
+            android:src="@drawable/ic_baseline_highlight_off_24"
+            android:contentDescription="@string/shopping_items_list_image"/>
 
     </LinearLayout>
 

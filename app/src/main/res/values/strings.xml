@@ -19,9 +19,16 @@
     <string name="main_activity_shopping_list">Shopping List</string>
 
     <string name="activity_suggestions_title">%1$s</string>
+    <string name="suggestions_activity_image">Suggestion image</string>
+    <string name="suggestions_activity_reroll">Reroll</string>
+
     <string name="suggestion_card_image_description">Suggestion Image</string>
 
     <string name="recipe_activity_title">%1$s</string>
+    <string name="recipe_activity_image_description">Recipe image</string>
+    <string name="recipe_activity_add_to_cart">Add to Cart</string>
+    <string name="recipe_activity_add_to_favorites">Add To Favorites</string>
+    <string name="recipe_activity_remove_from_favorites">Remove From Favorites</string>
 
     <string name="filters_activity_title">Filters</string>
 
@@ -86,6 +93,7 @@
     <string name="dish_type_filters_starter">Starter</string>
     <string name="dish_type_filters_sweets">Sweets</string>
     <string name="category">Category</string>
-
+    <string name="category_grid_layout_image">categoryImage</string>
+    <string name="shopping_items_list_image">Shopping list item image</string>
 
 </resources>
