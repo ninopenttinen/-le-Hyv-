@@ -18,23 +18,23 @@
             android:theme="@style/Theme.Design.NoActionBar"/>
         <activity
             android:name=".FavoritesView"
-            android:exported="true"
+            android:exported="false"
             android:theme="@style/Theme.Design.NoActionBar" />
         <activity
             android:name=".ShoppingCartView"
-            android:exported="true"
+            android:exported="false"
             android:theme="@style/Theme.Design.NoActionBar" />
         <activity
             android:name=".FiltersView"
-            android:exported="true"
+            android:exported="false"
             android:theme="@style/Theme.Design.NoActionBar" />
         <activity
             android:name=".RecipeView"
-            android:exported="true"
+            android:exported="false"
             android:theme="@style/Theme.Design.NoActionBar" />
         <activity
             android:name=".SuggestionsView"
-            android:exported="true"
+            android:exported="false"
             android:theme="@style/Theme.Design.NoActionBar" />
         <activity
             android:name=".CategoryView"
