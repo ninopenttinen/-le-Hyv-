@@ -108,17 +108,20 @@ public class CategoryView extends AppCompatActivity implements BottomNavigationV
       Intent intent = new Intent(this, SuggestionsView.class);
       intent.putExtra("category", category);
       startActivity(intent);
+      overridePendingTransition(0, 0);
     });
   }
 
   public void settingsOnClick(View view) {
     Intent intent = new Intent(this, FiltersView.class);
     startActivity(intent);
+    overridePendingTransition(0, 0);
   }
 
   public void cartOnClick(View view) {
     Intent intent = new Intent(this, ShoppingCartView.class);
     startActivity(intent);
+    overridePendingTransition(0, 0);
   }
 
   public void favoritesOnClick(View view) {

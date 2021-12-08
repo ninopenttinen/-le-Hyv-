@@ -36,6 +36,7 @@ public class RecipeView extends AppCompatActivity implements BottomNavigationVie
   private RecipeViewModel recipeViewModel;
   private Recipe recipe;
   private Button cartButton;
+  boolean ifTheresCategory;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,8 @@ public class RecipeView extends AppCompatActivity implements BottomNavigationVie
     bottomNavigationView = findViewById(R.id.bottom_navigation_view);
     bottomNavigationView.setOnNavigationItemSelectedListener(RecipeView.this);
     bottomNavigationView.setSelectedItemId(R.id.bottom_menu_button_home);
+
+
   }
 
   @Override
@@ -63,31 +66,28 @@ public class RecipeView extends AppCompatActivity implements BottomNavigationVie
     String homeState = getIntent().getStringExtra("HomeState");
     String category = getIntent().getStringExtra("category");
 
-    //boolean callerFavorites = getIntent().getBooleanExtra("callerFavorites", false);
+    ifTheresCategory = (category != null);
 
-/*    if (callerFavorites){
-      callerFavorites = false;
-      Intent backIntentFavorites = new Intent(RecipeView.this, FavoritesView.class);
-      backIntentFavorites.putExtra("HomeState", "recipeView");
-      backIntentFavorites.putExtra("category", category);
+    if (!ifTheresCategory){
+      Intent backIntentFavorites = new Intent(RecipeView.this, CategoryView.class);
       backIntentFavorites.putExtra("recipe", Parcels.wrap(recipe));
-
       startActivity(backIntentFavorites);
       overridePendingTransition(0, 0);
     }
     else {
 
- */
+
       Intent backIntent = new Intent(RecipeView.this, SuggestionsView.class);
       backIntent.putExtra("category", category);
       backIntent.putExtra("HomeState", homeState);
       startActivity(backIntent);
       overridePendingTransition(0, 0);
-    //}
+    }
   }
 
   public boolean onNavigationItemSelected(@NonNull MenuItem item) {
     String category = getIntent().getStringExtra("category");
+
     switch (item.getItemId()) {
       case R.id.bottom_menu_button_home:
         return true;
